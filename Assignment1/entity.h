@@ -31,5 +31,4 @@ protected:
 	glm::vec3 m_v3StencilColour;
 	bool m_bStencil;
 
-
 };
