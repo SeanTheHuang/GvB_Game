@@ -6,6 +6,10 @@ void MainLevel::Initialize()
 	//Create Camera(s) for the level
 	m_pCamera = new Camera();
 
+	// Box2D world creation
+	b2Vec2 gravity(0.0f, -0.1f);
+	b2World* world = new b2World(gravity);
+
 	//Creates all objects in the level.
 	//IF WANT NEW LEVEL:
 	//		- Create a new class override Level's Initialize for different levels

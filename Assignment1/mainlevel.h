@@ -1,6 +1,7 @@
 #pragma once
 
 #include "level.h"
+#include "Box2D\Box2D.h"
 
 class MainLevel : public Level
 {
