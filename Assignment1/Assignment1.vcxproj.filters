@@ -28,18 +28,21 @@
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{26ae57a4-771b-4521-80eb-fb47dbb9906f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{b9ab7f8a-4447-4d26-9923-f5a44a325bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Assimp">
+      <UniqueIdentifier>{bbbcbffc-f1e5-4ef0-8864-072fc76a8cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{0b91120c-e402-4962-9f1b-1f327f8883ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="model.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="shaderhelper.cpp">
@@ -72,9 +75,6 @@
     <ClCompile Include="mainlevel.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,18 +96,24 @@
     <ClCompile Include="audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuboid.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="model.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="shaderhelper.h">
@@ -140,9 +146,6 @@
     <ClInclude Include="mainlevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -164,6 +167,27 @@
     <ClInclude Include="audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files\Objects\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Header Files\Objects\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cuboid.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="model_vs.glsl">
@@ -182,6 +206,18 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="quad_vs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="cube_fragment_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="cube_vertex_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="fragment_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="vertex_shader.glsl">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

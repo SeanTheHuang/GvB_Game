@@ -1,58 +1,86 @@
-#include "camera.h"
+//
+// Bachelor of Software Engineering
+// Media Design School
+// Auckland
+// New Zealand
+//
+// (c) 2017 Media Design School
+//
+// File Name	: Camera.cpp
+// Description	: this is the camera object containing related functions
+// Author		: Sebastian Tengdahl
+// Mail			: sebastian.ten7230@mediadesign.school.nz
+//
 
-Camera::Camera()
+#include "Camera.h"
+
+
+
+CCamera::CCamera()
 {
-	m_position = glm::vec3(0, 0, 0);
-	m_target = glm::vec3(0, 0, 10);
-
-	m_projectionMatrix = glm::perspective(glm::radians(60.0f), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 5000.0f);
-	m_viewMatrix = glm::lookAt(m_position, m_target, glm::vec3(0, 1, 0));
-
-	m_v3FogColour = glm::vec3(0.10f, 0.0f, 0.12f);
-	m_fFogStart = 15;
-	m_fFogEnd = 60;
+	m_cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+	m_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	m_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
 
-glm::mat4 Camera::GetViewMatrix()
+CCamera::~CCamera()
 {
-	return m_viewMatrix;
 }
 
-glm::mat4 Camera::GetProjectionMatrix()
+void CCamera::GetUniformLocation(GLuint _shaders, bool _bIsOrthographic)
 {
-	return m_projectionMatrix;
+	if (_bIsOrthographic)
+	{
+		CShader shaderFunctions(_shaders, ORTHOGRAPHIC);
+		vecShaderFunctions.push_back(shaderFunctions);
+	}
+	else
+	{
+		CShader shaderFunctions(_shaders, PERSPECTIVE);
+		vecShaderFunctions.push_back(shaderFunctions);
+	}
 }
 
-glm::vec3 Camera::GetPosition()
+void CCamera::SendDataToShaders()
 {
-	return m_position;
+	float aspectRatio = static_cast<float>(glutGet(GLUT_WINDOW_WIDTH)) / glutGet(GLUT_WINDOW_HEIGHT);
+	glm::mat4 View = glm::lookAtRH(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
+	glm::mat4 Ortho = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, 0.1f, 100.0f);
+	glm::mat4 Perspective = glm::perspectiveRH(glm::radians(60.0f), aspectRatio, 1.0f, 100.0f);
+
+	for (size_t i = 0; i < vecShaderFunctions.size(); ++i)
+	{
+		vecShaderFunctions.at(i).SendDataToShaders(View, Ortho, Perspective);
+	}
 }
 
-glm::vec3 Camera::FogColour()
+void CCamera::MoveForward(float _fSpeed)
 {
-	return m_v3FogColour;
+	m_cameraPos += m_cameraFront * _fSpeed;
 }
 
-float Camera::FogStart()
+void CCamera::MoveLeft(float _fSpeed)
 {
-	return m_fFogStart;
+	m_cameraPos -= glm::normalize(glm::cross(m_cameraFront, m_cameraUp)) * _fSpeed;
 }
 
-float Camera::FogEnd()
+void CCamera::SetCameraFront(glm::vec3 _front)
 {
-	return m_fFogEnd;
+	m_cameraFront = _front;
 }
 
-void Camera::UpdateCameraPosition(glm::vec3 newPosition)
+void CCamera::SetPosition(glm::vec3 _position)
 {
-	m_position = newPosition;
-	m_viewMatrix = glm::lookAt(m_position, m_target, glm::vec3(0, 1, 0));
+	m_cameraPos = _position;
 }
 
-void Camera::UpdateCameraViewDirection(glm::vec3 viewDirection)
+glm::vec3 CCamera::GetPosition()
 {
-	m_target = m_position + viewDirection;
-	m_viewMatrix = glm::lookAt(m_position, m_target, glm::vec3(0, 1, 0));
+	return m_cameraPos;
 }
 
+glm::vec3 CCamera::GetFront()
+{
+	return m_cameraFront;
+}

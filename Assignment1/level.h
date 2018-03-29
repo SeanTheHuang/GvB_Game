@@ -4,6 +4,9 @@
 #include "camera.h"
 #include "entity.h"
 #include "quad.h"
+#include "shaderhelper.h"
+#include "object.h"
+#include "Utils.h"
 
 class Level
 {
@@ -21,16 +24,13 @@ public:
 	//Render all objects
 	virtual void Render();
 
-	void AddEntity(Entity* _newEntity);
-	void AddQuad(Quad* _newQuad);
-
 protected:
 	Level(const Level&) = delete;
 	void operator=(Level const&) = delete;
 
 //== Members
 protected:
-	Camera* m_pCamera;
-	std::vector<Entity*> m_vecEntity;
-	std::vector<Quad*> m_vecQuads;
+	CCamera m_Camera;
+	std::vector<GLuint> m_vecShaders;
+	std::vector<CObject*> m_vecObjects;
 };

@@ -148,20 +148,21 @@
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gamemaster.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainlevel.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="model.cpp" />
     <ClCompile Include="modelloader.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="quad.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shaderhelper.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="textui.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -172,7 +173,9 @@
     <ClInclude Include="audio.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="Cuboid.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="Floor.h" />
     <ClInclude Include="gamemaster.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="include.h" />
@@ -187,18 +190,24 @@
     <ClInclude Include="quad.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaderhelper.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="textui.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="ui.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cube_fragment_shader.glsl" />
+    <None Include="cube_vertex_shader.glsl" />
+    <None Include="fragment_shader.glsl" />
     <None Include="model_fs.glsl" />
     <None Include="model_vs.glsl" />
     <None Include="quad_fs.glsl" />
     <None Include="quad_vs.glsl" />
     <None Include="stencil_fs.glsl" />
     <None Include="stencil_vs.glsl" />
+    <None Include="vertex_shader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

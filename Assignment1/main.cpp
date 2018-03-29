@@ -47,9 +47,6 @@ void InitializeGlutCallbacks()
 	//Sounds
 	//TODO D:<<<<<
 
-	//Models
-	ModelLoader::Instance().Initialize();
-
 	//Overall game
 	GameMaster::Instance().Initialize();
 }
@@ -58,7 +55,6 @@ void ApplicationCleanUp()
 {
 	Time::Destroy();
 	Input::Destroy();
-	ModelLoader::Destroy();
 	GameMaster::Destroy();
 }
 
