@@ -1,8 +1,7 @@
 #ifndef _SHADER_HELPER__
 #define _SHADER_HELPER__
 
-#include <glew\glew.h>
-#include <freeglut\freeglut.h>
+#include <glad\glad.h>
 
 #include <cstring>
 #include <string>

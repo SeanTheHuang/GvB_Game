@@ -108,6 +108,9 @@
     <ClCompile Include="Cuboid.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -175,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="model.h">
       <Filter>Header Files\Objects\Assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Skybox.h">
       <Filter>Header Files\Objects</Filter>

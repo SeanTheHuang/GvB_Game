@@ -69,14 +69,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\Dependencies\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\FMOD;$(ProjectDir)\Dependencies\freetype2;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Includes;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ProjectDir)Dependencies/glm;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(ProjectDir)\Dependencies\assimp\assimp;$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\freetype2;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\FMOD;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)Libaries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)\Dependencies\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\FMOD;$(ProjectDir)\Dependencies\freetype2;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Includes;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ProjectDir)Dependencies/glm;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>$(ProjectDir)\Dependencies\assimp\assimp;$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\freetype2;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\FMOD;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)Libaries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)\Dependencies\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\FMOD;$(ProjectDir)\Dependencies\freetype2;$(IncludePath)</IncludePath>
@@ -97,7 +97,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)\Dependencies\assimp\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\FMOD;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;freeglut.lib;SOIL.lib;Ws2_32.lib;freetype.lib;assimp-vc140-mt.lib;fmod_vc.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;Ws2_32.lib;freetype.lib;assimp-vc140-mt.lib;fmod_vc.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -125,7 +125,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)\Dependencies\assimp\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\FMOD;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;freeglut.lib;SOIL.lib;Ws2_32.lib;freetype.lib;assimp-vc140-mt.lib;fmod_vc.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;Ws2_32.lib;freetype.lib;assimp-vc140-mt.lib;fmod_vc.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\glad.c" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -195,7 +196,6 @@
     <ClInclude Include="texture.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="ui.h" />
-    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cube_fragment_shader.glsl" />

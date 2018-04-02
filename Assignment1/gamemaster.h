@@ -13,28 +13,36 @@ class GameMaster
 //== Methods
 public:
 	~GameMaster();
-	static GameMaster& Instance(); //Singleton stuff
-	//Clear Memory. Calls Destroy on all Level objects
+	static GameMaster& Instance(); // Singleton stuff
+	// Clear Memory. Calls Destroy on all Level objects
 	static void Destroy();
-	//Create & Initialize all the levels
-	//First level in map will be the default map
+	// Create & Initialize all the levels
+	// First level in map will be the default map
 	void Initialize();
-	//Calls update on current Level object
-	void Update();
-	//Calls Render on current Level object
-	void Render();
-	//Sets current level to specified level
-	void ChangeLevel(std::string _levelName);
+	//== Helper functions of Game master intializtation
+	static void GameMaster::framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	void GameMaster::ApplicationCleanUp();
+	void GameMaster::InitializeCallbacks();
 
+	// Calls update on current Level object
+	void Update();
+	// Calls Render on current Level object
+	void Render();
+	// Sets current level to specified level
+	void ChangeLevel(std::string _levelName);
+	// Call to get game window
+	GLFWwindow* Window() { return m_pWindow; }
 private:
 	GameMaster(); //Singleton stuff
 	GameMaster(const GameMaster&) = delete;
 	void operator=(GameMaster const&) = delete;
 
+	void InitializeLevels();
 
 //== Members
 private:
 	static GameMaster* s_instance;
 	std::map<std::string, Level*> m_mapLevels;
 	Level* m_pCurrentLevel;
+	GLFWwindow* m_pWindow;
 };

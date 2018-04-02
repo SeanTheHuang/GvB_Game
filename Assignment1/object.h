@@ -15,16 +15,16 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
-#include <glew.h>
-#include <freeglut.h>
-#include <SOIL.h>
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
+#include <soil\SOIL.h>
 #include <vector>
 #include <assert.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Utils.h"
+#include "include.h"
 #include "texture.h"
 
 class CObject

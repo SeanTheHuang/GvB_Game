@@ -15,8 +15,8 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include <glew.h>
-#include <freeglut.h>
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
 #include <assert.h>
 #include <vector>
 
@@ -25,6 +25,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Shader.h"
+#include "include.h"
 
 class CCamera
 {

@@ -9,9 +9,9 @@
 using namespace std;
 // GL Includes
 
-#include "Dependencies\glew\glew.h"
-#include "Dependencies\freeglut\freeglut.h"
-#include "Dependencies\soil\SOIL.h"
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
+#include <soil\SOIL.h>
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -20,9 +20,9 @@ using namespace std;
 #include "glm\gtc\quaternion.hpp"
 #include "glm\gtx\quaternion.hpp"
 
-#include <assimp\Importer.hpp>
-#include <assimp\scene.h>
-#include <assimp\postprocess.h>
+#include <assimp\assimp\Importer.hpp>
+#include <assimp\assimp\scene.h>
+#include <assimp\assimp\postprocess.h>
 
 #include "Mesh.h"
 

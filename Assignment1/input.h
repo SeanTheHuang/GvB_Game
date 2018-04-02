@@ -15,8 +15,6 @@ public:
 
 	//Returns if key was pressed this frame
 	bool GetKeyDown(char _key);
-	//Returns if key is being pressed
-	bool GetKey(char _key);
 	//Returns if key was released this frame
 	bool GetKeyUp(char _key);
 
@@ -26,7 +24,7 @@ public:
 	//Clears key down/up data for a frame
 	void Clear();
 
-	//Initializes glut call backs
+	//Initializes call backs
 	void Initialize();
 
 
@@ -36,16 +34,7 @@ private:
 	Input(const Input&) = delete;
 	void operator=(Input const&) = delete;
 
-	static void KeyDown(unsigned char _key, int _x, int _y); //OpenGL input stuff
-	static void KeyUp(unsigned char _key, int _x, int _y);
-	static void MouseMove(int _x, int _y);
-
 	//=== Members
 private:
 	static Input* s_instance;
-	std::vector<unsigned char> m_pVecKeysDown;
-	std::vector<unsigned char> m_pVecKeysUp;
-	std::vector<unsigned char> m_pVecKeys;
-
-	int m_iMouseX, m_iMouseY;
 };

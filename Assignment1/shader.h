@@ -15,8 +15,8 @@
 #ifndef __SHADER_H__
 #define __SHADER_H__
 
-#include <glew.h>
-#include <freeglut.h>
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
 #include <assert.h>
 
 #include <glm/glm.hpp>

@@ -13,8 +13,7 @@
 //
 
 #include "Camera.h"
-
-
+#include "gamemaster.h"
 
 CCamera::CCamera()
 {
@@ -44,7 +43,9 @@ void CCamera::GetUniformLocation(GLuint _shaders, bool _bIsOrthographic)
 
 void CCamera::SendDataToShaders()
 {
-	float aspectRatio = static_cast<float>(glutGet(GLUT_WINDOW_WIDTH)) / glutGet(GLUT_WINDOW_HEIGHT);
+	int width, height;
+	glfwGetWindowSize(GameMaster::Instance().Window(), &width, &height);
+	float aspectRatio = static_cast<float>(width) / height;
 	glm::mat4 View = glm::lookAtRH(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
 	glm::mat4 Ortho = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, 0.1f, 100.0f);
 	glm::mat4 Perspective = glm::perspectiveRH(glm::radians(60.0f), aspectRatio, 1.0f, 100.0f);

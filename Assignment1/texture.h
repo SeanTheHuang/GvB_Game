@@ -1,8 +1,8 @@
 #ifndef _TEXTURE_H__
 #define _TEXTURE_H__
 
-#include <glew.h>
-#include <SOIL.h>
+#include <glad\glad.h>
+#include <soil\SOIL.h>
 #include <string>
 #include <vector>
 
