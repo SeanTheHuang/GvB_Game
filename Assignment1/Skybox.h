@@ -16,12 +16,13 @@
 #define __CUBE_H__
 
 #include "Object.h"
+#include "level.h"
 
 class CSkybox :
 	public CObject
 {
 public:
-	CSkybox(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, std::vector<std::string> _strImagePaths);
+	CSkybox(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, std::vector<std::string> _strImagePaths, Level& level);
 	~CSkybox();
 
 	void DrawObject() override;
@@ -29,7 +30,7 @@ public:
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
-	static CSkybox* CreateSkybox(GLuint _shaders, glm::vec3 _position);
+	static CSkybox* CreateSkybox(GLuint _shaders, glm::vec3 _position, Level& level);
 	// Increases the multiplyer for the rotation counter
 	// Takes what to increase the multiplyer by
 	void IncreaseRotationSpeed(float _fValue);

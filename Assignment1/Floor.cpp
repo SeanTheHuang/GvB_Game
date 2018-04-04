@@ -15,16 +15,19 @@
 #include "Floor.h"
 
 
-CFloor::CFloor(GLuint _shaders, glm::vec3 _position) :
+CFloor::CFloor(GLuint _shaders, glm::vec3 _position, Level& level) :
 	m_iIndices(0),
 	m_shaders(_shaders),
 	pTexture(nullptr),
-	m_model("Models/Floor/floor.obj", _shaders)
+	m_model("Resources/Models/Floor/floor.obj", _shaders),
+	CObject(level)
 {
 	m_eModelType = FLOOR;
 	m_position = _position;
 
 	getUniformLocation();
+
+	SetPhysics();
 }
 
 CFloor::~CFloor()
@@ -34,6 +37,24 @@ CFloor::~CFloor()
 		delete pTexture;
 		pTexture = 0;
 	}
+}
+
+void CFloor::SetPhysics()
+{
+	m_bodyDef.type = b2_kinematicBody;
+	m_bodyDef.position.Set(m_position.x, m_position.y);
+	m_body = m_rLevel.addObject(std::unique_ptr<CObject>(this));
+
+	b2PolygonShape dynamicBox;
+	dynamicBox.SetAsBox(100.0f, 0.5f);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+	fixtureDef.restitution = 0.5f;
+
+	m_body->CreateFixture(&fixtureDef);
 }
 
 void CFloor::DrawObject()
@@ -49,9 +70,9 @@ void CFloor::DrawObject()
 	m_model.Draw();
 }
 
-CFloor * CFloor::CreateFloor(GLuint _shaders, glm::vec3 _position)
+CFloor * CFloor::CreateFloor(GLuint _shaders, glm::vec3 _position, Level& level)
 {
-	CFloor* floor = new CFloor(_shaders, _position);
+	CFloor* floor = new CFloor(_shaders, _position, level);
 	return floor;
 }
 

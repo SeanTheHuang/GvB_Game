@@ -13,16 +13,18 @@
 //
 
 #include "Cuboid.h"
+#include "level.h"
 
 
-CCuboid::CCuboid(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, glm::vec3 _rotation, std::string _strImagePath) :
+CCuboid::CCuboid(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, glm::vec3 _rotation, std::string _strImagePath, Level& level) :
 	shaders(_shaders),
 	m_iIndices(0),
 	m_shaders(_shaders),
 	m_strImagePath(_strImagePath),
 	m_fRotationSpeed(1.0f),
 	m_fRotationCounter(0.0f),
-	pTexture(nullptr)
+	pTexture(nullptr),
+	CObject(level)
 {
 	m_eModelType = CUBOID;
 	m_position = _position;
@@ -38,6 +40,8 @@ CCuboid::CCuboid(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _ve
 	CreateAndBindTexture();
 
 	getUniformLocation();
+
+	SetPhysics();
 }
 
 CCuboid::~CCuboid()
@@ -49,14 +53,32 @@ CCuboid::~CCuboid()
 	}
 }
 
+void CCuboid::SetPhysics()
+{
+	m_bodyDef.type = b2_dynamicBody;
+	m_bodyDef.position.Set(m_position.x, m_position.y);
+	m_body = m_rLevel.addObject(std::unique_ptr<CObject>(this));
+
+	b2PolygonShape dynamicBox;
+	dynamicBox.SetAsBox(0.5f, 0.5f);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+	fixtureDef.restitution = 0.5f;
+
+	m_body->CreateFixture(&fixtureDef);
+}
+
 void CCuboid::DrawObject()
 {
 	glUseProgram(m_shaders);
-	m_fRotationCounter += 0.5f * m_fRotationSpeed;
+	//m_fRotationCounter += 0.5f * m_fRotationSpeed;
 
-	glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1, 1, 1));
 	glm::mat4 Rotate = glm::rotate(glm::mat4(1.0f), glm::radians(m_fRotationCounter), m_rotation);
-	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), m_position);
+	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(m_body->GetPosition().x, m_body->GetPosition().y, m_position.z));
 
 	glUniformMatrix4fv(gScaleLocation, 1, GL_FALSE, glm::value_ptr(Scale));
 	glUniformMatrix4fv(gRotateLocation, 1, GL_FALSE, glm::value_ptr(Rotate));
@@ -69,7 +91,7 @@ void CCuboid::DrawObject()
 	glBindVertexArray(0);
 }
 
-CCuboid * CCuboid::CreateCuboid(GLuint _shaders, glm::vec3 _position)
+CCuboid * CCuboid::CreateCuboid(GLuint _shaders, glm::vec3 _position, Level& level)
 {
 	std::vector<VertexFormat> _vecVertices;
 	std::vector<GLuint> vecIndices;
@@ -81,13 +103,13 @@ CCuboid * CCuboid::CreateCuboid(GLuint _shaders, glm::vec3 _position)
 	strImagePath = "Textures/blueRed.jpg";
 	rotation = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	CCuboid* cuboid = new CCuboid(_vecVertices, vecIndices, _shaders, _position, rotation, strImagePath);
+	CCuboid* cuboid = new CCuboid(_vecVertices, vecIndices, _shaders, _position, rotation, strImagePath, level);
 	return cuboid;
 }
 
 void CCuboid::IncreaseRotationSpeed(float _fValue)
 {
-	m_fRotationSpeed += _fValue;
+	//m_fRotationSpeed += _fValue;
 }
 
 void CCuboid::getUniformLocation()
@@ -102,7 +124,7 @@ void CCuboid::getUniformLocation()
 	assert(gTranslateLocation != 0xFFFFFFFF);
 
 	gSampler = glGetUniformLocation(m_shaders, "gSampler");
-	assert(gSampler != 0xFFFFFFFF);
+	//assert(gSampler != 0xFFFFFFFF);
 }
 
 void CCuboid::CreateAndBindTexture()

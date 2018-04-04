@@ -15,12 +15,13 @@
 #include "Skybox.h"
 
 
-CSkybox::CSkybox(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, std::vector<std::string> _strImagePaths) :
+CSkybox::CSkybox(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, std::vector<std::string> _strImagePaths, Level& level) :
 	shaders(_shaders),
 	m_iIndices(0),
 	m_shaders(_shaders),
 	m_strImagePaths(_strImagePaths),
-	pTexture(nullptr)
+	pTexture(nullptr),
+	CObject(level)
 {
 	m_eModelType = SKYBOX;
 	m_position = _position;
@@ -46,7 +47,7 @@ CSkybox::~CSkybox()
 	}
 }
 
-CSkybox * CSkybox::CreateSkybox(GLuint _shaders, glm::vec3 _position)
+CSkybox * CSkybox::CreateSkybox(GLuint _shaders, glm::vec3 _position, Level& level)
 {
 	std::vector<VertexFormat> _vecVertices;
 	std::vector<GLuint> vecIndices;
@@ -61,7 +62,7 @@ CSkybox * CSkybox::CreateSkybox(GLuint _shaders, glm::vec3 _position)
 	strImagePaths.push_back("Textures/skybox1/back.jpg");
 	strImagePaths.push_back("Textures/skybox1/front.jpg");
 
-	CSkybox* cube = new CSkybox(_vecVertices, vecIndices, _shaders, _position, strImagePaths);
+	CSkybox* cube = new CSkybox(_vecVertices, vecIndices, _shaders, _position, strImagePaths, level);
 	return cube;
 }
 

@@ -145,7 +145,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\glad.c" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -153,6 +152,7 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gamemaster.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />

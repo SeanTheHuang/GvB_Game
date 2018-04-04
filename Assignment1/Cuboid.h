@@ -16,19 +16,22 @@
 #define __CUBOID_H__
 
 #include "Object.h"
+
 class CCuboid :
 	public CObject
 {
 public:
-	CCuboid(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, glm::vec3 _rotation, std::string _strImagePath);
+	CCuboid(std::vector<VertexFormat> _vecVertices, std::vector<GLuint> _vecIndices, GLuint _shaders, glm::vec3 _position, glm::vec3 _rotation, std::string _strImagePath, Level& level);
 	~CCuboid();
+
+	void SetPhysics();
 
 	void DrawObject() override;
 
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
-	static CCuboid* CreateCuboid(GLuint _shaders, glm::vec3 _position);
+	static CCuboid* CreateCuboid(GLuint _shaders, glm::vec3 _position, Level& level);
 	// Increases the multiplyer for the rotation counter
 	// Takes what to increase the multiplyer by
 	void IncreaseRotationSpeed(float _fValue);

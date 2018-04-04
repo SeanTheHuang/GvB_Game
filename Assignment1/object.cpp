@@ -16,6 +16,7 @@
 #include "Skybox.h"
 #include "Floor.h"
 #include "Cuboid.h"
+#include "level.h"
 
 CObject::~CObject()
 {
@@ -26,26 +27,33 @@ glm::vec3 CObject::GetPosition()
 	return m_position;
 }
 
-CObject::CObject()
+const b2BodyDef & CObject::getBodyDef() const
+{
+	return m_bodyDef;
+}
+
+CObject::CObject(Level& level)
+	:
+	m_rLevel(level)
 {
 
 }
 
-CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 _position)
+CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 _position, Level& level)
 {
 	CObject* model;
 	switch (_modelType)
 	{
 	case SKYBOX:
-		model = CSkybox::CreateSkybox(_shaders, _position);
+		model = CSkybox::CreateSkybox(_shaders, _position, level);
 		return model;
 		break;
 	case FLOOR:
-		model = CFloor::CreateFloor(_shaders, _position);
+		model = CFloor::CreateFloor(_shaders, _position, level);
 		return model;
 		break;
 	case CUBOID:
-		model = CCuboid::CreateCuboid(_shaders, _position);
+		model = CCuboid::CreateCuboid(_shaders, _position, level);
 		return model;
 		break;
 	default:
