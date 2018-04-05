@@ -17,8 +17,8 @@
 
 #include "Object.h"
 #include "Model.h"
-#include "level.h"
 
+class Level;
 class CPlayer :
 	public CObject
 {
@@ -38,10 +38,11 @@ private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
 
-	GLuint gScaleLocation, gRotateLocation, gTranslateLocation;
+	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation;
 	GLuint m_shaders;
 	Texture* pTexture;
 	Model m_model;
+	GLfloat currentTime;
 
 	int m_iIndices;
 };

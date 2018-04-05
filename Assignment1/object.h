@@ -15,15 +15,8 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
-#include <Box2D\Box2D.h>
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
-#include <soil\SOIL.h>
 #include <vector>
 #include <assert.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "include.h"
 #include "texture.h"

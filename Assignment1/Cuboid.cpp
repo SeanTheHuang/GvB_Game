@@ -124,7 +124,7 @@ void CCuboid::getUniformLocation()
 	assert(gTranslateLocation != 0xFFFFFFFF);
 
 	gSampler = glGetUniformLocation(m_shaders, "gSampler");
-	//assert(gSampler != 0xFFFFFFFF);
+	assert(gSampler != 0xFFFFFFFF);
 }
 
 void CCuboid::CreateAndBindTexture()

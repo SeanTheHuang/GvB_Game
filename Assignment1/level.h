@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __LEVEL_H__
+#define __LEVEL_H__
 
 #include <memory>
 
@@ -8,6 +9,7 @@
 #include "quad.h"
 #include "shaderhelper.h"
 #include "object.h"
+#include "player.h"
 
 class Level
 {
@@ -36,7 +38,10 @@ protected:
 	CCamera m_Camera;
 	std::vector<GLuint> m_vecShaders;
 	std::vector<CObject*> m_vecObjects;
+	std::vector<CPlayer*> m_vecPlayers;
 	std::unique_ptr<b2World> m_world;
 
 	std::vector<std::unique_ptr<CObject>> m_objs;
 };
+
+#endif // __LEVEL_H__

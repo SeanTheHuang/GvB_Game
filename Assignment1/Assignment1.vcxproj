@@ -203,6 +203,8 @@
     <None Include="fragment_shader.glsl" />
     <None Include="model_fs.glsl" />
     <None Include="model_vs.glsl" />
+    <None Include="perlin_fragment_shader.glsl" />
+    <None Include="perlin_vertex_shader.glsl" />
     <None Include="quad_fs.glsl" />
     <None Include="quad_vs.glsl" />
     <None Include="stencil_fs.glsl" />

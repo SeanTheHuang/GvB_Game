@@ -35,6 +35,10 @@ void Level::Render()
 	{
 		m_vecObjects.at(i)->DrawObject();
 	}
+	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
+	{
+		m_vecPlayers.at(i)->DrawObject();
+	}
 }
 
 void Level::CleanUp()

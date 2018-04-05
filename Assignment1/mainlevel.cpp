@@ -7,11 +7,15 @@ void MainLevel::Initialize()
 	ShaderHelper::CompileAndLinkShaders("cube_vertex_shader.glsl", "cube_fragment_shader.glsl", cubeShaders);
 	GLuint basicShader;
 	ShaderHelper::CompileAndLinkShaders("vertex_shader.glsl", "fragment_shader.glsl", basicShader);
+	GLuint perlinShader;
+	ShaderHelper::CompileAndLinkShaders("perlin_vertex_shader.glsl", "perlin_fragment_shader.glsl", perlinShader);
 
 	m_Camera.GetUniformLocation(cubeShaders, false);
 	m_vecShaders.push_back(cubeShaders);
 	m_Camera.GetUniformLocation(basicShader, false);
 	m_vecShaders.push_back(basicShader);
+	m_Camera.GetUniformLocation(perlinShader, false);
+	m_vecShaders.push_back(perlinShader);
 
 	m_vecObjects.push_back(CObject::CreateObject(SKYBOX, m_vecShaders.at(0), m_Camera.GetPosition(), *this));
 
@@ -21,6 +25,7 @@ void MainLevel::Initialize()
 
 	m_vecObjects.push_back(CObject::CreateObject(CUBOID, m_vecShaders.at(1), glm::vec3(0.0f, 3.0f, -5.0f), *this));
 	m_vecObjects.push_back(CObject::CreateObject(FLOOR, m_vecShaders.at(1), glm::vec3(0.0f, -1.0f, -5.0f), *this));
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.0f, 4.0f, -5.0f), *this));
 
 
 	//Creates all objects in the level.
