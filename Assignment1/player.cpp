@@ -76,31 +76,41 @@ void CPlayer::DrawObject()
 
 void CPlayer::Update()
 {
+	PlayerInput();
+}
+
+void CPlayer::PlayerInput()
+{
 	if (Input::Instance().GetKeyDown(GLFW_KEY_A))
 	{
 		m_chargeLeft = true;
-		m_angle = 45 * (1 + sin(Time::Instance().TotalTime()));
+		m_chargeAmount += Time::Instance().DeltaTime() * 2;
+		m_angle = 45 * (1 + sin(m_chargeAmount));
 		std::cout << m_angle << std::endl;
-	} 
+	}
 	else if (Input::Instance().GetKeyDown(GLFW_KEY_D))
 	{
 		m_chargeRight = true;
-		m_angle = 45 * (1 + sin(Time::Instance().TotalTime()));
+		m_chargeAmount += Time::Instance().DeltaTime() * 2;
+		m_angle = 45 * (1 + sin(m_chargeAmount));
+		std::cout << m_chargeAmount << std::endl;
 		std::cout << m_angle << std::endl;
 	}
 	else
 	{
 		if (m_chargeLeft && Input::Instance().GetKeyUp(GLFW_KEY_A))
 		{
-			m_body->ApplyLinearImpulse(b2Vec2(-cos(m_angle * glm::pi<float>() /180.0f) * 3.0f, sin(m_angle * glm::pi<float>() / 180.0f)* 3.0f), m_body->GetPosition(), true);
+			m_body->ApplyLinearImpulse(b2Vec2(-cos(m_angle * glm::pi<float>() / 180.0f) * m_power, sin(m_angle * glm::pi<float>() / 180.0f)* m_power), m_body->GetPosition(), true);
 			m_chargeLeft = false;
 			m_angle = 0.0f;
+			m_chargeAmount = (glm::pi<float>() * 3.0f) / 2.0f;
 		}
 		else if (m_chargeRight && Input::Instance().GetKeyUp(GLFW_KEY_D))
 		{
-			m_body->ApplyLinearImpulse(b2Vec2(cos(m_angle * glm::pi<float>() / 180.0f)* 3.0f, sin(m_angle * glm::pi<float>() / 180.0f)* 3.0f), m_body->GetPosition(), true);
+			m_body->ApplyLinearImpulse(b2Vec2(cos(m_angle * glm::pi<float>() / 180.0f)* m_power, sin(m_angle * glm::pi<float>() / 180.0f)* m_power), m_body->GetPosition(), true);
 			m_chargeRight = false;
 			m_angle = 0.0f;
+			m_chargeAmount = (glm::pi<float>() * 3.0f) / 2.0f;
 		}
 	}
 }
