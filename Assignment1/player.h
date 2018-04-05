@@ -29,6 +29,7 @@ public:
 	void SetPhysics();
 
 	void DrawObject() override;
+	void Update() override;
 
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
@@ -43,6 +44,10 @@ private:
 	Texture* pTexture;
 	Model m_model;
 	GLfloat currentTime;
+	float m_angle;
+
+	bool m_chargeLeft;
+	bool m_chargeRight;
 
 	int m_iIndices;
 };

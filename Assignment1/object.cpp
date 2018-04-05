@@ -68,6 +68,10 @@ CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 
 	return nullptr;
 }
 
+void CObject::Update()
+{
+}
+
 ModelType CObject::GetModelType()
 {
 	return m_eModelType;

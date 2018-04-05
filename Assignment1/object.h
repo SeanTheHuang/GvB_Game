@@ -34,6 +34,7 @@ public:
 	static CObject* CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 _position, Level& level);
 	// Sends the necessary data to the shaders for them to draw the model
 	virtual void DrawObject() = 0;
+	virtual void Update();
 	ModelType GetModelType();
 	// A get function for the models position
 	// Returns the position in the form of a glm::vec3

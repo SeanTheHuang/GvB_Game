@@ -12,6 +12,11 @@ Level::~Level()
 
 void Level::Update()
 {
+	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
+	{
+		m_vecPlayers.at(i)->Update();
+	}
+
 	static const float32 timeStep = 1.0f / 60.0f;
 	static const int32 velocityIterations = 6;
 	static const int32 positionIterations = 2;

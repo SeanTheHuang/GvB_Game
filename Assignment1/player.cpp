@@ -43,6 +43,7 @@ void CPlayer::SetPhysics()
 {
 	m_bodyDef.type = b2_dynamicBody;
 	m_bodyDef.position.Set(m_position.x, m_position.y);
+	m_bodyDef.fixedRotation = true;
 	m_body = m_rLevel.addObject(std::unique_ptr<CObject>(this));
 
 	b2PolygonShape dynamicBox;
@@ -71,6 +72,37 @@ void CPlayer::DrawObject()
 	glUniform1f(currentTimeLocation, currentTime);
 
 	m_model.Draw();
+}
+
+void CPlayer::Update()
+{
+	if (Input::Instance().GetKeyDown(GLFW_KEY_A))
+	{
+		m_chargeLeft = true;
+		m_angle = 45 * (1 + sin(Time::Instance().TotalTime()));
+		std::cout << m_angle << std::endl;
+	} 
+	else if (Input::Instance().GetKeyDown(GLFW_KEY_D))
+	{
+		m_chargeRight = true;
+		m_angle = 45 * (1 + sin(Time::Instance().TotalTime()));
+		std::cout << m_angle << std::endl;
+	}
+	else
+	{
+		if (m_chargeLeft && Input::Instance().GetKeyUp(GLFW_KEY_A))
+		{
+			m_body->ApplyLinearImpulse(b2Vec2(-cos(m_angle * glm::pi<float>() /180.0f) * 3.0f, sin(m_angle * glm::pi<float>() / 180.0f)* 3.0f), m_body->GetPosition(), true);
+			m_chargeLeft = false;
+			m_angle = 0.0f;
+		}
+		else if (m_chargeRight && Input::Instance().GetKeyUp(GLFW_KEY_D))
+		{
+			m_body->ApplyLinearImpulse(b2Vec2(cos(m_angle * glm::pi<float>() / 180.0f)* 3.0f, sin(m_angle * glm::pi<float>() / 180.0f)* 3.0f), m_body->GetPosition(), true);
+			m_chargeRight = false;
+			m_angle = 0.0f;
+		}
+	}
 }
 
 CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level)
