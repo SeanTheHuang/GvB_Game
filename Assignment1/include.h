@@ -45,5 +45,6 @@ enum ModelType
 	SQUARE,
 	SKYBOX,
 	FLOOR,
-	CUBOID
+	CUBOID,
+	PLAYER
 };
