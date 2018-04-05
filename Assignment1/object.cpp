@@ -17,6 +17,7 @@
 #include "Floor.h"
 #include "Cuboid.h"
 #include "level.h"
+#include "player.h"
 
 CObject::~CObject()
 {
@@ -54,6 +55,10 @@ CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 
 		break;
 	case CUBOID:
 		model = CCuboid::CreateCuboid(_shaders, _position, level);
+		return model;
+		break;
+	case PLAYER:
+		model = CPlayer::CreatePlayer(_shaders, _position, level);
 		return model;
 		break;
 	default:
