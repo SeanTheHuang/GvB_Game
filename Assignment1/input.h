@@ -2,6 +2,14 @@
 
 #include "include.h"
 
+// Currently only doing the right, coloured buttons
+enum JOYSTICK_INPUT
+{
+	JOYSTICK_A, 
+	JOYSTICK_B, 
+	JOYSTICK_X, 
+	JOYSTICK_Y
+};
 
 //Gets input through OpenGL systems
 //Input is a [Singleton class]
@@ -14,9 +22,14 @@ public:
 	static void Destroy();
 
 	//Returns if key was pressed this frame
-	bool GetKeyDown(char _key);
+	bool GetKeyDown(int _key);
 	//Returns if key was released this frame
-	bool GetKeyUp(char _key);
+	bool GetKeyUp(int _key);
+
+	// Returns if button was pressed that frame
+	bool GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button);
+	// Returns if button was released that frame
+	bool GetControllerInputUp(int _joyStickID, JOYSTICK_INPUT _button);
 
 	//Returns current mouse position in pixels
 	glm::vec2 MousePosition();
@@ -27,7 +40,8 @@ public:
 	//Initializes call backs
 	void Initialize();
 
-
+	// GLFW callbacks
+	// ?????
 
 private:
 	Input(); //Singleton stuff

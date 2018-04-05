@@ -1,5 +1,7 @@
 #include "input.h"
 
+#include "gamemaster.h"
+
 Input* Input::s_instance = nullptr;
 
 Input& Input::Instance()
@@ -21,13 +23,30 @@ void Input::Destroy()
 	s_instance = nullptr;
 }
 
-bool Input::GetKeyDown(char _key)
+bool Input::GetKeyDown(int _key)
 {
-	return false;
+	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_PRESS;
 }
 
-bool Input::GetKeyUp(char _key)
+bool Input::GetKeyUp(int _key)
 {
+	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_RELEASE;
+}
+
+bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
+{
+	int count;
+	const unsigned char* axes = glfwGetJoystickButtons(_joyStickID, &count);
+	return (axes[(int)_button] != '\0');
+}
+
+bool Input::GetControllerInputUp(int _joyStickID, JOYSTICK_INPUT _button)
+{
+	int count;
+	const unsigned char* axes = glfwGetJoystickButtons(_joyStickID, &count);
+
+	char a = axes[(int)_button];
+
 	return false;
 }
 
@@ -43,6 +62,7 @@ glm::vec2 Input::MousePosition()
 
 void Input::Initialize()
 {
+
 }
 
 Input::Input()
