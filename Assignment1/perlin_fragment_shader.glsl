@@ -123,7 +123,7 @@ void main(void)
 	int((fragDirection.x * 800) + 2000), 
 	int((fragDirection.y * 800) + 2000), 
 	int((fragDirection.z * 800) + 2000),
-	int(currentTime  * 100));
+	int(currentTime * 400));
 	//vec4 image = texture(gSampler, textureCord.st);
 	perlinValue = (perlinValue + 1) / 2;
 	//perlinValue = pow(perlinValue, 100);
