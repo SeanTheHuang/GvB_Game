@@ -23,7 +23,7 @@ class CPlayer :
 	public CObject
 {
 public:
-	CPlayer(GLuint _shaders, glm::vec3 _position, Level& level);
+	CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
 	~CPlayer();
 
 	void SetPhysics();
@@ -35,7 +35,7 @@ public:
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
-	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level);
+	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
@@ -54,6 +54,7 @@ private:
 	float m_power = 10.0f;
 
 	int m_iIndices;
+	int m_iPlayerIndex;
 };
 
 #endif // __PLAYER_H__

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include "include.h"
 
 // Currently only doing the right, coloured buttons
@@ -9,6 +10,12 @@ enum JOYSTICK_INPUT
 	JOYSTICK_B, 
 	JOYSTICK_X, 
 	JOYSTICK_Y
+};
+
+struct InputMap
+{
+	int m_left;
+	int m_right;
 };
 
 //Gets input through OpenGL systems
@@ -25,6 +32,9 @@ public:
 	bool GetKeyDown(int _key);
 	//Returns if key was released this frame
 	bool GetKeyUp(int _key);
+
+	bool GetPlayerLeft(int _playerIndex);
+	bool GetPlayerRight(int _playerIndex);
 
 	// Returns if button was pressed that frame
 	bool GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button);
@@ -51,4 +61,5 @@ private:
 	//=== Members
 private:
 	static Input* s_instance;
+	std::map<int, InputMap> m_inputMappings;
 };

@@ -51,7 +51,7 @@ void CFloor::SetPhysics()
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
+	fixtureDef.friction = 1.0f;
 	fixtureDef.restitution = 0.5f;
 
 	m_body->CreateFixture(&fixtureDef);

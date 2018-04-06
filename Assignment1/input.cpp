@@ -33,6 +33,16 @@ bool Input::GetKeyUp(int _key)
 	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_RELEASE;
 }
 
+bool Input::GetPlayerLeft(int _playerIndex)
+{
+	return GetKeyDown(m_inputMappings[_playerIndex].m_left);
+}
+
+bool Input::GetPlayerRight(int _playerIndex)
+{
+	return GetKeyDown(m_inputMappings[_playerIndex].m_right);
+}
+
 bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
 {
 	int count;
@@ -62,7 +72,8 @@ glm::vec2 Input::MousePosition()
 
 void Input::Initialize()
 {
-
+	m_inputMappings[1] = { GLFW_KEY_A, GLFW_KEY_D };
+	m_inputMappings[2] = { GLFW_KEY_LEFT, GLFW_KEY_RIGHT };
 }
 
 Input::Input()

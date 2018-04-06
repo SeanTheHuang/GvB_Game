@@ -58,7 +58,7 @@ CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 
 		return model;
 		break;
 	case PLAYER:
-		model = CPlayer::CreatePlayer(_shaders, _position, level);
+		model = CPlayer::CreatePlayer(_shaders, _position, level, 0);
 		return model;
 		break;
 	default:

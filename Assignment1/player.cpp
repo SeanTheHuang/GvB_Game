@@ -14,14 +14,16 @@
 
 #include "player.h"
 #include "level.h"
+#include "gamemaster.h"
 
-CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level) :
+CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index) :
 	m_iIndices(0),
 	m_shaders(_shaders),
 	pTexture(nullptr),
 	m_model("Resources/Models/Player/Sphere.obj", _shaders),
 	CObject(level)
 {
+	m_iPlayerIndex = _index;
 	m_eModelType = FLOOR;
 	m_position = _position;
 
@@ -52,8 +54,8 @@ void CPlayer::SetPhysics()
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
-	fixtureDef.restitution = 0.5f;
+	fixtureDef.friction = 1.0f;
+	fixtureDef.restitution = 0.3f;
 
 	m_body->CreateFixture(&fixtureDef);
 }
@@ -81,19 +83,18 @@ void CPlayer::Update()
 
 void CPlayer::PlayerInput()
 {
-	if (Input::Instance().GetKeyDown(GLFW_KEY_A))
+	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex))
 	{
 		m_chargeLeft = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 2;
 		m_angle = 45 * (1 + sin(m_chargeAmount));
 		std::cout << m_angle << std::endl;
 	}
-	else if (Input::Instance().GetKeyDown(GLFW_KEY_D))
+	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex))
 	{
 		m_chargeRight = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 2;
 		m_angle = 45 * (1 + sin(m_chargeAmount));
-		std::cout << m_chargeAmount << std::endl;
 		std::cout << m_angle << std::endl;
 	}
 	else
@@ -115,9 +116,9 @@ void CPlayer::PlayerInput()
 	}
 }
 
-CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level)
+CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 {
-	CPlayer* player = new CPlayer(_shaders, _position, level);
+	CPlayer* player = new CPlayer(_shaders, _position, level, _index);
 	return player;
 }
 
