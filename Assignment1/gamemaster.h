@@ -2,6 +2,7 @@
 
 #include "include.h"
 #include "level.h"
+#include "audio.h"
 
 #include <map>
 
@@ -45,4 +46,5 @@ private:
 	std::map<std::string, Level*> m_mapLevels;
 	Level* m_pCurrentLevel;
 	GLFWwindow* m_pWindow;
+	CAudio* m_cAudio;
 };
