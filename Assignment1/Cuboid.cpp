@@ -69,6 +69,8 @@ void CCuboid::SetPhysics()
 	fixtureDef.restitution = 0.5f;
 
 	m_body->CreateFixture(&fixtureDef);
+
+	m_body->SetUserData(this);
 }
 
 void CCuboid::DrawObject()

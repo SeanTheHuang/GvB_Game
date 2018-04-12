@@ -36,9 +36,11 @@ public:
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
 	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
+	void Collide(b2Body& otherPlayerBody);
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
+	void ReduceHealth();
 
 	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation;
 	GLuint m_shaders;
@@ -55,6 +57,9 @@ private:
 
 	int m_iIndices;
 	int m_iPlayerIndex;
+	int m_iHealth;
+	float m_fRadius;
+	glm::mat4 Scale;
 };
 
 #endif // __PLAYER_H__

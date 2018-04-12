@@ -55,6 +55,8 @@ void CFloor::SetPhysics()
 	fixtureDef.restitution = 0.5f;
 
 	m_body->CreateFixture(&fixtureDef);
+
+	m_body->SetUserData(this);
 }
 
 void CFloor::DrawObject()

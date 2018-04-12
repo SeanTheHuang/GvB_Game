@@ -188,6 +188,9 @@
     <ClInclude Include="mainlevel.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="ContactManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="model_vs.glsl">

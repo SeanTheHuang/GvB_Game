@@ -11,6 +11,7 @@
 // Author		: Sebastian Tengdahl
 // Mail			: sebastian.ten7230@mediadesign.school.nz
 //
+#include <iostream>
 
 #include "player.h"
 #include "level.h"
@@ -21,15 +22,19 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	m_shaders(_shaders),
 	pTexture(nullptr),
 	m_model("Resources/Models/Player/Sphere.obj", _shaders),
-	CObject(level)
+	CObject(level),
+	m_iHealth(3),
+	m_fRadius(1.2f)
 {
 	m_iPlayerIndex = _index;
-	m_eModelType = FLOOR;
+	m_eModelType = PLAYER;
 	m_position = _position;
 
 	getUniformLocation();
 
 	SetPhysics();
+
+	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 CPlayer::~CPlayer()
@@ -48,22 +53,23 @@ void CPlayer::SetPhysics()
 	m_bodyDef.fixedRotation = true;
 	m_body = m_rLevel.addObject(std::unique_ptr<CObject>(this));
 
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(0.5f, 0.5f);
+	b2CircleShape dynamicCircle;
+	dynamicCircle.m_radius = m_fRadius;
 
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
+	fixtureDef.shape = &dynamicCircle;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 1.0f;
 	fixtureDef.restitution = 0.3f;
 
 	m_body->CreateFixture(&fixtureDef);
+
+	m_body->SetUserData(this);
 }
 
 void CPlayer::DrawObject()
 {
 	glUseProgram(m_shaders);
-	glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 	glm::mat4 Rotate = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(m_body->GetPosition().x, m_body->GetPosition().y, m_position.z));
 	currentTime = static_cast<float>(glfwGetTime());
@@ -122,6 +128,18 @@ CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& lev
 	return player;
 }
 
+void CPlayer::Collide(b2Body & otherPlayerBody)
+{
+	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y)
+	{
+		ReduceHealth();
+	}
+	else
+	{
+		m_body->ApplyLinearImpulse(b2Vec2(0.0f, 1.0f), m_body->GetWorldCenter(), true);
+	}
+}
+
 void CPlayer::getUniformLocation()
 {
 	gScaleLocation = glGetUniformLocation(m_shaders, "gScale");
@@ -135,4 +153,14 @@ void CPlayer::getUniformLocation()
 
 	currentTimeLocation = glGetUniformLocation(m_shaders, "currentTime");
 	assert(currentTimeLocation != 0xFFFFFFFF);
+}
+
+void CPlayer::ReduceHealth()
+{
+	m_iHealth--;
+
+	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * m_fRadius;
+	float newScale = static_cast<float>(m_iHealth) / 3.0f;
+	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(newScale, newScale, newScale));
+	std::cout << "Player: " << m_iPlayerIndex << "I got damaged and my radius is" << std::endl;
 }

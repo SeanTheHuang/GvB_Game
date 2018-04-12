@@ -10,6 +10,7 @@
 #include "shaderhelper.h"
 #include "object.h"
 #include "player.h"
+#include "ContactManager.h"
 
 class Level
 {
@@ -42,6 +43,7 @@ protected:
 	std::unique_ptr<b2World> m_world;
 
 	std::vector<std::unique_ptr<CObject>> m_objs;
+	CContactManager m_contactInstance;
 };
 
 #endif // __LEVEL_H__

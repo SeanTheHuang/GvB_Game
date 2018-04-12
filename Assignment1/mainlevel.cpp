@@ -25,8 +25,10 @@ void MainLevel::Initialize()
 
 	m_vecObjects.push_back(CObject::CreateObject(CUBOID, m_vecShaders.at(1), glm::vec3(0.0f, 3.0f, -5.0f), *this));
 	m_vecObjects.push_back(CObject::CreateObject(FLOOR, m_vecShaders.at(1), glm::vec3(0.0f, -1.0f, -5.0f), *this));
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.0f, 4.0f, -5.0f), *this, 1));
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.0f, 8.0f, -5.0f), *this, 1));
 	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.0f, 4.0f, -5.0f), *this, 2));
+
+	m_world->SetContactListener(&m_contactInstance);
 
 	//Creates all objects in the level.
 	//IF WANT NEW LEVEL:
