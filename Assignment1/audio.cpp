@@ -21,9 +21,9 @@ void CAudio::InitializeFMOD()
 {
 	FMOD_RESULT result;
 	result = FMOD::System_Create(&m_system);
-	m_fmodSounds["attack1.mp3"] = m_sAttack;
+	m_fmodSounds["attack0.mp3"] = m_sAttack;
 	m_iAttackSounds += 1;
-	m_fmodSounds["bounce1.mp3"] = m_sBounce;
+	m_fmodSounds["bounce0.mp3"] = m_sBounce;
 
 	result = m_system->init(50, FMOD_INIT_NORMAL, 0);
 }
@@ -35,11 +35,11 @@ void CAudio::LoadAudio()
 	for (auto & x : m_fmodSounds)
 	{
 		std::string filn = "Resources/Audio/";
-		filn + x.first;
+		filn += x.first;
 		result = m_system->createSound(filn.c_str(), FMOD_LOOP_NORMAL, 0, &x.second);
 	}
 
-	//result = m_system->createSound("Resources/Sounds/attack.mp3", FMOD_LOOP_OFF, 0, &m_sAttack);
+	//result = m_system->createSound("Resources/Sounds/attack0.mp3", FMOD_LOOP_OFF, 0, &m_sAttack);
 	//result = m_system->createSound("Resources/Sounds/bounce.mp3", FMOD_LOOP_OFF, 0, &m_sBounce);
 }
 
@@ -51,7 +51,10 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 		{
 			if (_sSound == "attack") 
 			{
-				_sSound += rand() % m_iAttackSounds;
+				std::stringstream ss;
+				ss << rand() % m_iAttackSounds;
+
+				_sSound += ss.str();
 				PlaySound(_sSound, false);
 			}
 			break;

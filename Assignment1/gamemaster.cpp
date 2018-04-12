@@ -110,7 +110,7 @@ void GameMaster::InitializeCallbacks()
 	// Sounds
 	CAudio::InitializeFMOD();
 	CAudio::LoadAudio();
-	//m_cAudio->PlaySound("attack", true);
+	m_cAudio->PlaySound("attack", true);
 
 	//TODO D:<<<<<
 
