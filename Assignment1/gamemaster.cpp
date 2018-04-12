@@ -108,6 +108,10 @@ void GameMaster::InitializeCallbacks()
 	Input::Instance().Initialize();
 
 	// Sounds
+	CAudio::InitializeFMOD();
+	CAudio::LoadAudio();
+	m_cAudio->PlaySound("attack", true);
+
 	//TODO D:<<<<<
 
 	// Game Levels
