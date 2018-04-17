@@ -1,5 +1,9 @@
 #include "level.h"
 
+const float Level::s_kPixelsPerMeter = 32.0f;
+const float Level::s_kGravity = -10.0f; // adjust this to taste
+
+
 Level::Level()
 {
 	

@@ -56,7 +56,7 @@ CCuboid::~CCuboid()
 void CCuboid::SetPhysics()
 {
 	m_bodyDef.type = b2_dynamicBody;
-	m_bodyDef.position.Set(m_position.x, m_position.y);
+	m_bodyDef.position.Set(m_position.x/ Level::s_kPixelsPerMeter, m_position.y/ Level::s_kPixelsPerMeter);
 	m_body = m_rLevel.addObject(std::unique_ptr<CObject>(this));
 
 	b2PolygonShape dynamicBox;
@@ -80,7 +80,7 @@ void CCuboid::DrawObject()
 
 	glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1, 1, 1));
 	glm::mat4 Rotate = glm::rotate(glm::mat4(1.0f), glm::radians(m_fRotationCounter), m_rotation);
-	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(m_body->GetPosition().x, m_body->GetPosition().y, m_position.z));
+	glm::mat4 Translate = glm::translate(glm::mat4(1.0f), glm::vec3(m_body->GetPosition().x * Level::s_kPixelsPerMeter, m_body->GetPosition().y * Level::s_kPixelsPerMeter, m_position.z));
 
 	glUniformMatrix4fv(gScaleLocation, 1, GL_FALSE, glm::value_ptr(Scale));
 	glUniformMatrix4fv(gRotateLocation, 1, GL_FALSE, glm::value_ptr(Rotate));

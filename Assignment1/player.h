@@ -53,7 +53,7 @@ private:
 	bool m_chargeLeft;
 	bool m_chargeRight;
 
-	float m_power = 10.0f;
+	float m_power = 0.35f;
 
 	int m_iIndices;
 	int m_iPlayerIndex;

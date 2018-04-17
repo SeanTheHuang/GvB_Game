@@ -30,6 +30,9 @@ public:
 
 	b2Body* addObject(std::unique_ptr<CObject> obj);
 
+	static const float s_kPixelsPerMeter;
+	static const float s_kGravity;
+
 protected:
 	Level(const Level&) = delete;
 	void operator=(Level const&) = delete;
