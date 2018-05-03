@@ -36,6 +36,29 @@ b2Body* Level::addObject(std::unique_ptr<CObject> obj)
 	return body;
 }
 
+void Level::removeObjects()
+{
+	if (m_killList.size() != 0)
+	{
+		for (auto& kill : m_killList)
+		{
+			m_world->DestroyBody(&kill->getBody());
+			m_objs.erase(std::remove_if(m_objs.begin(), m_objs.end(),
+				[kill](std::unique_ptr<CObject> &obj) {return obj.get() == kill; }),
+				m_objs.end());
+
+			kill = nullptr;
+		}
+
+		m_killList.clear();
+	}
+}
+
+void Level::addToKillList(CObject* toKill)
+{
+	m_killList.push_back(toKill);
+}
+
 void Level::Render()
 {
 	m_Camera.SendDataToShaders();

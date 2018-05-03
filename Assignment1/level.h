@@ -25,10 +25,13 @@ public:
 	virtual void CleanUp();
 	//Update all objects. Apply level logic
 	virtual void Update();
+	void addToKillList(CObject* toKill);
 	//Render all objects
 	virtual void Render();
 
 	b2Body* addObject(std::unique_ptr<CObject> obj);
+
+	void removeObjects();
 
 	static const float s_kPixelsPerMeter;
 	static const float s_kGravity;
@@ -45,8 +48,11 @@ protected:
 	std::vector<CPlayer*> m_vecPlayers;
 	std::unique_ptr<b2World> m_world;
 
+	std::vector<CObject*> m_killList;
+
 	std::vector<std::unique_ptr<CObject>> m_objs;
 	CContactManager m_contactInstance;
+
 };
 
 #endif // __LEVEL_H__

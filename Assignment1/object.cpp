@@ -33,6 +33,11 @@ const b2BodyDef & CObject::getBodyDef() const
 	return m_bodyDef;
 }
 
+b2Body & CObject::getBody()
+{
+	return *m_body;
+}
+
 CObject::CObject(Level& level)
 	:
 	m_rLevel(level)

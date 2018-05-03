@@ -40,6 +40,7 @@ public:
 	// Returns the position in the form of a glm::vec3
 	glm::vec3 GetPosition();
 	const b2BodyDef& getBodyDef() const;
+	b2Body& getBody();
 
 protected:
 	CObject(Level& level);
