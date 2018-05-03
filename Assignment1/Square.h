@@ -38,6 +38,10 @@ public:
 	// Swap whether the button is clicked or not
 	void SwapButtonTexture(bool _bClicked);
 
+	// Check if image should be hidden
+	bool IfHidden();
+	void SetHidden(bool _newState);
+
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
@@ -68,6 +72,7 @@ private:
 	glm::vec3 m_position;
 	glm::vec3 m_rotation;
 	glm::vec3 m_scale;
+	bool m_bHidden;
 };
 
 #endif //__SQUARE_H__

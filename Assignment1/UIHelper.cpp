@@ -16,6 +16,12 @@ CGui::~CGui()
 		tempButton = 0;
 	}
 
+	while (m_pImages.size() > 1)
+	{
+		CSquare* image = m_pImages.back();
+		m_pImages.pop_back();
+		delete image;
+	}
 	
 	//while (m_pTextLabels.size() != 0)
 	//{
@@ -33,6 +39,12 @@ void CGui::Render()
 	{
 		if(!button->bHidden)
 			button->pButtonShape->DrawModel();
+	}
+
+	for (auto &image : m_pImages)
+	{
+		if (!image->IfHidden())
+			image->DrawModel();
 	}
 
 	//// Draws buttons in button vector
@@ -70,6 +82,13 @@ void CGui::CreateButton(glm::vec3 _position, float _width, float _height , EButt
 	m_pButtons.push_back(UIButton);
 
 
+}
+
+void CGui::CreateImage(glm::vec3 _position, float _width, float _height, std::string _imageFilePath, bool _bHidden)
+{
+	CSquare* newSquare = CSquare::CreateSquare(m_ButtonShader, _position, glm::vec3(_width, _height, 1), _imageFilePath, _imageFilePath);
+	newSquare->SetHidden(_bHidden);
+	m_pImages.push_back(newSquare);
 }
 
 EButtonFunction CGui::CheckButtonClicked(POINT _mousePos, int _state, int& _iServerIndex)

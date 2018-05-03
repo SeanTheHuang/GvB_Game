@@ -25,11 +25,9 @@
 enum EMenuScreen
 {
 	MAINMENU,
-	HOSTOPTIONS, 
-	SERVERLIST,
 	LOBBY,
-	CONTROLS,
-	GAMEOVER
+	HOW_TO_PLAY,
+	INGAME
 };
 
 class CMenu
@@ -68,20 +66,11 @@ private:
 	// Flag of menu activity
 	bool m_bMenuActive;
 
-	// Main menu layout
+	// Layouts
 	CGui* m_MainMenuLayout;
-
-	// Server list layout
-	CGui* m_ServerListLayout;
-	std::vector<std::string> m_vecServerList;
-
-	// Server name select screen
-	CGui* m_ServerNameLayout;
-
-	// Control screen layout
-	CGui* m_ControlLayout;
-
-	CGui* m_GameOverLayout;
+	CGui* m_LobbyLayout;
+	CGui* m_HowToPlayLayout;
+	CGui* m_InGameLayout;
 
 	//bool m_bClientNameSet;
 //	TextLabel* m_pClientName;

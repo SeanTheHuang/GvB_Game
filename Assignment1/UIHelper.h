@@ -78,6 +78,8 @@ public:
 	// Create button that's added to the button vector
 	void CreateButton(glm::vec3 _position, float _width, float _height, EButtonFunction _function, std::string _strClickedTex, std::string _strUnclickedTex, bool _bHidden);
 
+	void CreateImage(glm::vec3 _position, float _width, float _height, std::string _imageFilePath, bool _bHidden);
+
 	// Check if a button has been clicked
 	EButtonFunction CheckButtonClicked(POINT _mousePos, int _state, int& _iServerIndex);
 	
@@ -95,6 +97,9 @@ public:
 private:
 	// Button vector
 	std::vector<Button*> m_pButtons;
+
+	// Image vector
+	std::vector<CSquare*> m_pImages;
 
 	// Text vector
 //	std::vector<TextLabel*> m_pTextLabels;

@@ -46,7 +46,6 @@ void CSquare::DrawModel()
 
 	glUseProgram(m_shaders);
 	glEnable(GL_BLEND);
-	glDisable(GL_DEPTH);
 
 	// Transparency elimination
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -71,7 +70,6 @@ void CSquare::DrawModel()
 	glBindVertexArray(0);
 
 	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH);
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -186,3 +184,6 @@ std::vector<GLuint> CSquare::CreateIndices()
 		1,2,3 };
 	return vecIndices;
 }
+
+void CSquare::SetHidden(bool _newState) { m_bHidden = _newState; }
+bool CSquare::IfHidden() { return m_bHidden; }

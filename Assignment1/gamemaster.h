@@ -3,6 +3,7 @@
 #include "include.h"
 #include "level.h"
 #include "audio.h"
+#include "Menu.h"
 
 #include <map>
 
@@ -47,4 +48,5 @@ private:
 	Level* m_pCurrentLevel;
 	GLFWwindow* m_pWindow;
 	CAudio* m_cAudio;
+	CMenu m_menu;
 };

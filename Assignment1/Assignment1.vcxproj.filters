@@ -43,6 +43,12 @@
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{2e8b168c-b223-4545-a900-b17b9ae6e31c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Levels">
+      <UniqueIdentifier>{40f5d3b9-42e4-4c55-b05a-354291abcc2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Levels">
+      <UniqueIdentifier>{e980dcab-875a-426f-aa08-f48a48c10048}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,9 +69,6 @@
     <ClCompile Include="input.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="level.cpp">
-      <Filter>Source Files\Framework</Filter>
-    </ClCompile>
     <ClCompile Include="modelloader.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
@@ -77,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="quad.cpp">
       <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="mainlevel.cpp">
-      <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="shader.cpp">
       <Filter>Source Files</Filter>
@@ -129,6 +129,18 @@
     <ClCompile Include="UIHelper.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="mainlevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -147,9 +159,6 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="input.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="level.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="modelloader.h">
@@ -203,9 +212,6 @@
     <ClInclude Include="player.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="mainlevel.h">
-      <Filter>Header Files\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="ContactManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -220,6 +226,18 @@
     </ClInclude>
     <ClInclude Include="UIHelper.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="mainlevel.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.h">
+      <Filter>Header Files\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

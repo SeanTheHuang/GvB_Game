@@ -145,6 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.cpp" />
+    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -175,6 +177,8 @@
     <ClCompile Include="UIHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.h" />
+    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="camera.h" />

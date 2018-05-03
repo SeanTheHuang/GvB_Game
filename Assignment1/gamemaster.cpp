@@ -1,6 +1,8 @@
 #include "gamemaster.h"
 
 #include "mainlevel.h"
+#include "mainmenulevel.h"
+#include "lobbylevel.h"
 
 GameMaster* GameMaster::s_instance = nullptr;
 
@@ -61,15 +63,15 @@ void GameMaster::Initialize()
 
 	glClearColor(0.05f, 0.00f, 0.07f, 1.0f);
 
-	//Sissor test
-	int cutAmount = 60;
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(0, cutAmount, WINDOW_WIDTH, WINDOW_HEIGHT - 2 * cutAmount);
+	////Sissor test
+	//int cutAmount = 60;
+	//glEnable(GL_SCISSOR_TEST);
+	//glScissor(0, cutAmount, WINDOW_WIDTH, WINDOW_HEIGHT - 2 * cutAmount);
 
-	//BF culling
-	glFrontFace(GL_CCW);
-	glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+	////BF culling
+	//glFrontFace(GL_CCW);
+	//glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
 
 	//=== Start game ===
 
@@ -133,6 +135,8 @@ void GameMaster::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	m_pCurrentLevel->Render();
+	// Render UI elements ontop
+	m_menu.RenderScene();
 	glfwSwapBuffers(m_pWindow);
 }
 
@@ -147,13 +151,20 @@ GameMaster::GameMaster()
 
 void GameMaster::InitializeLevels()
 {
+	// Initialize UI elements
+	m_menu.Initialize();
+
 	// Create all levels here
 	// First level put into level map will be start level
 	// Entities and UI elements are Initialized here
 
-	// ===== Main Scene ======
-	Level* mainMenu = new MainLevel();
+	// ===== Main Menu Scene ======
+	Level* mainMenu = new MainMenuLevel();
 	m_mapLevels.insert(std::pair<std::string, Level*>("MainMenu", mainMenu));
+
+	// ===== Test Level Scene ======
+	/*Level* inGameLevel = new MainLevel();
+	m_mapLevels.insert(std::pair<std::string, Level*>("InGame", inGameLevel));*/
 
 
 	// Initialize all levels now
@@ -163,5 +174,5 @@ void GameMaster::InitializeLevels()
 	}
 
 	// Set first level in map as default level
-	m_pCurrentLevel = m_mapLevels.begin()->second;
+	m_pCurrentLevel = m_mapLevels["MainMenu"];
 }
