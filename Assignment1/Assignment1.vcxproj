@@ -69,12 +69,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Includes;$(ProjectDir)\Includes\freetype2\freetype;$(ProjectDir)\Includes\freetype2;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ProjectDir)Dependencies/glm;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(ProjectDir)Libaries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)Includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Includes;$(ProjectDir)\Includes\freetype2\freetype;$(ProjectDir)\Includes\freetype2;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ProjectDir)Dependencies/glm;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(ProjectDir)Libaries;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -93,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies;$(ProjectDir)\Includes\freetype2\freetype;$(ProjectDir)\Includes\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)\Dependencies\assimp\assimp;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\FMOD;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -119,7 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies;$(ProjectDir)\Includes\freetype2\freetype;$(ProjectDir)\Includes\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -157,6 +157,7 @@
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainlevel.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="modelloader.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="player.cpp" />
@@ -165,10 +166,13 @@
     <ClCompile Include="shaderhelper.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="TexLabel.cpp" />
     <ClCompile Include="textui.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="ui.cpp" />
+    <ClCompile Include="UIHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio.h" />
@@ -184,6 +188,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="mainlevel.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="modelloader.h" />
@@ -193,10 +198,13 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaderhelper.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Square.h" />
+    <ClInclude Include="TexLabel.h" />
     <ClInclude Include="textui.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="ui.h" />
+    <ClInclude Include="UIHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cube_fragment_shader.glsl" />
