@@ -151,6 +151,7 @@ void CPlayer::Collide(b2Body & otherPlayerBody)
 	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y)
 	{
 		ReduceHealth();
+		CAudio::PlaySound("hit");
 	}
 	else
 	{

@@ -48,6 +48,7 @@ void CAudio::LoadAudio()
 		std::string filn = "Resources/Audio/";
 		filn += x.first;
 		result = m_system->createSound(filn.c_str(), FMOD_LOOP_NORMAL, 0, &x.second);
+		x.second->setMode(FMOD_LOOP_OFF);
 	}
 
 	//result = m_system->createSound("Resources/Sounds/attack0.mp3", FMOD_LOOP_OFF, 0, &m_sAttack);
