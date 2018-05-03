@@ -31,12 +31,14 @@ public:
 	void DrawObject() override;
 	void Update() override;
 	void PlayerInput();
+	bool GetIsAlive();
 
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
 	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
 	void Collide(b2Body& otherPlayerBody);
+	void SetPosition(glm::vec3 newPos);
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
@@ -52,6 +54,7 @@ private:
 
 	bool m_chargeLeft;
 	bool m_chargeRight;
+	bool m_isAlive;
 
 	float m_power = 0.35f;
 
