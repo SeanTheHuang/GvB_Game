@@ -4,13 +4,15 @@ using namespace FMOD;
 
 std::unordered_map<std::string, FMOD::Sound*> CAudio::m_fmodSounds;
 
-int CAudio::m_iAttackSounds = 0;
-int CAudio::m_iBounceSounds = 0;
+int CAudio::m_iJumpSounds = 3;
+int CAudio::m_iHitSounds = 3;
+int CAudio::m_iChargeSounds = 3;
 
 System* CAudio::m_system = nullptr;
 
-Sound* CAudio::m_sAttack = nullptr;
-Sound* CAudio::m_sBounce = nullptr;
+Sound* CAudio::m_sJump = nullptr;
+Sound* CAudio::m_sHit = nullptr;
+Sound* CAudio::m_sCharge = nullptr;
 
 Channel* CAudio::m_pMenuChannel = nullptr;
 Channel* CAudio::m_pGameChannel = nullptr;
@@ -21,9 +23,18 @@ void CAudio::InitializeFMOD()
 {
 	FMOD_RESULT result;
 	result = FMOD::System_Create(&m_system);
-	m_fmodSounds["attack0.mp3"] = m_sAttack;
-	m_iAttackSounds += 1;
-	m_fmodSounds["bounce0.mp3"] = m_sBounce;
+
+	m_fmodSounds["hit0.wav"] = m_sHit;
+	m_fmodSounds["hit1.wav"] = m_sHit;
+	m_fmodSounds["hit2.wav"] = m_sHit;
+
+	m_fmodSounds["jump0.wav"] = m_sJump;
+	m_fmodSounds["jump1.wav"] = m_sJump;
+	m_fmodSounds["jump2.wav"] = m_sJump;
+
+	m_fmodSounds["charge0.wav"] = m_sCharge;
+	m_fmodSounds["charge1.wav"] = m_sCharge;
+	m_fmodSounds["charge2.wav"] = m_sCharge;
 
 	result = m_system->init(50, FMOD_INIT_NORMAL, 0);
 }
@@ -49,10 +60,27 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 	{
 		case true:
 		{
-			if (_sSound == "attack") 
+
+			if (_sSound == "jump") 
 			{
 				std::stringstream ss;
-				ss << rand() % m_iAttackSounds;
+				ss << rand() % m_iJumpSounds;
+
+				_sSound += ss.str();
+				PlaySound(_sSound, false);
+			}
+			else if (_sSound == "hit")
+			{
+				std::stringstream ss;
+				ss << rand() % m_iHitSounds;
+
+				_sSound += ss.str();
+				PlaySound(_sSound, false);
+			}
+			else if (_sSound == "charge")
+			{
+				std::stringstream ss;
+				ss << rand() % m_iChargeSounds;
 
 				_sSound += ss.str();
 				PlaySound(_sSound, false);
@@ -61,7 +89,7 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 		}
 		case false:
 		{
-			_sSound += ".mp3";
+			_sSound += ".wav";
 			m_system->playSound(m_fmodSounds[_sSound], 0, false, &m_pInGameChannel);
 			break;
 		}

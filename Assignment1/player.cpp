@@ -16,6 +16,7 @@
 #include "player.h"
 #include "level.h"
 #include "gamemaster.h"
+#include "audio.h"
 
 CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index) :
 	m_iIndices(0),
@@ -92,6 +93,9 @@ void CPlayer::PlayerInput()
 {
 	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex))
 	{
+		if (m_angle == 0.0f)
+			CAudio::PlaySound("charge");
+
 		m_chargeLeft = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 2;
 		m_angle = 45 * (1 + sin(m_chargeAmount));
@@ -99,6 +103,9 @@ void CPlayer::PlayerInput()
 	}
 	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex))
 	{
+		if (m_angle == 0.0f)
+			CAudio::PlaySound("charge");
+
 		m_chargeRight = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 2;
 		m_angle = 45 * (1 + sin(m_chargeAmount));
@@ -108,6 +115,8 @@ void CPlayer::PlayerInput()
 	{
 		if (m_chargeLeft && Input::Instance().GetKeyUp(GLFW_KEY_A))
 		{
+			CAudio::PlaySound("jump");
+
 			m_body->ApplyLinearImpulse(b2Vec2(
 				(-cos(m_angle * glm::pi<float>() / 180.0f) * m_power) / Level::s_kPixelsPerMeter,
 				(sin(m_angle * glm::pi<float>() / 180.0f)* m_power) / Level::s_kPixelsPerMeter), 
@@ -118,6 +127,8 @@ void CPlayer::PlayerInput()
 		}
 		else if (m_chargeRight && Input::Instance().GetKeyUp(GLFW_KEY_D))
 		{
+			CAudio::PlaySound("jump");
+
 			m_body->ApplyLinearImpulse(b2Vec2(
 				(cos(m_angle * glm::pi<float>() / 180.0f) * m_power) / Level::s_kPixelsPerMeter,
 				(sin(m_angle * glm::pi<float>() / 180.0f)* m_power) / Level::s_kPixelsPerMeter),
