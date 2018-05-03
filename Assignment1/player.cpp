@@ -25,7 +25,8 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	m_model("Resources/Models/Player/Sphere.obj", _shaders),
 	CObject(level),
 	m_iHealth(3),
-	m_fRadius(1.2f)
+	m_fRadius(1.2f),
+	m_isAlive(true)
 {
 	m_iPlayerIndex = _index;
 	m_eModelType = PLAYER;
@@ -61,7 +62,7 @@ void CPlayer::SetPhysics()
 	fixtureDef.shape = &dynamicCircle;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 1.0f;
-	//fixtureDef.restitution = 0.3f;
+	fixtureDef.restitution = 0.0f;
 
 	m_body->CreateFixture(&fixtureDef);
 
@@ -140,6 +141,11 @@ void CPlayer::PlayerInput()
 	}
 }
 
+bool CPlayer::GetIsAlive()
+{
+	return m_isAlive;
+}
+
 CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 {
 	CPlayer* player = new CPlayer(_shaders, _position, level, _index);
@@ -155,8 +161,14 @@ void CPlayer::Collide(b2Body & otherPlayerBody)
 	}
 	else
 	{
-		m_body->ApplyLinearImpulse(b2Vec2(0.0f, 1.0f), m_body->GetWorldCenter(), true);
+		m_body->ApplyLinearImpulse(b2Vec2(0.0f, -m_body->GetLinearVelocity().y / 120.0f), m_body->GetWorldCenter(), true);
 	}
+}
+
+void CPlayer::SetPosition(glm::vec3 newPos)
+{
+	m_position = newPos;
+	m_body->SetTransform(b2Vec2(newPos.x, newPos.y), m_body->GetAngle());
 }
 
 void CPlayer::getUniformLocation()
@@ -178,8 +190,13 @@ void CPlayer::ReduceHealth()
 {
 	m_iHealth--;
 
-	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * m_fRadius;
+	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * (m_fRadius / Level::s_kPixelsPerMeter);
 	float newScale = static_cast<float>(m_iHealth) / 3.0f;
 	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(newScale, newScale, newScale));
-	std::cout << "Player: " << m_iPlayerIndex << "I got damaged and my radius is" << std::endl;
+	std::cout << "Player: " << m_iPlayerIndex << "I got damaged and my health is " << m_iHealth << std::endl;
+
+	if (m_iHealth <= 0)
+	{
+		m_isAlive = false;
+	}
 }
