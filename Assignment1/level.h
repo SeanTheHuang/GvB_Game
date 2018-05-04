@@ -11,6 +11,8 @@
 #include "object.h"
 #include "player.h"
 #include "ContactManager.h"
+#include "buttonUI.h"
+#include "sprite.h"
 
 class Level
 {
@@ -49,6 +51,8 @@ protected:
 	std::unique_ptr<b2World> m_world;
 
 	std::vector<CObject*> m_killList;
+	std::vector<CSprite*> m_sprites;
+	std::vector<CButtonUI*> m_buttons;
 
 	std::vector<std::unique_ptr<CObject>> m_objs;
 	CContactManager m_contactInstance;

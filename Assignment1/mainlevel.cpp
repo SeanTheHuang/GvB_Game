@@ -65,7 +65,7 @@ void MainLevel::Update()
 	}
 
 	//Reset scene if player presses 'R'
-	if (Input::Instance().GetKeyDown('r'))
+	if (Input::Instance().GetKeyDown(GLFW_KEY_R))
 	{
 		CleanUp();
 		Initialize();

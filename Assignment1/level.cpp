@@ -16,6 +16,16 @@ Level::~Level()
 
 void Level::Update()
 {
+	// Check with mouse clicks
+	if (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS))
+	{
+		// Check all buttons
+		for (size_t i = 0; i < m_buttons.size(); i++)
+		{
+			m_buttons[i]->ProcessInteract();
+		}
+	}
+
 	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
 	{
 		m_vecPlayers.at(i)->Update();
@@ -71,8 +81,28 @@ void Level::Render()
 	{
 		m_vecPlayers.at(i)->DrawObject();
 	}
+	// Render UI stuff
+	for (size_t i = 0; i < m_sprites.size(); i++)
+	{
+		m_sprites[i]->Render();
+	}
+	for (size_t i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i]->Render();
+	}
 }
 
 void Level::CleanUp()
 {
+	for (size_t i = 0; i < m_sprites.size(); i++)
+	{
+		delete m_sprites[i];
+	}
+	m_sprites.clear();
+
+	for (size_t i = 0; i < m_buttons.size(); i++)
+	{
+		delete m_buttons[i];
+	}
+	m_buttons.clear();
 }

@@ -145,10 +145,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.cpp" />
-    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.cpp" />
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.cpp" />
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.cpp" />
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.cpp" />
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.cpp" />
     <ClCompile Include="audio.cpp" />
-    <ClCompile Include="button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -177,10 +178,12 @@
     <ClCompile Include="UIHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.h" />
-    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.h" />
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.h" />
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.h" />
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.h" />
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite.h" />
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.h" />
     <ClInclude Include="audio.h" />
-    <ClInclude Include="button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="ContactManager.h" />
     <ClInclude Include="Cuboid.h" />
@@ -211,6 +214,8 @@
     <ClInclude Include="UIHelper.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl" />
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_vs.glsl" />
     <None Include="cube_fragment_shader.glsl" />
     <None Include="cube_vertex_shader.glsl" />
     <None Include="fragment_shader.glsl" />

@@ -35,6 +35,8 @@ void GameMaster::Destroy()
 
 void GameMaster::Initialize()
 {
+	m_sNextLevelName = "";
+
 	//Initialize GLFW and other objects
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -119,7 +121,8 @@ void GameMaster::InitializeCallbacks()
 
 void GameMaster::ChangeLevel(std::string _levelName)
 {
-
+	// Will change level after current leve has finished updating.
+	m_sNextLevelName = _levelName;
 }
 
 void GameMaster::Update()
@@ -127,6 +130,15 @@ void GameMaster::Update()
 	glfwPollEvents();
 	Time::Instance().Update();
 	m_pCurrentLevel->Update();
+
+	if (m_sNextLevelName != "")
+	{
+		// Time to change level
+		m_pCurrentLevel->CleanUp();
+		m_pCurrentLevel = m_mapLevels[m_sNextLevelName];
+		m_pCurrentLevel->Initialize();
+		m_sNextLevelName = "";
+	}
 
 	Input::Instance().Clear();
 }
@@ -162,17 +174,15 @@ void GameMaster::InitializeLevels()
 	Level* mainMenu = new MainMenuLevel();
 	m_mapLevels.insert(std::pair<std::string, Level*>("MainMenu", mainMenu));
 
+	// ===== Lobby Scene ======
+	Level* lobbyLevel = new LobbyLevel();
+	m_mapLevels.insert(std::pair<std::string, Level*>("Lobby", lobbyLevel));
+
 	// ===== Test Level Scene ======
 	/*Level* inGameLevel = new MainLevel();
 	m_mapLevels.insert(std::pair<std::string, Level*>("InGame", inGameLevel));*/
 
-
-	// Initialize all levels now
-	for (auto it = m_mapLevels.begin(); it != m_mapLevels.end(); it++)
-	{
-		it->second->Initialize();
-	}
-
 	// Set first level in map as default level
 	m_pCurrentLevel = m_mapLevels["MainMenu"];
+	m_pCurrentLevel->Initialize();
 }

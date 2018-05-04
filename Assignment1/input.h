@@ -35,6 +35,7 @@ public:
 
 	bool GetPlayerLeft(int _playerIndex);
 	bool GetPlayerRight(int _playerIndex);
+	bool GetMouseButton(int _whichButton, int _state);
 
 	// Returns if button was pressed that frame
 	bool GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button);

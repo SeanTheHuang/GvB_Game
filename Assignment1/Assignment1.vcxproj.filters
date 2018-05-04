@@ -84,18 +84,6 @@
     <ClCompile Include="shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="textui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -129,17 +117,32 @@
     <ClCompile Include="UIHelper.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.cpp">
-      <Filter>Source Files\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.cpp">
-      <Filter>Source Files\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="mainlevel.cpp">
       <Filter>Source Files\Levels</Filter>
     </ClCompile>
     <ClCompile Include="level.cpp">
       <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="textui.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,16 +179,7 @@
     <ClInclude Include="shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="audio.h">
@@ -233,10 +227,25 @@
     <ClInclude Include="mainlevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\lobbylevel.h">
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="textui.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Samah%27s Class\GvB_Game\GvB_Game\Assignment1\mainmenulevel.h">
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
   </ItemGroup>
@@ -275,6 +284,12 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="perlin_fragment_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_vs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

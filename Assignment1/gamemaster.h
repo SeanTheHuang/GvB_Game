@@ -49,4 +49,5 @@ private:
 	GLFWwindow* m_pWindow;
 	CAudio* m_cAudio;
 	CMenu m_menu;
+	std::string m_sNextLevelName;
 };
