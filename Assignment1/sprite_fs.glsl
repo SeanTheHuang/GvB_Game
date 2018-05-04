@@ -7,6 +7,10 @@ uniform sampler2D gSampler;
 
 void main(void)
 {
-	gl_FragColor = texture(gSampler, textureCord.st);
+	vec4 colour = texture(gSampler, textureCord.st);
 
+	if (colour.a == 0)
+		discard;
+
+	gl_FragColor = colour;
 }

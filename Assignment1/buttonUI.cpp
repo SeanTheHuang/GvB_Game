@@ -82,14 +82,18 @@ void CButtonUI::ProcessInteract()
 		}
 		case TO_HOWTOPLAY_BTN:
 		{
+			GameMaster::Instance().ChangeLevel("HowToPlay");
 			break;
 		}
 		case STARTGAME_BTN:
 		{
+			// TEMP!!!, only goes to our test play scene
+			GameMaster::Instance().ChangeLevel("InGame");
 			break;
 		}
 		case QUIT_BTN:
 		{
+			glfwSetWindowShouldClose(GameMaster::Instance().Window(), GLFW_TRUE);
 			break;
 		}
 		case TO_MENU_BTN:

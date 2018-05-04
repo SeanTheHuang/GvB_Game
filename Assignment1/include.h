@@ -22,8 +22,9 @@
 #include "time.h"
 #include "input.h"
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1600
+#define WINDOW_HEIGHT 900
+
 #define BUFFER_OFFSET(i) ((GLvoid *)(i*sizeof(float)))
 
 #define BUTTON_UP 0

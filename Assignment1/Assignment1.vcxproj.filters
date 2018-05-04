@@ -144,6 +144,9 @@
     <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
   </ItemGroup>
