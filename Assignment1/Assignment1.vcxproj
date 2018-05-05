@@ -164,6 +164,8 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="modelloader.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="Pillar.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="quad.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -199,6 +201,8 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="modelloader.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="Pillar.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="quad.h" />
     <ClInclude Include="shader.h" />
@@ -220,6 +224,8 @@
     <None Include="cube_fragment_shader.glsl" />
     <None Include="cube_vertex_shader.glsl" />
     <None Include="fragment_shader.glsl" />
+    <None Include="level_fragment_shader.glsl" />
+    <None Include="level_vertex_shader.glsl" />
     <None Include="model_fs.glsl" />
     <None Include="model_vs.glsl" />
     <None Include="perlin_fragment_shader.glsl" />

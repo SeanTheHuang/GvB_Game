@@ -141,6 +141,12 @@
     <ClCompile Include="Arrow.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Pillar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -251,6 +257,12 @@
     <ClInclude Include="Arrow.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Pillar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="model_vs.glsl">
@@ -293,6 +305,12 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="level_vertex_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="level_fragment_shader.glsl">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

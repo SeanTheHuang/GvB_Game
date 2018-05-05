@@ -26,7 +26,7 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	m_model("Resources/Models/Player/Sphere.obj", _shaders),
 	CObject(level),
 	m_iHealth(3),
-	m_fRadius(1.2f),
+	m_fRadius(1.0f),
 	m_isAlive(true)
 {
 	m_iPlayerIndex = _index;
@@ -66,7 +66,7 @@ void CPlayer::SetPhysics()
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicCircle;
-	fixtureDef.density = 1.0f;
+	fixtureDef.density = 1.1666666f;
 	fixtureDef.friction = 0.1f;
 	fixtureDef.restitution = 0.6f;
 
@@ -175,7 +175,7 @@ CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& lev
 
 void CPlayer::Collide(b2Body & otherPlayerBody)
 {
-	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + 0.01f)
+	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f)
 	{
 		ReduceHealth();
 		CAudio::PlaySound("hit");

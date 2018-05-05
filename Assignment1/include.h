@@ -48,5 +48,7 @@ enum ModelType
 	FLOOR,
 	CUBOID,
 	PLAYER,
-	ARROW
+	ARROW,
+	PLATFORM,
+	PILLAR
 };
