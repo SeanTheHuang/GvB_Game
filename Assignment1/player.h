@@ -18,6 +18,8 @@
 #include "Object.h"
 #include "Model.h"
 
+class CArrow;
+
 class Level;
 class CPlayer :
 	public CObject
@@ -39,6 +41,7 @@ public:
 	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
 	void Collide(b2Body& otherPlayerBody);
 	void SetPosition(glm::vec3 newPos);
+	void SetArrow(CArrow* _arrow);
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();
@@ -63,6 +66,7 @@ private:
 	int m_iHealth;
 	float m_fRadius;
 	glm::mat4 Scale;
+	CArrow* arrow;
 };
 
 #endif // __PLAYER_H__

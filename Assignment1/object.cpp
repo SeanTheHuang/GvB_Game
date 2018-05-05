@@ -18,6 +18,7 @@
 #include "Cuboid.h"
 #include "level.h"
 #include "player.h"
+#include "Arrow.h"
 
 CObject::~CObject()
 {
@@ -64,6 +65,10 @@ CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 
 		break;
 	case PLAYER:
 		model = CPlayer::CreatePlayer(_shaders, _position, level, 0);
+		return model;
+		break;
+	case ARROW:
+		model = CArrow::CreateArrow(_shaders, _position, level);
 		return model;
 		break;
 	default:

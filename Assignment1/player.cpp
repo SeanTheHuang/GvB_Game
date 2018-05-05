@@ -17,6 +17,7 @@
 #include "level.h"
 #include "gamemaster.h"
 #include "audio.h"
+#include "Arrow.h"
 
 CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index) :
 	m_iIndices(0),
@@ -45,6 +46,11 @@ CPlayer::~CPlayer()
 	{
 		delete pTexture;
 		pTexture = 0;
+	}
+	if (arrow != nullptr)
+	{
+		delete arrow;
+		arrow = 0;
 	}
 }
 
@@ -82,12 +88,27 @@ void CPlayer::DrawObject()
 	glUniform1f(currentTimeLocation, currentTime);
 
 	m_model.Draw();
+
+	if (m_chargeLeft || m_chargeRight)
+	{
+		arrow->DrawObject();
+	}
 }
 
 void CPlayer::Update()
 {
 	PlayerInput();
 	m_position = glm::vec3(m_body->GetPosition().x, m_body->GetPosition().y, m_position.z);
+
+	arrow->SetPosition(glm::vec3(m_position.x * Level::s_kPixelsPerMeter, m_position.y * Level::s_kPixelsPerMeter, m_position.z));
+	if (m_chargeRight)
+	{
+		arrow->SetRotation(m_angle);
+	}
+	else if (m_chargeLeft)
+	{
+		arrow->SetRotation(180.0f - m_angle);
+	}
 }
 
 void CPlayer::PlayerInput()
@@ -171,6 +192,11 @@ void CPlayer::SetPosition(glm::vec3 newPos)
 	m_body->SetTransform(b2Vec2(newPos.x, newPos.y), m_body->GetAngle());
 }
 
+void CPlayer::SetArrow(CArrow * _arrow)
+{
+	arrow = _arrow;
+}
+
 void CPlayer::getUniformLocation()
 {
 	gScaleLocation = glGetUniformLocation(m_shaders, "gScale");
@@ -193,6 +219,7 @@ void CPlayer::ReduceHealth()
 	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * (m_fRadius / Level::s_kPixelsPerMeter);
 	float newScale = static_cast<float>(m_iHealth) / 3.0f;
 	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(newScale, newScale, newScale));
+	arrow->SetScale(newScale);
 	std::cout << "Player: " << m_iPlayerIndex << "I got damaged and my health is " << m_iHealth << std::endl;
 
 	if (m_iHealth <= 0)
