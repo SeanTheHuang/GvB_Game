@@ -59,6 +59,9 @@ void MainLevel::Update()
 {
 	Level::Update();
 
+	int alivePlayers = 0;
+	int winningPlayerIndex = 99;
+
 	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
 	{
 		if (m_vecPlayers.at(i)->GetIsAlive() != true)
@@ -68,6 +71,17 @@ void MainLevel::Update()
 
 			m_vecPlayers.erase(m_vecPlayers.begin() + i);
 		}
+		else
+		{
+			alivePlayers++;
+			winningPlayerIndex = i;
+		}
+	}
+	if (alivePlayers == 1)
+	{
+		// Do something with winningPlayerIndex
+		CleanUp();
+		Initialize();
 	}
 
 	//Reset scene if player presses 'R'

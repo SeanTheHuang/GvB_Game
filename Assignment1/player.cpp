@@ -67,8 +67,8 @@ void CPlayer::SetPhysics()
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicCircle;
 	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 1.0f;
-	fixtureDef.restitution = 0.0f;
+	fixtureDef.friction = 0.1f;
+	fixtureDef.restitution = 0.6f;
 
 	m_body->CreateFixture(&fixtureDef);
 
@@ -175,7 +175,7 @@ CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& lev
 
 void CPlayer::Collide(b2Body & otherPlayerBody)
 {
-	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y)
+	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + 0.01f)
 	{
 		ReduceHealth();
 		CAudio::PlaySound("hit");
