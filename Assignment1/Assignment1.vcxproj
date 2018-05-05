@@ -145,22 +145,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.cpp" />
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.cpp" />
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.cpp" />
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.cpp" />
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.cpp" />
     <ClCompile Include="audio.cpp" />
+    <ClCompile Include="buttonUI.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="gamemaster.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="howtoplaylevel.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="level.cpp" />
+    <ClCompile Include="lobbylevel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainlevel.cpp" />
+    <ClCompile Include="mainmenulevel.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="modelloader.cpp" />
     <ClCompile Include="object.cpp" />
@@ -171,21 +170,14 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="Square.cpp" />
-    <ClCompile Include="TexLabel.cpp" />
-    <ClCompile Include="textui.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="time.cpp" />
-    <ClCompile Include="ui.cpp" />
     <ClCompile Include="UIHelper.cpp" />
+    <ClCompile Include="userinterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.h" />
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.h" />
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.h" />
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.h" />
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite.h" />
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.h" />
     <ClInclude Include="audio.h" />
+    <ClInclude Include="buttonUI.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="ContactManager.h" />
     <ClInclude Include="Cuboid.h" />
@@ -193,10 +185,13 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="gamemaster.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="howtoplaylevel.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="level.h" />
+    <ClInclude Include="lobbylevel.h" />
     <ClInclude Include="mainlevel.h" />
+    <ClInclude Include="mainmenulevel.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="model.h" />
@@ -207,6 +202,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaderhelper.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="sprite.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="TexLabel.h" />
     <ClInclude Include="textui.h" />
@@ -214,6 +210,7 @@
     <ClInclude Include="time.h" />
     <ClInclude Include="ui.h" />
     <ClInclude Include="UIHelper.h" />
+    <ClInclude Include="userinterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl" />

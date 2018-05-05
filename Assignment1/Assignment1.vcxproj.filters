@@ -111,9 +111,6 @@
     <ClCompile Include="Square.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TexLabel.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="UIHelper.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -123,29 +120,23 @@
     <ClCompile Include="level.cpp">
       <Filter>Source Files\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.cpp">
-      <Filter>Source Files\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.cpp">
-      <Filter>Source Files\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="sprite.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="textui.cpp">
+    <ClCompile Include="userinterface.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ui.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.cpp">
+    <ClCompile Include="howtoplaylevel.cpp">
       <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="lobbylevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="mainmenulevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="buttonUI.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,29 +221,29 @@
     <ClInclude Include="mainlevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\buttonUI.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="ui.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="textui.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\userinterface.h">
+    <ClInclude Include="userinterface.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite.h">
+    <ClInclude Include="sprite.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\mainmenulevel.h">
+    <ClInclude Include="howtoplaylevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\lobbylevel.h">
+    <ClInclude Include="lobbylevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\howtoplaylevel.h">
+    <ClInclude Include="mainmenulevel.h">
       <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="buttonUI.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
