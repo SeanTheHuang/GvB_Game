@@ -60,7 +60,10 @@ void MainLevel::Update()
 	{
 		if (m_vecPlayers.at(i)->GetIsAlive() != true)
 		{
+			m_killList.push_back(m_vecPlayers[i]);
 			m_vecPlayers.at(i)->SetPosition(glm::vec3(100.0f, 100.0f, 0.0f));
+
+			m_vecPlayers.erase(m_vecPlayers.begin() + i);
 		}
 	}
 

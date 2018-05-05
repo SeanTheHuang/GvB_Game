@@ -114,7 +114,7 @@ void CPlayer::PlayerInput()
 	}
 	else
 	{
-		if (m_chargeLeft && Input::Instance().GetKeyUp(GLFW_KEY_A))
+		if (m_chargeLeft && !Input::Instance().GetPlayerLeft(m_iPlayerIndex))
 		{
 			CAudio::PlaySound("jump");
 
@@ -126,7 +126,7 @@ void CPlayer::PlayerInput()
 			m_angle = 0.0f;
 			m_chargeAmount = (glm::pi<float>() * 3.0f) / 2.0f;
 		}
-		else if (m_chargeRight && Input::Instance().GetKeyUp(GLFW_KEY_D))
+		else if (m_chargeRight && !Input::Instance().GetPlayerRight(m_iPlayerIndex))
 		{
 			CAudio::PlaySound("jump");
 
