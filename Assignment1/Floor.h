@@ -12,8 +12,8 @@
 // Mail			: sebastian.ten7230@mediadesign.school.nz
 //
 
-#ifndef __PYRAMID_H__
-#define __PYRAMID_H__
+#ifndef __FLOOR_H__
+#define __FLOOR_H__
 
 #include "Object.h"
 #include "Model.h"
@@ -46,4 +46,4 @@ private:
 	int m_iIndices;
 };
 
-#endif // __PYRAMID_H__
+#endif // __FLOOR_H__
