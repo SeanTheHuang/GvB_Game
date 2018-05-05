@@ -35,7 +35,8 @@ void Level::Update()
 	static const int32 velocityIterations = 6;
 	static const int32 positionIterations = 2;
 
-	m_world->Step(timeStep, velocityIterations, positionIterations);
+	if(m_world)
+		m_world->Step(timeStep, velocityIterations, positionIterations);
 }
 
 b2Body* Level::addObject(std::unique_ptr<CObject> obj)
