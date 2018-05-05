@@ -144,8 +144,11 @@
     <ClCompile Include="Platform.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="GameLevel1.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
     <ClCompile Include="Pillar.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,8 +263,11 @@
     <ClInclude Include="Platform.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="GameLevel1.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
     <ClInclude Include="Pillar.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

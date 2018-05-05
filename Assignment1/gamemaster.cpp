@@ -4,6 +4,7 @@
 #include "mainmenulevel.h"
 #include "lobbylevel.h"
 #include "howtoplaylevel.h"
+#include "GameLevel1.h"
 
 GameMaster* GameMaster::s_instance = nullptr;
 
@@ -187,7 +188,12 @@ void GameMaster::InitializeLevels()
 	Level* inGameLevel = new MainLevel();
 	m_mapLevels.insert(std::pair<std::string, Level*>("InGame", inGameLevel));
 
+	// ===== Level 1 ======
+	Level* Level1 = new GameLevel1();
+	m_mapLevels.insert(std::pair<std::string, Level*>("Level1", Level1));
+
 	// Set first level in map as default level
 	m_pCurrentLevel = m_mapLevels["MainMenu"];
+	//m_pCurrentLevel = m_mapLevels["Level1"];
 	m_pCurrentLevel->Initialize();
 }
