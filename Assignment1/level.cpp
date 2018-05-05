@@ -37,6 +37,8 @@ void Level::Update()
 
 	if(m_world)
 		m_world->Step(timeStep, velocityIterations, positionIterations);
+
+	removeObjects();
 }
 
 b2Body* Level::addObject(std::unique_ptr<CObject> obj)
