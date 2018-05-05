@@ -100,6 +100,7 @@ void Level::CleanUp()
 	m_vecPlayers.clear();
 	m_vecObjects.clear();
 	m_objs.clear();
+	m_killList.clear();
 
 	for (size_t i = 0; i < m_sprites.size(); i++)
 	{

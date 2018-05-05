@@ -35,12 +35,12 @@ bool Input::GetKeyUp(int _key)
 
 bool Input::GetPlayerLeft(int _playerIndex)
 {
-	return GetKeyDown(m_inputMappings[_playerIndex].m_left);
+	return GetKeyDown(m_inputMappings[_playerIndex].m_left) || GetControllerInputDown(_playerIndex-1, JOYSTICK_X);
 }
 
 bool Input::GetPlayerRight(int _playerIndex)
 {
-	return GetKeyDown(m_inputMappings[_playerIndex].m_right);
+	return GetKeyDown(m_inputMappings[_playerIndex].m_right) || GetControllerInputDown(_playerIndex-1, JOYSTICK_B);
 }
 
 bool Input::GetMouseButton(int _whichButton, int _state)
@@ -53,6 +53,8 @@ bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
 {
 	int count;
 	const unsigned char* axes = glfwGetJoystickButtons(_joyStickID, &count);
+	if (!axes)
+		return false;
 	return (axes[(int)_button] != '\0');
 }
 
@@ -80,8 +82,11 @@ glm::vec2 Input::MousePosition()
 
 void Input::Initialize()
 {
-	m_inputMappings[1] = { GLFW_KEY_A, GLFW_KEY_D };
-	m_inputMappings[2] = { GLFW_KEY_LEFT, GLFW_KEY_RIGHT };
+	m_inputMappings[1] = { GLFW_KEY_A, GLFW_KEY_S };
+	m_inputMappings[2] = { GLFW_KEY_O, GLFW_KEY_P };
+	m_inputMappings[3] = { GLFW_KEY_LEFT, GLFW_KEY_RIGHT };
+	m_inputMappings[4] = { GLFW_KEY_KP_8, GLFW_KEY_KP_9 };
+
 }
 
 Input::Input()
