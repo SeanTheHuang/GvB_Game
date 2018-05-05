@@ -23,6 +23,7 @@ public:
 	virtual void Render();
 	virtual bool Initialise();
 	virtual void ProcessInteract();
+	virtual void UpdateHighlight(bool _highlighted);
 
 private:
 	BUTTON_ACTION m_eAction;
@@ -34,6 +35,7 @@ private:
 	void getAddressofUniformLocation();
 
 	bool MouseIsOverButton();
+	bool m_highlighted = false;
 
 	std::string m_buttonUpPath;
 	std::string m_buttonDownPath;

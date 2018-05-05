@@ -42,7 +42,7 @@ void CButtonUI::Render()
 	glUniform1i(gSampler, 0);
 
 	//Find if mouse is hovering over button or not
-	if (MouseIsOverButton())
+	if (MouseIsOverButton() || m_highlighted)
 	{
 		m_textureDown->bind(GL_TEXTURE0);
 	}
@@ -71,7 +71,7 @@ bool CButtonUI::Initialise()
 
 void CButtonUI::ProcessInteract()
 {
-	if (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) && MouseIsOverButton())
+	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(0, JOYSTICK_A) && m_highlighted))
 	{
 		switch (m_eAction)
 		{
@@ -105,6 +105,11 @@ void CButtonUI::ProcessInteract()
 			break;
 		}
 	}
+}
+
+void CButtonUI::UpdateHighlight(bool _highlighted)
+{
+	m_highlighted = _highlighted;
 }
 
 void CButtonUI::CreateAndLoadTexture()

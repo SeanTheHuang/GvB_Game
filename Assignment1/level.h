@@ -57,6 +57,9 @@ protected:
 	std::vector<std::unique_ptr<CObject>> m_objs;
 	CContactManager m_contactInstance;
 
+	int m_highlightedButton;
+	float m_delayLength = 0.25f;
+	float m_delayStamp;
 };
 
 #endif // __LEVEL_H__

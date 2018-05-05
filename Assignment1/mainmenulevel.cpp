@@ -17,6 +17,9 @@ void MainMenuLevel::Initialize()
 
 	CSprite* background = new CSprite("Resources/Images/MainMenuBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
 	m_sprites.push_back(background);
+
+	m_highlightedButton = 0;
+	m_buttons[0]->UpdateHighlight(true);
 }
 
 void MainMenuLevel::CleanUp()

@@ -6,7 +6,7 @@ const float Level::s_kGravity = -10.0f; // adjust this to taste
 
 Level::Level()
 {
-	
+	m_delayStamp = Time::Instance().TotalTime();
 }
 
 Level::~Level()
@@ -17,13 +17,22 @@ Level::~Level()
 void Level::Update()
 {
 	// Check with mouse clicks
-	if (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS))
+	if (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) || Input::Instance().GetControllerInputDown(0, JOYSTICK_A))
 	{
 		// Check all buttons
 		for (size_t i = 0; i < m_buttons.size(); i++)
 		{
 			m_buttons[i]->ProcessInteract();
 		}
+	}
+
+	int axes = Input::Instance().GetControllerAxes(0, GLFW_JOYSTICK_1, 1) * -1;
+	if (Time::Instance().TotalTime() > m_delayStamp + m_delayLength && (axes > 0.25f || axes < -0.25f))
+	{
+		m_buttons[m_highlightedButton]->UpdateHighlight(false);
+		m_highlightedButton = (m_highlightedButton + axes < 0) ? m_buttons.size() -1 : ((m_highlightedButton + axes == m_buttons.size()) ? 0 : m_highlightedButton + axes);
+		m_buttons[m_highlightedButton]->UpdateHighlight(true);
+		m_delayStamp = Time::Instance().TotalTime();
 	}
 
 	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
