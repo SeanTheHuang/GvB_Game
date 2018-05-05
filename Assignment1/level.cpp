@@ -97,6 +97,10 @@ void Level::Render()
 
 void Level::CleanUp()
 {
+	m_vecPlayers.clear();
+	m_vecObjects.clear();
+	m_objs.clear();
+
 	for (size_t i = 0; i < m_sprites.size(); i++)
 	{
 		delete m_sprites[i];
