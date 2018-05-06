@@ -26,7 +26,8 @@ void Level::Update()
 		}
 	}
 
-	int axes = Input::Instance().GetControllerAxes(0, GLFW_JOYSTICK_1, 1) * -1;
+	// Player 1 can only control menu (prevent trolling here)
+	int axes = Input::Instance().GetControllerAxes(0, 1) * -1;
 	if (Time::Instance().TotalTime() > m_delayStamp + m_delayLength && (axes > 0.25f || axes < -0.25f))
 	{
 		m_buttons[m_highlightedButton]->UpdateHighlight(false);
