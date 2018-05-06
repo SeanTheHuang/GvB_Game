@@ -39,7 +39,7 @@ public:
 
 	// Returns if button was pressed that frame
 	bool GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button);
-	float GetControllerAxes(int _joyStickID, int _button, int _direction);
+	float GetControllerAxes(int _joyStickID, int _button);
 	// Returns if button was released that frame
 	bool GetControllerInputUp(int _joyStickID, JOYSTICK_INPUT _button);
 

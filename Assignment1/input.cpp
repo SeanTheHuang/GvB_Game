@@ -58,12 +58,12 @@ bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
 	return (axes[(int)_button] != '\0');
 }
 
-float Input::GetControllerAxes(int _joyStickID, int _button, int _direction)
+float Input::GetControllerAxes(int _joyStickID, int _button)
 {
 	int count;
-	const float* axes = glfwGetJoystickAxes(_button, &count);
+	const float* axes = glfwGetJoystickAxes(_joyStickID, &count);
 
-	return axes[_direction];
+	return axes[_button];
 	
 }
 
