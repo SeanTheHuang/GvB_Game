@@ -155,6 +155,7 @@
     <ClCompile Include="GameLevel1.cpp" />
     <ClCompile Include="gamemaster.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="howtoplaylevel.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="level.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="time.cpp" />
     <ClCompile Include="UIHelper.cpp" />
     <ClCompile Include="userinterface.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameLevel1.h" />
     <ClInclude Include="gamemaster.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="howtoplaylevel.h" />
     <ClInclude Include="include.h" />
@@ -219,6 +222,7 @@
     <ClInclude Include="ui.h" />
     <ClInclude Include="UIHelper.h" />
     <ClInclude Include="userinterface.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl" />

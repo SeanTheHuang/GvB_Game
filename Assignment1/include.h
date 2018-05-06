@@ -50,5 +50,7 @@ enum ModelType
 	PLAYER,
 	ARROW,
 	PLATFORM,
-	PILLAR
+	PILLAR,
+	GROUND,
+	WALL
 };

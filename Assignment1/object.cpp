@@ -21,6 +21,8 @@
 #include "Arrow.h"
 #include "Platform.h"
 #include "Pillar.h"
+#include "Ground.h"
+#include "Wall.h"
 
 CObject::~CObject()
 {
@@ -77,6 +79,13 @@ CObject* CObject::CreateObject(ModelType _modelType, GLuint _shaders, glm::vec3 
 		return model;
 	case PILLAR:
 		model = CPillar::CreatePillar(_shaders, _position, level);
+		return model;
+		break;
+	case GROUND:
+		model = CGround::CreateGround(_shaders, _position, level);
+		return model;
+	case WALL:
+		model = CWall::CreateWall(_shaders, _position, level);
 		return model;
 		break;
 	default:
