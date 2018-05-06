@@ -2,7 +2,7 @@
 #include "modelloader.h"
 #include "Arrow.h"
 
-void GameLevel3::Initialize()
+void GameLevel3::Initialize(std::vector<Player> _players)
 {
 	GLuint cubeShaders;
 	ShaderHelper::CompileAndLinkShaders("cube_vertex_shader.glsl", "cube_fragment_shader.glsl", cubeShaders);
@@ -128,13 +128,13 @@ void GameLevel3::Update()
 	{
 		// Do something with winningPlayerIndex
 		CleanUp();
-		Initialize();
+		Initialize(m_connectedPlayerData);
 	}
 
 	//Reset scene if player presses 'R'
 	if (Input::Instance().GetKeyDown(GLFW_KEY_R))
 	{
 		CleanUp();
-		Initialize();
+		Initialize(m_connectedPlayerData);
 	}
 }

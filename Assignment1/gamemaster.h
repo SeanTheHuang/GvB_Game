@@ -32,8 +32,13 @@ public:
 	void Render();
 	// Sets current level to specified level
 	void ChangeLevel(std::string _levelName);
+
+	void StorePlayerInfo(std::vector<Player> _players);
+
 	// Call to get game window
 	GLFWwindow* Window() { return m_pWindow; }
+	// Get current level
+	Level* GetCurrentLevel();
 private:
 	GameMaster(); //Singleton stuff
 	GameMaster(const GameMaster&) = delete;
@@ -50,4 +55,5 @@ private:
 	CAudio* m_cAudio;
 	CMenu m_menu;
 	std::string m_sNextLevelName;
+	std::vector<Player> m_connectedPlayers;
 };

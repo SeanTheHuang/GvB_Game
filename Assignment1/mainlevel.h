@@ -7,7 +7,7 @@ class MainLevel : public Level
 {
 public:
 	//Fill level with objects. Initialize all objects
-	void Initialize();
+	void Initialize(std::vector<Player> _players);
 	//Update all objects. Apply level logic
 	void Update();
 };

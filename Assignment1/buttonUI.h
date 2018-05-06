@@ -10,20 +10,24 @@ enum BUTTON_ACTION
 	TO_HOWTOPLAY_BTN,
 	STARTGAME_BTN,
 	QUIT_BTN,
-	TO_MENU_BTN
+	TO_MENU_BTN,
+	ADD_PLAYER_BTN,
+	REMOVE_PLAYER_BTN,
+	READY_PLAYER_BTN
 };
 
 class CButtonUI : public CUi
 {
 public:
 	CButtonUI(std::string _buttonUpImage, std::string _buttonDownImage,
-		glm::vec2 _position, glm::vec2 _dimensions, BUTTON_ACTION _action);
+		glm::vec2 _position, glm::vec2 _dimensions, BUTTON_ACTION _action, int _controlledByPlayer);
 	~CButtonUI();
 
 	virtual void Render();
 	virtual bool Initialise();
 	virtual void ProcessInteract();
 	virtual void UpdateHighlight(bool _highlighted);
+	int GetPlayerUsedBy();
 
 private:
 	BUTTON_ACTION m_eAction;
@@ -47,5 +51,5 @@ private:
 	glm::vec2 m_dimensions;
 
 	GLuint gOrthoLocation, gSampler, gViewLocation;
-
+	int m_playerUsedBy;
 };

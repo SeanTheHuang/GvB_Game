@@ -130,6 +130,11 @@ void GameMaster::ChangeLevel(std::string _levelName)
 	m_sNextLevelName = _levelName;
 }
 
+void GameMaster::StorePlayerInfo(std::vector<Player> _players)
+{
+	m_connectedPlayers = _players;
+}
+
 void GameMaster::Update()
 {
 	glfwPollEvents();
@@ -141,7 +146,7 @@ void GameMaster::Update()
 		// Time to change level
 		m_pCurrentLevel->CleanUp();
 		m_pCurrentLevel = m_mapLevels[m_sNextLevelName];
-		m_pCurrentLevel->Initialize();
+		m_pCurrentLevel->Initialize(m_connectedPlayers);
 		m_sNextLevelName = "";
 	}
 
@@ -155,6 +160,11 @@ void GameMaster::Render()
 	// Render UI elements ontop
 	m_menu.RenderScene();
 	glfwSwapBuffers(m_pWindow);
+}
+
+Level * GameMaster::GetCurrentLevel()
+{
+	return m_pCurrentLevel;
 }
 
 GameMaster::GameMaster()
@@ -210,5 +220,5 @@ void GameMaster::InitializeLevels()
 	// Set first level in map as default level
 	m_pCurrentLevel = m_mapLevels["MainMenu"];
 	//m_pCurrentLevel = m_mapLevels["Level4"];
-	m_pCurrentLevel->Initialize();
+	m_pCurrentLevel->Initialize(m_connectedPlayers);
 }

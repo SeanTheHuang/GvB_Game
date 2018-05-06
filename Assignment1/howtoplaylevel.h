@@ -7,7 +7,7 @@ class HowToPlayLevel : public Level
 {
 	// Member Functions
 public:
-	void Initialize();
+	void Initialize(std::vector<Player> _players);
 	void CleanUp();
 	void Update();
 

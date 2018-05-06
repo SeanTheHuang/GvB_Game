@@ -14,6 +14,16 @@
 #include "buttonUI.h"
 #include "sprite.h"
 
+struct Player
+{
+	bool active;
+	int playerIndex;
+	bool readyState;
+	CButtonUI* readyBtn;
+	CButtonUI* playerPortrait;
+	glm::vec3 color;
+};
+
 class Level
 {
 //== Methods
@@ -21,8 +31,16 @@ public:
 	Level();
 	~Level();
 
+	void CheckControllerSelect();
+
+	void CheckMouseSelect();
+
+	void FindNextButton(int _playerIdx, int _direction);
+
+	void CheckControllerScroll();
+
 	//Fill level with objects. Initialize all objects
-	virtual void Initialize() = 0;
+	virtual void Initialize(std::vector<Player>) = 0;
 	//Destroy all objects
 	virtual void CleanUp();
 	//Update all objects. Apply level logic
@@ -50,6 +68,8 @@ protected:
 	std::vector<CPlayer*> m_vecPlayers;
 	std::unique_ptr<b2World> m_world;
 
+	std::vector<Player> m_connectedPlayerData;
+
 	std::vector<CObject*> m_killList;
 	std::vector<CSprite*> m_sprites;
 	std::vector<CButtonUI*> m_buttons;
@@ -57,9 +77,9 @@ protected:
 	std::vector<std::unique_ptr<CObject>> m_objs;
 	CContactManager m_contactInstance;
 
-	int m_highlightedButton;
+	int m_highlights[4];
 	float m_delayLength = 0.25f;
-	float m_delayStamp;
+	float m_inputDelayStamps[4];
 };
 
 #endif // __LEVEL_H__

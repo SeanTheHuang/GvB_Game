@@ -3,9 +3,12 @@
 #include "shaderhelper.h"
 #include "buttonUI.h"
 #include "gamemaster.h"
+#include "lobbylevel.h"
 
 CButtonUI::CButtonUI(std::string _buttonUpImage, std::string _buttonDownImage,
-	glm::vec2 _position, glm::vec2 _dimensions, BUTTON_ACTION _action)
+	glm::vec2 _position, glm::vec2 _dimensions, BUTTON_ACTION _action, int _controlledByPlayer)
+	:
+	m_playerUsedBy(_controlledByPlayer)
 {
 	m_buttonUpPath = _buttonUpImage;
 	m_buttonDownPath = _buttonDownImage;
@@ -88,7 +91,8 @@ void CButtonUI::ProcessInteract()
 		case STARTGAME_BTN:
 		{
 			// TEMP!!!, only goes to our test play scene
-			GameMaster::Instance().ChangeLevel("InGame");
+			GameMaster::Instance().StorePlayerInfo(dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel())->GetPlayerData());
+			GameMaster::Instance().ChangeLevel("Level1");
 			break;
 		}
 		case QUIT_BTN:
@@ -101,6 +105,24 @@ void CButtonUI::ProcessInteract()
 			GameMaster::Instance().ChangeLevel("MainMenu");
 			break;
 		}
+		case ADD_PLAYER_BTN:
+		{
+			LobbyLevel* lobby = dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel());
+			lobby->AddPlayer(m_playerUsedBy);
+			break;
+		}
+		case REMOVE_PLAYER_BTN:
+		{
+			LobbyLevel* lobby = dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel());
+			lobby->RemovePlayer(m_playerUsedBy);
+			break;
+		}
+		case READY_PLAYER_BTN:
+		{
+			LobbyLevel* lobby = dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel());
+			lobby->ReadyPlayer(m_playerUsedBy);
+			break;
+		}
 		default:
 			break;
 		}
@@ -110,6 +132,11 @@ void CButtonUI::ProcessInteract()
 void CButtonUI::UpdateHighlight(bool _highlighted)
 {
 	m_highlighted = _highlighted;
+}
+
+int CButtonUI::GetPlayerUsedBy()
+{
+	return m_playerUsedBy;
 }
 
 void CButtonUI::CreateAndLoadTexture()
