@@ -10,6 +10,7 @@ float lerp;
 
 //uniform sampler2D gSampler;
 uniform float currentTime;
+uniform vec3 color;
 out vec4 finalColor;
 
 
@@ -128,5 +129,5 @@ void main(void)
 	perlinValue = (perlinValue + 1) / 2;
 	//perlinValue = pow(perlinValue, 100);
 
-	finalColor = vec4(perlinValue, mix(0.0f, 0.5f, perlinValue), mix(0.0f, 0.5f, perlinValue), 1.0f);
+	finalColor = vec4(color * perlinValue, 1.0f);
 }

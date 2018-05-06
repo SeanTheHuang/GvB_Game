@@ -27,7 +27,8 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	CObject(level),
 	m_iHealth(3),
 	m_fRadius(1.0f),
-	m_isAlive(true)
+	m_isAlive(true),
+	m_power(0.35f)
 {
 	m_iPlayerIndex = _index;
 	m_eModelType = PLAYER;
@@ -38,6 +39,24 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	SetPhysics();
 
 	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+
+	switch (m_iPlayerIndex)
+	{
+	case 1:
+		color = {1.0f, 0.0f, 1.0f};
+		break;
+	case 2:
+		color = { 0.0f, 1.0f, 0.0f };
+		break;
+	case 3:
+		color = { 0.0f, 1.0f, 1.0f };
+		break;
+	case 4:
+		color = { 1.0f, 1.0f, 1.0f };
+		break;
+	default:
+		break;
+	}
 }
 
 CPlayer::~CPlayer()
@@ -67,8 +86,8 @@ void CPlayer::SetPhysics()
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicCircle;
 	fixtureDef.density = 1.1666666f;
-	fixtureDef.friction = 0.1f;
-	fixtureDef.restitution = 0.6f;
+	fixtureDef.friction = 0.3f;
+	fixtureDef.restitution = 0.4f;
 
 	m_body->CreateFixture(&fixtureDef);
 
@@ -86,6 +105,8 @@ void CPlayer::DrawObject()
 	glUniformMatrix4fv(gRotateLocation, 1, GL_FALSE, glm::value_ptr(Rotate));
 	glUniformMatrix4fv(gTranslateLocation, 1, GL_FALSE, glm::value_ptr(Translate));
 	glUniform1f(currentTimeLocation, currentTime);
+	glUniform3f(colorLocation, color.x, color.y, color.z);
+
 
 	m_model.Draw();
 
@@ -113,24 +134,24 @@ void CPlayer::Update()
 
 void CPlayer::PlayerInput()
 {
-	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex))
+	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
 	{
 		if (m_angle == 0.0f)
 			CAudio::PlaySound("charge");
 
 		m_chargeLeft = true;
-		m_chargeAmount += Time::Instance().DeltaTime() * 2;
-		m_angle = 45 * (1 + sin(m_chargeAmount));
+		m_chargeAmount += Time::Instance().DeltaTime() * 3;
+		m_angle = 10 + 40 * (1 + sin(m_chargeAmount));
 		std::cout << m_angle << std::endl;
 	}
-	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex))
+	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
 	{
 		if (m_angle == 0.0f)
 			CAudio::PlaySound("charge");
 
 		m_chargeRight = true;
-		m_chargeAmount += Time::Instance().DeltaTime() * 2;
-		m_angle = 45 * (1 + sin(m_chargeAmount));
+		m_chargeAmount += Time::Instance().DeltaTime() * 3;
+		m_angle = 10 + 40 * (1 + sin(m_chargeAmount));
 		std::cout << m_angle << std::endl;
 	}
 	else
@@ -210,6 +231,9 @@ void CPlayer::getUniformLocation()
 
 	currentTimeLocation = glGetUniformLocation(m_shaders, "currentTime");
 	assert(currentTimeLocation != 0xFFFFFFFF);
+
+	colorLocation = glGetUniformLocation(m_shaders, "color");
+	assert(colorLocation != 0xFFFFFFFF);
 }
 
 void CPlayer::ReduceHealth()

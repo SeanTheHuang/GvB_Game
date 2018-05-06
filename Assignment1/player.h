@@ -47,7 +47,7 @@ private:
 	void getUniformLocation();
 	void ReduceHealth();
 
-	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation;
+	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation, colorLocation;
 	GLuint m_shaders;
 	Texture* pTexture;
 	Model m_model;
@@ -59,7 +59,7 @@ private:
 	bool m_chargeRight;
 	bool m_isAlive;
 
-	float m_power = 0.35f;
+	float m_power;
 
 	int m_iIndices;
 	int m_iPlayerIndex;
@@ -67,6 +67,7 @@ private:
 	float m_fRadius;
 	glm::mat4 Scale;
 	CArrow* arrow;
+	glm::vec3 color;
 };
 
 #endif // __PLAYER_H__

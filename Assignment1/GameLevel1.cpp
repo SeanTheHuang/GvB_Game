@@ -28,63 +28,42 @@ void GameLevel1::Initialize()
 	b2Vec2 gravity(0.0f, s_kGravity);
 	m_world = std::unique_ptr<b2World>(new b2World(gravity));
 
-	float PlatformWidth = 7.0f;
-	float PlatformHeight = 2.0f;
-	float PillarWidth = 2.0f;
-	float PillarHeight = 4.0f;
-
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.0f, 3.0f, -5.0f), *this, 1));
-	m_vecPlayers.at(0)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(3.0f, 3.0f, -5.0f), *this));
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-3.0f, 3.0f, -5.0f), *this, 2));
-	m_vecPlayers.at(1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-3.0f, 3.0f, -5.0f), *this));
+	float platformWidth = 7.0f;
+	float platformHeight = 2.0f;
+	float pillarWidth = 2.0f;
+	float pillarHeight = 4.0f;
 
 	// =================Border=====================
 	// Floor
 	m_vecObjects.push_back(CObject::CreateObject(GROUND, m_vecShaders.at(3), glm::vec3(0.0f, 0.0f, -5.0f), *this));
 	// Right wall
-	m_vecObjects.push_back(CObject::CreateObject(WALL, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 3.5f, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(WALL, m_vecShaders.at(3), glm::vec3(4.0f * platformWidth + platformWidth / 2.0f + pillarWidth / 2.0f, (platformHeight / 2.0f) + pillarHeight * 3.5f, -5.0f), *this));
 	// Roof
-	m_vecObjects.push_back(CObject::CreateObject(GROUND, m_vecShaders.at(3), glm::vec3(0.0f, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(GROUND, m_vecShaders.at(3), glm::vec3(0.0f, platformHeight + pillarHeight * 7.0f, -5.0f), *this));
 	// Left wall
-	m_vecObjects.push_back(CObject::CreateObject(WALL, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 3.5f, -5.0f), *this));
-	//// Floor
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(3.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(2.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(0.0f, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-2.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-3.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth, 0.0f, -5.0f), *this));
-	//// Right wall
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f), -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 2.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 3.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 4.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 5.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 6.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth + PlatformWidth / 2.0f + PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 7.0f, -5.0f), *this));
-	//// Roof
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(4.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(3.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(2.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(0.0f, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-2.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-3.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth, PlatformHeight + PillarHeight * 7.0f, -5.0f), *this));
-	//// Left wall
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f), -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 2.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 3.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 4.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 5.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 6.0f, -5.0f), *this));
-	//m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-4.0f * PlatformWidth - PlatformWidth / 2.0f - PillarWidth / 2.0f, (PlatformHeight / 2.0f) + PillarHeight * 7.0f, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(WALL, m_vecShaders.at(3), glm::vec3(-4.0f * platformWidth - platformWidth / 2.0f - pillarWidth / 2.0f, (platformHeight / 2.0f) + pillarHeight * 3.5f, -5.0f), *this));
+
+	// =================Platforms and pillars left to right=====================
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-4.0f * platformWidth, 2.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-3.0f * platformWidth, 2.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-2.0f * platformWidth + pillarWidth * 1.5f, 4.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(-1.0f * platformWidth + pillarWidth * 1.5f, 4.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(0.0f, (platformHeight / 2.0f) + pillarHeight * 4.0f, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(0.0f, (platformHeight / 2.0f) + pillarHeight * 5.0f, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(1.0f * platformWidth - pillarWidth * 1.5f, 4.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(2.0f * platformWidth - pillarWidth * 1.5f, 4.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(3.0f * platformWidth, 2.0f * pillarHeight, -5.0f), *this));
+	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(4.0f * platformWidth, 2.0f * pillarHeight, -5.0f), *this));
+
+	// =================Players=====================
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(pillarWidth,		4.0f * pillarHeight + platformHeight, -5.0f), *this, 1));
+	m_vecPlayers.at(0)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this));
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-pillarWidth,	4.0f * pillarHeight + platformHeight, -5.0f), *this, 2));
+	m_vecPlayers.at(1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-pillarWidth,4.0f * pillarHeight + platformHeight, -5.0f), *this));
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-3.5f * platformWidth,		2.0f * pillarHeight + platformHeight, -5.0f), *this, 3));
+	m_vecPlayers.at(2)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
+	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.5f * platformWidth,	2.0f * pillarHeight + platformHeight, -5.0f), *this, 4));
+	m_vecPlayers.at(3)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(3.5f * platformWidth,2.0f * pillarHeight + platformHeight, -5.0f), *this));
 
 	m_world->SetContactListener(&m_contactInstance);
 }
@@ -104,6 +83,7 @@ void GameLevel1::Update()
 			m_vecPlayers.at(i)->SetPosition(glm::vec3(100.0f, 100.0f, 0.0f));
 
 			m_vecPlayers.erase(m_vecPlayers.begin() + i);
+			i--;
 		}
 		else
 		{

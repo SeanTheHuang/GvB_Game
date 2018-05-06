@@ -41,7 +41,7 @@ void Level::Update()
 		m_vecPlayers.at(i)->Update();
 	}
 
-	static const float32 timeStep = 1.0f / 60.0f;
+	static const float32 timeStep = 1.0f / 90.0f;
 	static const int32 velocityIterations = 6;
 	static const int32 positionIterations = 2;
 

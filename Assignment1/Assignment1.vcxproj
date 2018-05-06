@@ -153,6 +153,7 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameLevel1.cpp" />
+    <ClCompile Include="GameLevel2.cpp" />
     <ClCompile Include="gamemaster.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Ground.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameLevel1.h" />
+    <ClInclude Include="GameLevel2.h" />
     <ClInclude Include="gamemaster.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Header.h" />
