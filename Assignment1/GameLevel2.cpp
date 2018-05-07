@@ -105,6 +105,7 @@ void GameLevel2::Update()
 			m_vecPlayers.at(i)->SetPosition(glm::vec3(100.0f, 100.0f, 0.0f));
 
 			m_vecPlayers.erase(m_vecPlayers.begin() + i);
+			i--;
 		}
 		else
 		{
