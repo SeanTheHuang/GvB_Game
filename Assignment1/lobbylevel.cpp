@@ -83,7 +83,7 @@ void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
 	bool playersConnected = false;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < m_totalPlayers.size(); i++)
 	{
 		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
 			AddPlayer(i);

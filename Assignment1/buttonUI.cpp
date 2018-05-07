@@ -93,9 +93,8 @@ void CButtonUI::ProcessInteract()
 		}
 		case STARTGAME_BTN:
 		{
-			// TEMP!!!, only goes to our test play scene
 			GameMaster::Instance().StorePlayerInfo(dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel())->GetPlayerData());
-			GameMaster::Instance().ChangeLevel("Level1");
+			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
 			break;
 		}
 		case QUIT_BTN:

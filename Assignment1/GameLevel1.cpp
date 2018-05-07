@@ -1,6 +1,7 @@
 #include "GameLevel1.h"
 #include "modelloader.h"
 #include "Arrow.h"
+#include "gamemaster.h"
 
 void GameLevel1::Initialize(std::vector<Player> _players)
 {
@@ -116,13 +117,19 @@ void GameLevel1::Update()
 	{
 		// Do something with winningPlayerIndex
 		CleanUp();
-		Initialize(m_connectedPlayerData);
+		if (GameMaster::Instance().GetRemainingLevels() != 0)
+			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		else
+			GameMaster::Instance().EndGame();
 	}
 
 	//Reset scene if player presses 'R'
 	if (Input::Instance().GetKeyDown(GLFW_KEY_R))
 	{
 		CleanUp();
-		Initialize(m_connectedPlayerData);
+		if (GameMaster::Instance().GetRemainingLevels() != 0)
+			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		else
+			GameMaster::Instance().EndGame();
 	}
 }
