@@ -38,7 +38,7 @@ void Level::CheckControllerSelect()
 
 void Level::CheckMouseSelect()
 {
-	if (Time::Instance().TotalTime() > m_inputDelayStamps[0] + m_delayLength && Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS))
+	if (Time::Instance().TotalTime() > m_inputDelayStamps[0] + m_delayLength && (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) || Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_PRESS)))
 	{
 		// Check all buttons
 		for (size_t j = 0; j < m_buttons.size(); j++)

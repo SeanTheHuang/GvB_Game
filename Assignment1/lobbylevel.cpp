@@ -13,14 +13,14 @@ void LobbyLevel::Initialize(std::vector<Player> _players)
 		m_totalPlayers.push_back(player1);
 
 		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png",
-			glm::vec2(i * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
+			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
 
 		player1.playerPortrait = globPortait;
 
 		m_buttons.push_back(globPortait);
 
 		CButtonUI* globReady = (i==0) ? new CButtonUI("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png",
-			glm::vec2(i * 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i) : nullptr;
+			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i) : nullptr;
 		m_buttons.push_back(globReady);
 
 		player1.readyBtn = globReady;
@@ -46,11 +46,11 @@ void LobbyLevel::AddPlayer(int _playerIdx)
 {
 	//delete m_activePlayers[_playerIdx].playerPortrait;
 	m_totalPlayers[_playerIdx].playerPortrait = new CButtonUI("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_1.png",
-		glm::vec2(_playerIdx * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), PLAYER_PORTRAIT_BTN, _playerIdx);
+		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), PLAYER_PORTRAIT_BTN, _playerIdx);
 	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
 
 	m_totalPlayers[_playerIdx].readyBtn = new CButtonUI("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png",
-		glm::vec2(_playerIdx * 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, _playerIdx);
+		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, _playerIdx);
 	m_buttons[(_playerIdx * 2)+1] = m_totalPlayers[_playerIdx].readyBtn;
 
 	m_totalPlayers[_playerIdx].active = true;
@@ -60,7 +60,7 @@ void LobbyLevel::AddPlayer(int _playerIdx)
 void LobbyLevel::RemovePlayer(int _playerIdx)
 {
 	m_totalPlayers[_playerIdx].playerPortrait = new CButtonUI("Resources/Images/BlobImage_2.png", "Resources/Images/BlobImage_2.png",
-		glm::vec2(_playerIdx * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), ADD_PLAYER_BTN, _playerIdx);
+		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), ADD_PLAYER_BTN, _playerIdx);
 	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
 
 	m_totalPlayers[_playerIdx].readyBtn = nullptr;

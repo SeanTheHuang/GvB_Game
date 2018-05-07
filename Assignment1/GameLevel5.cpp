@@ -63,28 +63,28 @@ void GameLevel5::Initialize(std::vector<Player> _players)
 	case 4:
 	{
 		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(2.0f * platformWidth - pillarWidth,
-			platformHeight + levelCentre, -5.0f), *this, 4));
+			platformHeight + levelCentre, -5.0f), *this, 4, _players[3].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(2.0f * platformWidth - pillarWidth,
 			platformHeight + levelCentre, -5.0f), *this));
 	}
 	case 3:
 	{
 		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-2.0f * platformWidth + pillarWidth,
-			platformHeight + levelCentre, -5.0f), *this, 3));
+			platformHeight + levelCentre, -5.0f), *this, 3, _players[2].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-2.0f * platformWidth + pillarWidth,
 			platformHeight + levelCentre, -5.0f), *this));
 	}
 	case 2:
 	{
 		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(2.0f * platformWidth - pillarWidth,
-			platformHeight, -5.0f), *this, 2));
+			platformHeight, -5.0f), *this, 2, _players[1].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(2.0f * platformWidth - pillarWidth,
 			platformHeight, -5.0f), *this));
 	}
 	case 1:
 	{
 		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-2.0f * platformWidth + pillarWidth,
-			platformHeight, -5.0f), *this, 1));
+			platformHeight, -5.0f), *this, 1, _players[0].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-2.0f * platformWidth + pillarWidth,
 			platformHeight, -5.0f), *this));
 	}

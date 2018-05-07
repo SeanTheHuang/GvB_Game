@@ -132,7 +132,7 @@ void CButtonUI::ProcessInteract()
 	}
 
 
-	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(0, JOYSTICK_A) && m_highlighted))
+	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_PRESS) && MouseIsOverButton()))
 	{
 		switch (m_eAction)
 		{
