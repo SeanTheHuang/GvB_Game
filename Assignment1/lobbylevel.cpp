@@ -77,23 +77,25 @@ void LobbyLevel::ReadyPlayer(int _playerIdx)
 void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
+	bool playersConnected = false;
 	for (int i = 0; i < 4; i++)
 	{
-		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active)
-		{
+		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
 			AddPlayer(i);
 		}
 
-		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_B) && m_totalPlayers[i].active)
-		{
+		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_B) && m_totalPlayers[i].active) {
 			RemovePlayer(i);
 		}
 
-		if (m_totalPlayers[i].active && !m_totalPlayers[i].readyState)
-			allPlayersReady = false;
+		if (m_totalPlayers[i].active) {
+			playersConnected = true;
+			if(!m_totalPlayers[i].readyState)
+				allPlayersReady = false;
+		}
 	}
 	
-	if (allPlayersReady)
+	if (allPlayersReady && playersConnected)
 	{
 		if (!m_readyButton)
 		{
