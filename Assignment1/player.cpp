@@ -19,7 +19,7 @@
 #include "audio.h"
 #include "Arrow.h"
 
-CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index) :
+CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index, glm::vec3 _color) :
 	m_iIndices(0),
 	m_shaders(_shaders),
 	pTexture(nullptr),
@@ -28,7 +28,8 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 	m_iHealth(3),
 	m_fRadius(1.0f),
 	m_isAlive(true),
-	m_power(0.35f)
+	m_power(0.35f),
+	color(_color)
 {
 	m_iPlayerIndex = _index;
 	m_eModelType = PLAYER;
@@ -40,23 +41,6 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
 
 	Scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
-	switch (m_iPlayerIndex)
-	{
-	case 1:
-		color = {1.0f, 0.0f, 1.0f};
-		break;
-	case 2:
-		color = { 0.0f, 1.0f, 0.0f };
-		break;
-	case 3:
-		color = { 0.0f, 1.0f, 1.0f };
-		break;
-	case 4:
-		color = { 1.0f, 1.0f, 1.0f };
-		break;
-	default:
-		break;
-	}
 }
 
 CPlayer::~CPlayer()
@@ -188,9 +172,9 @@ bool CPlayer::GetIsAlive()
 	return m_isAlive;
 }
 
-CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index)
+CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index, glm::vec3 _color)
 {
-	CPlayer* player = new CPlayer(_shaders, _position, level, _index);
+	CPlayer* player = new CPlayer(_shaders, _position, level, _index, _color);
 	return player;
 }
 

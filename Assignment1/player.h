@@ -25,7 +25,7 @@ class CPlayer :
 	public CObject
 {
 public:
-	CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
+	CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index, glm::vec3 _color);
 	~CPlayer();
 
 	void SetPhysics();
@@ -38,7 +38,7 @@ public:
 	// Creates a model based on the input
 	// Takes what shaders the object shuld use and its position in world space
 	// Returns the created model
-	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index);
+	static CPlayer* CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index, glm::vec3 _color);
 	void Collide(b2Body& otherPlayerBody);
 	void SetPosition(glm::vec3 newPos);
 	void SetArrow(CArrow* _arrow);
