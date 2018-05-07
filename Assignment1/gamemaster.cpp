@@ -133,6 +133,7 @@ void GameMaster::ChangeLevel(std::string _levelName)
 
 void GameMaster::StorePlayerInfo(std::vector<Player> _players)
 {
+	m_connectedPlayers.clear();
 	m_connectedPlayers = _players;
 }
 
