@@ -12,6 +12,7 @@ Texture::Texture(GLenum _textureTarget, std::vector<std::string> _textureFileNam
 }
 
 bool Texture::load() {
+
 	image = SOIL_load_image(
 		textureFileName.c_str(),  // file name
 		&imageWidth,              // width of the image
@@ -46,49 +47,21 @@ bool Texture::loadCubemap()
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureObject);
 
 	int width, height, nrChannels;
-	for (unsigned int i = 0; i < textureFileNames.size(); i++)
+	unsigned char *data;
+	for (GLuint i = 0; i < textureFileNames.size(); i++)
 	{
-		unsigned char *data = SOIL_load_image(textureFileNames[i].c_str(), &width, &height, &nrChannels, 0);
-		if (data)
-		{
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
-			);
-			SOIL_free_image_data(data);
-		}
-		else
-		{
-
-		}
+		data = SOIL_load_image(textureFileNames[i].c_str(), &width, &height, &nrChannels, 0);
+		glTexImage2D(
+			GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+			0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
+		);
 	}
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-
-	//int width, height; unsigned char* image;
-	//for (GLuint i = 0; i < textureFileNames.size(); i++) 
-	//{
-	//	image = SOIL_load_image(textureFileNames[i].c_str(), &width, &height, 0, SOIL_LOAD_RGB);
-	//	glGenTextures(1, &textureObject);
-	//
-	//	glBindTexture(textureTarget, textureObject);
-	//	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-	//		0, GL_RGB,
-	//		width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	//
-	//
-	//	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	//	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	//	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	//	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	//	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	//
-	//	glGenerateMipmap(GL_TEXTURE_2D);
-	//	SOIL_free_image_data(image);
-	//	glBindTexture(textureTarget, 0);
-	//}
 
 	return true;
 }

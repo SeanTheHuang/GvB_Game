@@ -55,12 +55,12 @@ CSkybox * CSkybox::CreateSkybox(GLuint _shaders, glm::vec3 _position, Level& lev
 
 	_vecVertices = CreateVertices();
 	vecIndices = CreateIndices();
-	strImagePaths.push_back("Textures/skybox1/right.jpg");
-	strImagePaths.push_back("Textures/skybox1/left.jpg");
-	strImagePaths.push_back("Textures/skybox1/top.jpg");
-	strImagePaths.push_back("Textures/skybox1/bottom.jpg");
-	strImagePaths.push_back("Textures/skybox1/back.jpg");
-	strImagePaths.push_back("Textures/skybox1/front.jpg");
+	strImagePaths.push_back("Textures/skybox1/right.tga");
+	strImagePaths.push_back("Textures/skybox1/left.tga");
+	strImagePaths.push_back("Textures/skybox1/top.tga");
+	strImagePaths.push_back("Textures/skybox1/bottom.tga");
+	strImagePaths.push_back("Textures/skybox1/back.tga");
+	strImagePaths.push_back("Textures/skybox1/front.tga");
 
 	CSkybox* cube = new CSkybox(_vecVertices, vecIndices, _shaders, _position, strImagePaths, level);
 	return cube;
@@ -87,7 +87,7 @@ void CSkybox::CreateAndBindTexture()
 	pTexture = new Texture(aTextureLocation, m_strImagePaths);
 	if (!pTexture->loadCubemap())
 	{
-		//std::cout << "Error Loading Texture";
+		std::cout << "Error Loading Skybox";
 	}
 	glUniform1i(glGetUniformLocation(m_shaders, "Texture"), 0);
 }

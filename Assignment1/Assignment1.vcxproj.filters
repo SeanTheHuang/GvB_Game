@@ -168,7 +168,7 @@
     <ClCompile Include="GameLevel5.cpp">
       <Filter>Source Files\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\textui.cpp">
+    <ClCompile Include="textui.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
