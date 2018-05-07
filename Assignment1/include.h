@@ -54,3 +54,8 @@ enum ModelType
 	GROUND,
 	WALL
 };
+
+static float GenerateRandomFloat(float _lo, float _hi)
+{
+	return _lo + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (_hi - _lo)));
+}

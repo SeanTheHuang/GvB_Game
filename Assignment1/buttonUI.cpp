@@ -21,6 +21,8 @@ CButtonUI::CButtonUI(std::string _buttonUpImage, std::string _buttonDownImage,
 	m_eAction = _action;
 	m_isInteractive = true;
 
+	m_color = glm::vec3(1, 1, 1);
+
 	this->Initialise();
 }
 
@@ -43,6 +45,7 @@ void CButtonUI::Render()
 	glUniformMatrix4fv(gViewLocation, 1, GL_FALSE, glm::value_ptr(View));
 	glUniformMatrix4fv(gOrthoLocation, 1, GL_FALSE, glm::value_ptr(Ortho));
 	glUniform1i(gSampler, 0);
+	glUniform3f(colorLocation, m_color.x, m_color.y, m_color.z);
 
 	//Find if mouse is hovering over button or not
 	if (MouseIsOverButton() || m_highlighted)
@@ -111,10 +114,11 @@ void CButtonUI::ProcessInteract()
 			lobby->AddPlayer(m_playerUsedBy);
 			break;
 		}
-		case REMOVE_PLAYER_BTN:
+		case PLAYER_PORTRAIT_BTN:
 		{
+			m_color = glm::vec3(GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f));
 			LobbyLevel* lobby = dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel());
-			lobby->RemovePlayer(m_playerUsedBy);
+			lobby->ChangePlayerColor(m_playerUsedBy, m_color);
 			break;
 		}
 		case READY_PLAYER_BTN:
@@ -126,6 +130,22 @@ void CButtonUI::ProcessInteract()
 		default:
 			break;
 		}
+	}
+
+
+	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_RIGHT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(0, JOYSTICK_A) && m_highlighted))
+	{
+		switch (m_eAction)
+		{
+		case PLAYER_PORTRAIT_BTN:
+		{
+			LobbyLevel* lobby = dynamic_cast<LobbyLevel*>(GameMaster::Instance().GetCurrentLevel());
+			lobby->RemovePlayer(m_playerUsedBy);
+
+			break;
+		}
+		}
+
 	}
 }
 
@@ -231,6 +251,9 @@ void CButtonUI::getAddressofUniformLocation()
 
 	gOrthoLocation = glGetUniformLocation(m_program, "gOrtho");
 	assert(gOrthoLocation != 0xFFFFFFFF);
+
+	colorLocation = glGetUniformLocation(m_program, "gColor");
+	assert(colorLocation != 0xFFFFFFFF);
 }
 
 bool CButtonUI::MouseIsOverButton()

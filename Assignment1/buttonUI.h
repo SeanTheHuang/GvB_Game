@@ -12,7 +12,7 @@ enum BUTTON_ACTION
 	QUIT_BTN,
 	TO_MENU_BTN,
 	ADD_PLAYER_BTN,
-	REMOVE_PLAYER_BTN,
+	PLAYER_PORTRAIT_BTN,
 	READY_PLAYER_BTN
 };
 
@@ -46,10 +46,12 @@ private:
 	Texture *m_textureUp;
 	Texture *m_textureDown;
 
+	glm::vec3 m_color;
+
 	GLuint m_EBO;
 
 	glm::vec2 m_dimensions;
 
-	GLuint gOrthoLocation, gSampler, gViewLocation;
+	GLuint gOrthoLocation, gSampler, gViewLocation, colorLocation;
 	int m_playerUsedBy;
 };

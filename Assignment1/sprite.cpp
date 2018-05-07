@@ -12,6 +12,9 @@ CSprite::CSprite(std::string _file, glm::vec2 _position, glm::vec2 _dimensions)
 
 	m_isInteractive = false;
 
+	m_color = glm::vec3(1,1,1);
+
+
 	this->Initialise();
 }
 
@@ -116,6 +119,7 @@ void CSprite::Render()
 
 
 	glUniform1i(gSampler, 0);
+	glUniform3f(colorLocation, m_color.x, m_color.y, m_color.z);
 
 	m_texture->bind(GL_TEXTURE0);
 
@@ -137,6 +141,9 @@ void CSprite::getAddressofUniformLocation()
 
 	gOrthoLocation = glGetUniformLocation(m_program, "gOrtho");
 	assert(gOrthoLocation != 0xFFFFFFFF);
+
+	colorLocation = glGetUniformLocation(m_program, "gColor");
+	assert(colorLocation != 0xFFFFFFFF);
 }
 
 void CSprite::CompileShaders()

@@ -231,8 +231,6 @@
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl" />
-    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_vs.glsl" />
     <None Include="cube_fragment_shader.glsl" />
     <None Include="cube_vertex_shader.glsl" />
     <None Include="fragment_shader.glsl" />
@@ -244,6 +242,8 @@
     <None Include="perlin_vertex_shader.glsl" />
     <None Include="quad_fs.glsl" />
     <None Include="quad_vs.glsl" />
+    <None Include="sprite_fs.glsl" />
+    <None Include="sprite_vs.glsl" />
     <None Include="stencil_fs.glsl" />
     <None Include="stencil_vs.glsl" />
     <None Include="vertex_shader.glsl" />

@@ -12,6 +12,7 @@ public:
 	void AddPlayer(int _playerIdx);
 	void RemovePlayer(int _playerIdx);
 	void ReadyPlayer(int _playerIdx);
+	void ChangePlayerColor(int _playerIdx, glm::vec3 _color);
 	void Update();
 	std::vector<Player> GetPlayerData();
 

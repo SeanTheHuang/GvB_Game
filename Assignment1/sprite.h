@@ -23,11 +23,12 @@ private:
 private:
 	std::string m_filename;
 	Texture *m_texture;
+	glm::vec3 m_color;
 
 	GLuint m_EBO;
 
 	glm::vec2 m_dimensions;
 
-	GLuint gOrthoLocation, gSampler, gViewLocation;
+	GLuint gOrthoLocation, gSampler, gViewLocation, colorLocation;
 
 };
