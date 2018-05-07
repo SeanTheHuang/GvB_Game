@@ -32,6 +32,7 @@ void GameLevel1::Initialize(std::vector<Player> _players)
 	float platformHeight = 2.0f;
 	float pillarWidth = 2.0f;
 	float pillarHeight = 4.0f;
+	int connectedPlayers = _players.size();
 
 	// =================Border=====================
 	// Floor
@@ -56,14 +57,34 @@ void GameLevel1::Initialize(std::vector<Player> _players)
 	m_vecObjects.push_back(CObject::CreateObject(PLATFORM, m_vecShaders.at(3), glm::vec3(4.0f * platformWidth, 2.0f * pillarHeight, -5.0f), *this));
 
 	// =================Players=====================
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(pillarWidth,		4.0f * pillarHeight + platformHeight, -5.0f), *this, 1));
-	m_vecPlayers.at(0)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this));
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-pillarWidth,	4.0f * pillarHeight + platformHeight, -5.0f), *this, 2));
-	m_vecPlayers.at(1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-pillarWidth,4.0f * pillarHeight + platformHeight, -5.0f), *this));
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-3.5f * platformWidth,		2.0f * pillarHeight + platformHeight, -5.0f), *this, 3));
-	m_vecPlayers.at(2)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
-	m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.5f * platformWidth,	2.0f * pillarHeight + platformHeight, -5.0f), *this, 4));
-	m_vecPlayers.at(3)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(3.5f * platformWidth,2.0f * pillarHeight + platformHeight, -5.0f), *this));
+	switch (connectedPlayers)
+	{
+	case 4:
+	{
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this, 4));
+		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this));
+	}
+	case 3:
+	{
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this, 3));
+		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-pillarWidth, 4.0f * pillarHeight + platformHeight, -5.0f), *this));
+	}
+	case 2:
+	{
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 2));
+		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
+	}
+	case 1:
+	{
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 1));
+		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-3.5f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
+	}
+	default:
+		break;
+	}
+	
+	
+	
 
 	m_world->SetContactListener(&m_contactInstance);
 }
