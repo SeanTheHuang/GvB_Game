@@ -41,6 +41,8 @@ public:
 	// Get current level
 	Level* GetCurrentLevel();
 	std::string NewLevel();
+	int GetRemainingLevels();
+	void EndGame();
 private:
 	GameMaster(); //Singleton stuff
 	GameMaster(const GameMaster&) = delete;

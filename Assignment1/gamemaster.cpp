@@ -181,6 +181,22 @@ std::string GameMaster::NewLevel()
 	return level;
 }
 
+int GameMaster::GetRemainingLevels()
+{
+	return m_sLevelNamesName.size();
+}
+
+void GameMaster::EndGame()
+{
+	m_sLevelNamesName.clear();
+	m_sLevelNamesName.push_back("Level1");
+	m_sLevelNamesName.push_back("Level2");
+	m_sLevelNamesName.push_back("Level3");
+	m_sLevelNamesName.push_back("Level4");
+	m_sLevelNamesName.push_back("Level5");
+	m_sNextLevelName = "MainMenu";
+}
+
 GameMaster::GameMaster()
 {
 	m_pCurrentLevel = nullptr;

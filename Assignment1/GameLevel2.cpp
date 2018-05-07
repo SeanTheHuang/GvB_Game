@@ -116,13 +116,19 @@ void GameLevel2::Update()
 	{
 		// Do something with winningPlayerIndex
 		CleanUp();
-		GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		if (GameMaster::Instance().GetRemainingLevels() != 0)
+			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		else
+			GameMaster::Instance().EndGame();
 	}
 
 	//Reset scene if player presses 'R'
 	if (Input::Instance().GetKeyDown(GLFW_KEY_R))
 	{
 		CleanUp();
-		GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		if (GameMaster::Instance().GetRemainingLevels() != 0)
+			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
+		else
+			GameMaster::Instance().EndGame();
 	}
 }
