@@ -168,6 +168,14 @@ Level * GameMaster::GetCurrentLevel()
 	return m_pCurrentLevel;
 }
 
+std::string GameMaster::NewLevel()
+{
+	int randomIndex = rand() % m_sLevelNamesName.size();
+	std::string level = m_sLevelNamesName.at(randomIndex);
+	m_sLevelNamesName.erase(m_sLevelNamesName.begin() + randomIndex);
+	return level;
+}
+
 GameMaster::GameMaster()
 {
 	m_pCurrentLevel = nullptr;
@@ -205,22 +213,27 @@ void GameMaster::InitializeLevels()
 	// ===== Level 1 ======
 	Level* Level1 = new GameLevel1();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level1", Level1));
+	m_sLevelNamesName.push_back("Level1");
 
 	// ===== Level 2 ======
 	Level* Level2 = new GameLevel2();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level2", Level2));
+	m_sLevelNamesName.push_back("Level2");
 
 	// ===== Level 3 ======
 	Level* Level3 = new GameLevel3();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level3", Level3));
+	m_sLevelNamesName.push_back("Level3");
 
 	// ===== Level 4 ======
 	Level* Level4 = new GameLevel4();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level4", Level4));
+	m_sLevelNamesName.push_back("Level4");
 
 	// ===== Level 5 ======
 	Level* Level5 = new GameLevel5();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level5", Level5));
+	m_sLevelNamesName.push_back("Level5");
 
 	// Set first level in map as default level
 	m_pCurrentLevel = m_mapLevels["MainMenu"];

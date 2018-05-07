@@ -39,6 +39,7 @@ public:
 	GLFWwindow* Window() { return m_pWindow; }
 	// Get current level
 	Level* GetCurrentLevel();
+	std::string NewLevel();
 private:
 	GameMaster(); //Singleton stuff
 	GameMaster(const GameMaster&) = delete;
@@ -55,5 +56,6 @@ private:
 	CAudio* m_cAudio;
 	CMenu m_menu;
 	std::string m_sNextLevelName;
+	std::vector<std::string> m_sLevelNamesName;
 	std::vector<Player> m_connectedPlayers;
 };
