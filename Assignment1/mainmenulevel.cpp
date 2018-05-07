@@ -18,6 +18,9 @@ void MainMenuLevel::Initialize()
 	CSprite* background = new CSprite("Resources/Images/MainMenuBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
 	m_sprites.push_back(background);
 
+	CTextui* testText = new CTextui(glm::vec3(100, 200, 0), glm::vec3(1), "Everyone should read Grand Blue the manga.", "Resources/Fonts/Arial.ttf");
+	m_texts.push_back(testText);
+
 	m_highlights[0] = 0;
 	m_buttons[0]->UpdateHighlight(true);
 }

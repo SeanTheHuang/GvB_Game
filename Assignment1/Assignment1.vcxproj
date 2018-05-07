@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\textui.cpp" />
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="buttonUI.cpp" />
@@ -233,6 +234,8 @@
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\text_fs.glsl" />
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\text_vs.glsl" />
     <None Include="cube_fragment_shader.glsl" />
     <None Include="cube_vertex_shader.glsl" />
     <None Include="fragment_shader.glsl" />

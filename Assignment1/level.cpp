@@ -165,6 +165,12 @@ void Level::Render()
 		if(m_buttons[i])
 			m_buttons[i]->Render();
 	}
+
+	for (size_t i = 0; i < m_texts.size(); i++)
+	{
+		if (m_texts[i])
+			m_texts[i]->Render();
+	}
 }
 
 void Level::CleanUp()
@@ -185,4 +191,10 @@ void Level::CleanUp()
 		delete m_buttons[i];
 	}
 	m_buttons.clear();
+
+	for (size_t i = 0; i < m_texts.size(); i++)
+	{
+		delete m_texts[i];
+	}
+	m_texts.clear();
 }
