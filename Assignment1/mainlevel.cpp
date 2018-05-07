@@ -2,9 +2,8 @@
 #include "modelloader.h"
 #include "Arrow.h"
 
-void MainLevel::Initialize(std::vector<Player> _players)
+void MainLevel::Initialize()
 {
-	m_connectedPlayerData = _players;
 	GLuint cubeShaders;
 	ShaderHelper::CompileAndLinkShaders("cube_vertex_shader.glsl", "cube_fragment_shader.glsl", cubeShaders);
 	GLuint basicShader;
@@ -96,13 +95,13 @@ void MainLevel::Update()
 	{
 		// Do something with winningPlayerIndex
 		CleanUp();
-		Initialize(m_connectedPlayerData);
+		Initialize();
 	}
 
 	//Reset scene if player presses 'R'
 	if (Input::Instance().GetKeyDown(GLFW_KEY_R))
 	{
 		CleanUp();
-		Initialize(m_connectedPlayerData);
+		Initialize();
 	}
 }

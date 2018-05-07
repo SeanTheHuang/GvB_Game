@@ -7,7 +7,7 @@ class GameLevel5 : public Level
 {
 public:
 	//Fill level with objects. Initialize all objects
-	void Initialize(std::vector<Player> _players);
+	void Initialize();
 	//Update all objects. Apply level logic
 	void Update();
 };

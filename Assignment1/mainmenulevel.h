@@ -7,7 +7,7 @@ class MainMenuLevel : public Level
 {
 	// Member Functions
 public:
-	void Initialize(std::vector<Player> _players);
+	void Initialize();
 	void CleanUp();
 	void Update();
 

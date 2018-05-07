@@ -40,7 +40,7 @@ public:
 	void CheckControllerScroll();
 
 	//Fill level with objects. Initialize all objects
-	virtual void Initialize(std::vector<Player>) = 0;
+	virtual void Initialize() = 0;
 	//Destroy all objects
 	virtual void CleanUp();
 	//Update all objects. Apply level logic

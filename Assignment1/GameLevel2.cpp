@@ -3,7 +3,7 @@
 #include "Arrow.h"
 #include "gamemaster.h"
 
-void GameLevel2::Initialize(std::vector<Player> _players)
+void GameLevel2::Initialize()
 {
 	GLuint cubeShaders;
 	ShaderHelper::CompileAndLinkShaders("cube_vertex_shader.glsl", "cube_fragment_shader.glsl", cubeShaders);
@@ -33,7 +33,8 @@ void GameLevel2::Initialize(std::vector<Player> _players)
 	float platformHeight = 2.0f;
 	float pillarWidth = 2.0f;
 	float pillarHeight = 4.0f;
-	int connectedPlayers = _players.size();
+
+	std::vector<Player> connectedPlayers = GameMaster::Instance().GetPlayerInfo();
 
 	// =================Border=====================
 	// Floor
@@ -56,26 +57,26 @@ void GameLevel2::Initialize(std::vector<Player> _players)
 	m_vecObjects.push_back(CObject::CreateObject(PILLAR, m_vecShaders.at(3), glm::vec3(-2.7f * platformWidth, platformHeight / 2.0f + pillarHeight / 2.0f + pillarHeight, -5.0f), *this));
 
 	// =================Players=====================
-	switch (connectedPlayers)
+	switch (connectedPlayers.size())
 	{
 	case 4:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 3, _players[3].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 3, connectedPlayers[3].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	case 3:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 4, _players[2].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 4, connectedPlayers[2].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	case 2:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 2, _players[1].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 2, connectedPlayers[1].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	case 1:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 1, _players[0].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 1, connectedPlayers[0].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(2.7 * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	default:

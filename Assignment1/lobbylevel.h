@@ -7,7 +7,7 @@ class LobbyLevel : public Level
 {
 	// Member Functions
 public:
-	void Initialize(std::vector<Player> _players);
+	void Initialize();
 	void CleanUp();
 	void AddPlayer(int _playerIdx);
 	void RemovePlayer(int _playerIdx);

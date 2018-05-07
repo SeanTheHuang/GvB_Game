@@ -1,6 +1,6 @@
 #include "mainmenulevel.h"
 
-void MainMenuLevel::Initialize(std::vector<Player> _players)
+void MainMenuLevel::Initialize()
 {
 	// Set Up UI
 	CButtonUI* playButton = new CButtonUI("Resources/Images/PlayButton_1.png", "Resources/Images/PlayButton_2.png",
