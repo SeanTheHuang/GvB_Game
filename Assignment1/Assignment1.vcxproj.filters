@@ -343,16 +343,16 @@
     <None Include="perlin_fragment_shader.glsl">
       <Filter>Shader Files</Filter>
     </None>
-    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_vs.glsl">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\sprite_fs.glsl">
-      <Filter>Shader Files</Filter>
-    </None>
     <None Include="level_vertex_shader.glsl">
       <Filter>Shader Files</Filter>
     </None>
     <None Include="level_fragment_shader.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="sprite_fs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="sprite_vs.glsl">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

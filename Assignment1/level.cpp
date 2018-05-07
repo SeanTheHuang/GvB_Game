@@ -25,7 +25,10 @@ void Level::CheckControllerSelect()
 			for (size_t j = 0;j < m_buttons.size(); j++)
 			{
 				if (m_buttons[j] && i == m_buttons[j]->GetPlayerUsedBy())
+				{
 					m_buttons[j]->ProcessInteract();
+
+				}
 			}
 
 			m_inputDelayStamps[i] = Time::Instance().TotalTime();
@@ -35,14 +38,19 @@ void Level::CheckControllerSelect()
 
 void Level::CheckMouseSelect()
 {
-	if (Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS))
+	if (Time::Instance().TotalTime() > m_inputDelayStamps[0] + m_delayLength && Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS))
 	{
 		// Check all buttons
 		for (size_t j = 0; j < m_buttons.size(); j++)
 		{
 			if (m_buttons[j])
+			{
 				m_buttons[j]->ProcessInteract();
+			}
+
 		}
+
+		m_inputDelayStamps[0] = Time::Instance().TotalTime();
 	}
 }
 

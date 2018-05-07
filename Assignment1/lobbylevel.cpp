@@ -13,7 +13,7 @@ void LobbyLevel::Initialize(std::vector<Player> _players)
 		m_totalPlayers.push_back(player1);
 
 		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png",
-			glm::vec2(i * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? REMOVE_PLAYER_BTN : ADD_PLAYER_BTN, i);
+			glm::vec2(i * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
 
 		player1.playerPortrait = globPortait;
 
@@ -46,7 +46,7 @@ void LobbyLevel::AddPlayer(int _playerIdx)
 {
 	//delete m_activePlayers[_playerIdx].playerPortrait;
 	m_totalPlayers[_playerIdx].playerPortrait = new CButtonUI("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_1.png",
-		glm::vec2(_playerIdx * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), REMOVE_PLAYER_BTN, _playerIdx);
+		glm::vec2(_playerIdx * 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), PLAYER_PORTRAIT_BTN, _playerIdx);
 	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
 
 	m_totalPlayers[_playerIdx].readyBtn = new CButtonUI("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png",
@@ -74,26 +74,33 @@ void LobbyLevel::ReadyPlayer(int _playerIdx)
 	m_totalPlayers[_playerIdx].readyState = !m_totalPlayers[_playerIdx].readyState;
 }
 
+void LobbyLevel::ChangePlayerColor(int _playerIdx, glm::vec3 _color)
+{
+	m_totalPlayers[_playerIdx].color = _color;
+}
+
 void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
+	bool playersConnected = false;
 	for (int i = 0; i < 4; i++)
 	{
-		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active)
-		{
+		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
 			AddPlayer(i);
 		}
 
-		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_B) && m_totalPlayers[i].active)
-		{
+		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_B) && m_totalPlayers[i].active) {
 			RemovePlayer(i);
 		}
 
-		if (m_totalPlayers[i].active && !m_totalPlayers[i].readyState)
-			allPlayersReady = false;
+		if (m_totalPlayers[i].active) {
+			playersConnected = true;
+			if(!m_totalPlayers[i].readyState)
+				allPlayersReady = false;
+		}
 	}
 	
-	if (allPlayersReady)
+	if (allPlayersReady && playersConnected)
 	{
 		if (!m_readyButton)
 		{
