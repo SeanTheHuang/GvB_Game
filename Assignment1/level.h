@@ -13,6 +13,7 @@
 #include "ContactManager.h"
 #include "buttonUI.h"
 #include "sprite.h"
+#include "textui.h"
 
 struct Player
 {
@@ -73,6 +74,7 @@ protected:
 	std::vector<CObject*> m_killList;
 	std::vector<CSprite*> m_sprites;
 	std::vector<CButtonUI*> m_buttons;
+	std::vector<CTextui*> m_texts;
 
 	std::vector<std::unique_ptr<CObject>> m_objs;
 	CContactManager m_contactInstance;

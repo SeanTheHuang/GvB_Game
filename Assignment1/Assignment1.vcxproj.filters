@@ -168,6 +168,9 @@
     <ClCompile Include="GameLevel5.cpp">
       <Filter>Source Files\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\textui.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -353,6 +356,12 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="sprite_vs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\text_fs.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\..\Samah%27s engineering\GvB_Game\Assignment1\text_vs.glsl">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>
