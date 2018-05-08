@@ -137,7 +137,7 @@ void GameMaster::StorePlayerInfo(std::vector<Player> _players)
 	m_connectedPlayers = _players;
 }
 
-std::vector<Player> GameMaster::GetPlayerInfo()
+std::vector<Player>& GameMaster::GetPlayerInfo()
 {
 	return m_connectedPlayers;
 }

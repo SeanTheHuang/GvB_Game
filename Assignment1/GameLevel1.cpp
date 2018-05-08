@@ -110,13 +110,13 @@ void GameLevel1::Update()
 		else
 		{
 			alivePlayers++;
-			winningPlayerIndex = i;
+			winningPlayerIndex = m_vecPlayers.at(0)->GetIndex() - 1;
 		}
 	}
 	if (alivePlayers == 1)
 	{
-		// Do something with winningPlayerIndex
 		CleanUp();
+		GameMaster::Instance().GetPlayerInfo()[winningPlayerIndex].score++;
 		if (GameMaster::Instance().GetRemainingLevels() != 0)
 			GameMaster::Instance().ChangeLevel(GameMaster::Instance().NewLevel());
 		else

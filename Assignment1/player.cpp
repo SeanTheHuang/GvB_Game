@@ -202,6 +202,11 @@ void CPlayer::SetArrow(CArrow * _arrow)
 	arrow = _arrow;
 }
 
+int CPlayer::GetIndex()
+{
+	return m_iPlayerIndex;
+}
+
 void CPlayer::getUniformLocation()
 {
 	gScaleLocation = glGetUniformLocation(m_shaders, "gScale");

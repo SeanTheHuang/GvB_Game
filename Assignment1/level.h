@@ -23,6 +23,7 @@ struct Player
 	CButtonUI* readyBtn;
 	CButtonUI* playerPortrait;
 	glm::vec3 color;
+	int score = 0;
 };
 
 class Level
