@@ -146,6 +146,7 @@ std::vector<Player>& GameMaster::GetPlayerInfo()
 void GameMaster::Update()
 {
 	glfwPollEvents();
+	Input::Instance().Update();
 	Time::Instance().Update();
 	m_pCurrentLevel->Update();
 
