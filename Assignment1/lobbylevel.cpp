@@ -17,6 +17,9 @@ void LobbyLevel::Initialize()
 			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i);
 		curPlayer.readyBtn = globReady;
 
+		CTextui* returnText = new CTextui(glm::vec3(50, 70, 0), glm::vec3(0.9f), "Back to Main Menu", "Resources/Fonts/Arial.ttf");
+		m_texts.push_back(returnText);
+
 		curPlayer.active = false;
 		curPlayer.readyState = false;
 
