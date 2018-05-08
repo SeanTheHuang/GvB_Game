@@ -70,6 +70,7 @@ private:
 	CArrow* arrow;
 	glm::vec3 m_baseColor;
 	glm::vec3 m_creviceColor;
+	float m_hitCooldown;
 };
 
 #endif // __PLAYER_H__
