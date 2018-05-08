@@ -46,6 +46,9 @@ public:
 	//Returns current mouse position in pixels
 	glm::vec2 MousePosition();
 
+	// Update mouse buttons
+	void Update();
+
 	//Clears key down/up data for a frame
 	void Clear();
 
@@ -53,6 +56,7 @@ public:
 	void Initialize();
 
 	// GLFW callbacks
+	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	// ?????
 
 private:
@@ -64,4 +68,11 @@ private:
 private:
 	static Input* s_instance;
 	std::map<int, InputMap> m_inputMappings;
+
+	std::vector<int> m_vecKeyDown;
+	std::vector<int> m_vecKeyUp;
+
+	bool m_leftHeld, m_rightHeld;
+	int m_oldLeftMouse, m_oldRightMouse;
+	int m_iLeftMouseState, m_iRightMouseState;
 };

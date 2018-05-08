@@ -1,6 +1,7 @@
 #include "input.h"
 
 #include "gamemaster.h"
+#include <algorithm>
 
 Input* Input::s_instance = nullptr;
 
@@ -25,12 +26,12 @@ void Input::Destroy()
 
 bool Input::GetKeyDown(int _key)
 {
-	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_PRESS;
+	return std::find(m_vecKeyDown.begin(), m_vecKeyDown.end(), _key) != m_vecKeyDown.end();
 }
 
 bool Input::GetKeyUp(int _key)
 {
-	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_RELEASE;
+	return std::find(m_vecKeyUp.begin(), m_vecKeyUp.end(), _key) != m_vecKeyUp.end();
 }
 
 bool Input::GetPlayerLeft(int _playerIndex)
@@ -45,8 +46,23 @@ bool Input::GetPlayerRight(int _playerIndex)
 
 bool Input::GetMouseButton(int _whichButton, int _state)
 {
-	int state = glfwGetMouseButton(GameMaster::Instance().Window(), _whichButton);
-	return state == _state;
+	if (_whichButton == GLFW_MOUSE_BUTTON_LEFT)
+	{
+		if (m_leftHeld)
+			return false;
+
+		return m_iLeftMouseState == _state;
+	}
+	else if (_whichButton == GLFW_MOUSE_BUTTON_RIGHT)
+	{
+		if (m_rightHeld)
+			return false;
+
+		return m_iRightMouseState == _state;
+	}
+
+	//int state = glfwGetMouseButton(GameMaster::Instance().Window(), _whichButton);
+	//return state == _state;
 }
 
 bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
@@ -82,7 +98,8 @@ bool Input::GetControllerInputUp(int _joyStickID, JOYSTICK_INPUT _button)
 
 void Input::Clear()
 {
-
+	m_vecKeyDown.clear();
+	m_vecKeyUp.clear();
 }
 
 glm::vec2 Input::MousePosition()
@@ -90,6 +107,24 @@ glm::vec2 Input::MousePosition()
 	double xPos, yPos;
 	glfwGetCursorPos(GameMaster::Instance().Window(), &xPos, &yPos);
 	return glm::vec2(xPos, yPos);
+}
+
+void Input::Update()
+{
+	m_oldLeftMouse = m_iLeftMouseState;
+	m_oldRightMouse = m_iRightMouseState;
+
+	m_iLeftMouseState = glfwGetMouseButton(GameMaster::Instance().Window(), GLFW_MOUSE_BUTTON_LEFT);
+	if (m_iLeftMouseState == m_oldLeftMouse)
+		m_leftHeld = true;
+	else
+		m_leftHeld = false;
+	
+	m_iRightMouseState = glfwGetMouseButton(GameMaster::Instance().Window(), GLFW_MOUSE_BUTTON_RIGHT);
+	if (m_iRightMouseState == m_oldRightMouse)
+		m_rightHeld = true;
+	else
+		m_rightHeld = false;
 }
 
 void Input::Initialize()
@@ -101,7 +136,23 @@ void Input::Initialize()
 
 }
 
+void Input::KeyCallback(GLFWwindow * window, int key, int scancode, int action, int mods)
+{
+	// Record key presses
+	if (action == GLFW_PRESS)
+	{
+		Input::Instance().m_vecKeyDown.push_back(key);
+	}
+	else if (action == GLFW_RELEASE)
+	{
+		Input::Instance().m_vecKeyUp.push_back(key);
+	}
+}
+
+
+
 Input::Input()
 {
-	//Do nothing?
+	m_iLeftMouseState = m_oldLeftMouse = GLFW_RELEASE;
+	m_iRightMouseState = m_oldRightMouse = GLFW_RELEASE;
 }
