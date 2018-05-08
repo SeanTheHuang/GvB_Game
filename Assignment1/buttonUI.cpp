@@ -126,6 +126,11 @@ void CButtonUI::ProcessInteract()
 			lobby->ReadyPlayer(m_playerUsedBy);
 			break;
 		}
+		case QUIT_TO_MENU_BTN:
+		{
+			GameMaster::Instance().EndGame();
+			break;
+		}
 		default:
 			break;
 		}

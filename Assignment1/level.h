@@ -41,6 +41,8 @@ public:
 
 	void CheckControllerScroll();
 
+	void CheckPause();
+
 	//Fill level with objects. Initialize all objects
 	virtual void Initialize() = 0;
 	//Destroy all objects
@@ -50,6 +52,8 @@ public:
 	void addToKillList(CObject* toKill);
 	//Render all objects
 	virtual void Render();
+	bool GetIsPaused();
+	void SetIsPaused(bool _pause);
 
 	b2Body* addObject(std::unique_ptr<CObject> obj);
 
@@ -83,6 +87,7 @@ protected:
 	int m_highlights[4];
 	float m_delayLength = 0.25f;
 	float m_inputDelayStamps[4];
+	bool m_isPaused = false;
 };
 
 #endif // __LEVEL_H__

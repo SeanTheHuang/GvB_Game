@@ -86,6 +86,24 @@ void Level::CheckControllerScroll()
 	}
 }
 
+void Level::CheckPause()
+{
+	if (Input::Instance().GetKeyDown(GLFW_KEY_ESCAPE) && m_vecPlayers.size() != 0)
+	{
+		SetIsPaused(!GetIsPaused());
+		if (GetIsPaused())
+		{
+			CButtonUI* QuitButton = new CButtonUI("Resources/Images/QuitButton_1.png", "Resources/Images/QuitButton_2.png",
+				glm::vec2((WINDOW_WIDTH / 2) - 62.5f, (WINDOW_HEIGHT / 2) - 30.0f), glm::vec2(125, 60), QUIT_TO_MENU_BTN, 0);
+			m_buttons.push_back(QuitButton);
+		}
+		else
+		{
+			m_buttons.clear();
+		}
+	}
+}
+
 
 void Level::Update()
 {
@@ -94,21 +112,24 @@ void Level::Update()
 	CheckMouseSelect();
 	CheckControllerScroll();
 	// Player 1 can only control menu (prevent trolling here)
-	
+	CheckPause();
 
-	for (size_t i = 0; i < m_vecPlayers.size(); ++i)
+	if (!GetIsPaused())
 	{
-		m_vecPlayers.at(i)->Update();
+		for (size_t i = 0; i < m_vecPlayers.size(); ++i)
+		{
+			m_vecPlayers.at(i)->Update();
+		}
+
+		static float32 timeStep = 1.0f / 90.0f;
+		static const int32 velocityIterations = 6;
+		static const int32 positionIterations = 2;
+
+		if (m_world)
+			m_world->Step(timeStep, velocityIterations, positionIterations);
+
+		removeObjects();
 	}
-
-	static const float32 timeStep = 1.0f / 90.0f;
-	static const int32 velocityIterations = 6;
-	static const int32 positionIterations = 2;
-
-	if(m_world)
-		m_world->Step(timeStep, velocityIterations, positionIterations);
-
-	removeObjects();
 }
 
 b2Body* Level::addObject(std::unique_ptr<CObject> obj)
@@ -171,6 +192,16 @@ void Level::Render()
 		if (m_texts[i])
 			m_texts[i]->Render();
 	}
+}
+
+bool Level::GetIsPaused()
+{
+	return m_isPaused;
+}
+
+void Level::SetIsPaused(bool _pause)
+{
+	m_isPaused = _pause;
 }
 
 void Level::CleanUp()
