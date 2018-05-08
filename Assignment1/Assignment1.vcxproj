@@ -150,6 +150,7 @@
     <ClCompile Include="buttonUI.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Cuboid.cpp" />
+    <ClCompile Include="endlevel.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameLevel1.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="ContactManager.h" />
     <ClInclude Include="Cuboid.h" />
+    <ClInclude Include="endlevel.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameLevel1.h" />

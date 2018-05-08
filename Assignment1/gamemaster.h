@@ -34,7 +34,7 @@ public:
 	void ChangeLevel(std::string _levelName);
 
 	void StorePlayerInfo(std::vector<Player> _players);
-	std::vector<Player> GetPlayerInfo();
+	std::vector<Player>& GetPlayerInfo();
 
 	// Call to get game window
 	GLFWwindow* Window() { return m_pWindow; }

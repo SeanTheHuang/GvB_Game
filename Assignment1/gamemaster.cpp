@@ -9,6 +9,7 @@
 #include "GameLevel3.h"
 #include "GameLevel4.h"
 #include "GameLevel5.h"
+#include "endlevel.h"
 
 GameMaster* GameMaster::s_instance = nullptr;
 
@@ -137,7 +138,7 @@ void GameMaster::StorePlayerInfo(std::vector<Player> _players)
 	m_connectedPlayers = _players;
 }
 
-std::vector<Player> GameMaster::GetPlayerInfo()
+std::vector<Player>& GameMaster::GetPlayerInfo()
 {
 	return m_connectedPlayers;
 }
@@ -195,7 +196,7 @@ void GameMaster::EndGame()
 	m_sLevelNamesName.push_back("Level3");
 	m_sLevelNamesName.push_back("Level4");
 	m_sLevelNamesName.push_back("Level5");
-	m_sNextLevelName = "MainMenu";
+	m_sNextLevelName = "EndLevel";
 }
 
 GameMaster::GameMaster()
@@ -256,6 +257,10 @@ void GameMaster::InitializeLevels()
 	Level* Level5 = new GameLevel5();
 	m_mapLevels.insert(std::pair<std::string, Level*>("Level5", Level5));
 	m_sLevelNamesName.push_back("Level5");
+
+	// ===== End Level ======
+	Level* endLevel = new EndLevel();
+	m_mapLevels.insert(std::pair<std::string, Level*>("EndLevel", endLevel));
 
 	// Set first level in map as default level
 	m_pCurrentLevel = m_mapLevels["MainMenu"];

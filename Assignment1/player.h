@@ -42,6 +42,7 @@ public:
 	void Collide(b2Body& otherPlayerBody);
 	void SetPosition(glm::vec3 newPos);
 	void SetArrow(CArrow* _arrow);
+	int GetIndex();
 private:
 	// Gets the location of some variables for the shader for later edditiong
 	void getUniformLocation();

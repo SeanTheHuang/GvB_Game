@@ -6,10 +6,12 @@ void HowToPlayLevel::Initialize()
 	for (int i = 0; i < m_buttons.size(); i++)
 		m_inputDelayStamps[i] = Time::Instance().TotalTime();
 
-	CButtonUI* playButton = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
+	CButtonUI* returnButton = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
 		glm::vec2(50, 0), glm::vec2(200, 100), TO_MENU_BTN, 0);
-	m_buttons.push_back(playButton);
+	m_buttons.push_back(returnButton);
 
+	CTextui* returnText = new CTextui(glm::vec3(110, 70, 0), glm::vec3(0.9f), "Return", "Resources/Fonts/Arial.ttf");
+	m_texts.push_back(returnText);
 
 	CSprite* background = new CSprite("Resources/Images/GVB_HOWTOPLAYMENU.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
 	m_sprites.push_back(background);
