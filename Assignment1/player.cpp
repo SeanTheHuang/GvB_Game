@@ -29,7 +29,8 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index,
 	m_fRadius(1.0f),
 	m_isAlive(true),
 	m_power(0.35f),
-	m_baseColor(_color)
+	m_baseColor(_color),
+	m_hitCooldown(0.0f)
 {
 	m_creviceColor = glm::vec3(GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f));
 	m_iPlayerIndex = _index;
@@ -104,6 +105,7 @@ void CPlayer::DrawObject()
 
 void CPlayer::Update()
 {
+	m_hitCooldown -= Time::Instance().DeltaTime();
 	PlayerInput();
 	m_position = glm::vec3(m_body->GetPosition().x, m_body->GetPosition().y, m_position.z);
 
@@ -182,7 +184,7 @@ CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& lev
 
 void CPlayer::Collide(b2Body & otherPlayerBody)
 {
-	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f)
+	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f && m_hitCooldown <= 0.0f)
 	{
 		ReduceHealth();
 		CAudio::PlaySound("hit");
@@ -232,6 +234,7 @@ void CPlayer::getUniformLocation()
 
 void CPlayer::ReduceHealth()
 {
+	m_hitCooldown = 0.5f;
 	m_iHealth--;
 
 	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * (m_fRadius / Level::s_kPixelsPerMeter);
