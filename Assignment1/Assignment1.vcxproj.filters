@@ -171,6 +171,9 @@
     <ClCompile Include="textui.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="endlevel.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include.h">
@@ -306,6 +309,9 @@
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
     <ClInclude Include="GameLevel5.h">
+      <Filter>Header Files\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="endlevel.h">
       <Filter>Header Files\Levels</Filter>
     </ClInclude>
   </ItemGroup>
