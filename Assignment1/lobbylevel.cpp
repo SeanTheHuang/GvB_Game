@@ -92,7 +92,7 @@ void LobbyLevel::ChangePlayerColor(int _playerIdx, glm::vec3 _color)
 void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
-	bool playersConnected = false;
+	int playersConnected = 0;
 	for (int i = 0; i < m_totalPlayers.size(); i++)
 	{
 		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
@@ -104,13 +104,13 @@ void LobbyLevel::Update()
 		}
 
 		if (m_totalPlayers[i].active) {
-			playersConnected = true;
+			playersConnected++;
 			if(!m_totalPlayers[i].readyState)
 				allPlayersReady = false;
 		}
 	}
 	
-	if (allPlayersReady && playersConnected)
+	if (allPlayersReady && playersConnected > 1)
 	{
 		if (!m_readyButton)
 		{
