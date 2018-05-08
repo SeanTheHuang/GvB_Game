@@ -196,7 +196,7 @@ void GameMaster::EndGame()
 	m_sLevelNamesName.push_back("Level3");
 	m_sLevelNamesName.push_back("Level4");
 	m_sLevelNamesName.push_back("Level5");
-	m_sNextLevelName = "EndGame";
+	m_sNextLevelName = "EndLevel";
 }
 
 GameMaster::GameMaster()
