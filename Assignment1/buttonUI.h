@@ -27,7 +27,11 @@ public:
 	virtual bool Initialise();
 	virtual void ProcessInteract();
 	virtual void UpdateHighlight(bool _highlighted);
-	int GetPlayerUsedBy();
+	virtual int GetPlayerUsedBy();
+	virtual void ChangeAction(BUTTON_ACTION _newAction);
+
+	// Set button image
+	void SetImage(std::string _buttonUpImage, std::string _buttonDownImage);
 
 private:
 	BUTTON_ACTION m_eAction;

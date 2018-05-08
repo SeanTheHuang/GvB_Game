@@ -2,6 +2,10 @@
 
 void MainMenuLevel::Initialize()
 {
+	// Add input delay
+	for (int i = 0; i < m_buttons.size(); i++)
+		m_inputDelayStamps[i] = Time::Instance().TotalTime();
+
 	// Set Up UI
 	CButtonUI* playButton = new CButtonUI("Resources/Images/PlayButton_1.png", "Resources/Images/PlayButton_2.png",
 										glm::vec2(300, 500), glm::vec2(200, 100), TO_LOBBY_BTN, 0);

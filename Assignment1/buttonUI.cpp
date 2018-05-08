@@ -26,6 +26,13 @@ CButtonUI::CButtonUI(std::string _buttonUpImage, std::string _buttonDownImage,
 	this->Initialise();
 }
 
+void CButtonUI::SetImage(std::string _buttonUpImage, std::string _buttonDownImage)
+{
+	m_buttonUpPath = _buttonUpImage;
+	m_buttonDownPath = _buttonDownImage;
+	CreateAndLoadTexture();
+}
+
 CButtonUI::~CButtonUI()
 {
 	if (m_textureUp)
@@ -158,8 +165,14 @@ int CButtonUI::GetPlayerUsedBy()
 	return m_playerUsedBy;
 }
 
+void CButtonUI::ChangeAction(BUTTON_ACTION _newAction)
+{
+	m_eAction = _newAction;
+}
+
 void CButtonUI::CreateAndLoadTexture()
 {
+	delete m_textureUp;
 	m_textureUp = new Texture(GL_TEXTURE_2D, m_buttonUpPath);
 
 	if (!m_textureUp->load())
@@ -167,6 +180,7 @@ void CButtonUI::CreateAndLoadTexture()
 		std::cout << "error loading texture from: " << m_buttonUpPath << std::endl;
 	}
 
+	delete m_textureDown;
 	m_textureDown = new Texture(GL_TEXTURE_2D, m_buttonDownPath);
 
 	if (!m_textureDown->load())

@@ -2,6 +2,10 @@
 
 void HowToPlayLevel::Initialize()
 {
+	// Add input delay
+	for (int i = 0; i < m_buttons.size(); i++)
+		m_inputDelayStamps[i] = Time::Instance().TotalTime();
+
 	CButtonUI* playButton = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
 		glm::vec2(50, 0), glm::vec2(200, 100), TO_MENU_BTN, 0);
 	m_buttons.push_back(playButton);
