@@ -48,7 +48,7 @@ private:
 	void getUniformLocation();
 	void ReduceHealth();
 
-	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation, colorLocation;
+	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation, baseColorLocation, creviceColorLocation;
 	GLuint m_shaders;
 	Texture* pTexture;
 	Model m_model;
@@ -68,7 +68,8 @@ private:
 	float m_fRadius;
 	glm::mat4 Scale;
 	CArrow* arrow;
-	glm::vec3 color;
+	glm::vec3 m_baseColor;
+	glm::vec3 m_creviceColor;
 };
 
 #endif // __PLAYER_H__

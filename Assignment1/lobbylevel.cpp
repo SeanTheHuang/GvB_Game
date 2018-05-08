@@ -6,33 +6,39 @@ void LobbyLevel::Initialize()
 
 	for (int i = 0; i < 4; i++)
 	{
-		Player player1;
-		player1.playerIndex = i;
-		m_totalPlayers.push_back(player1);
+		Player curPlayer;
+		curPlayer.playerIndex = i;
 
 		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png",
 			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
+		curPlayer.playerPortrait = globPortait;
 
-		player1.playerPortrait = globPortait;
+		CButtonUI* globReady =  new CButtonUI((i == 0) ? "Resources/Images/ReadyButton_1.png" : "Resources/Images/BlankButton_1.png", (i == 0) ? "Resources/Images/ReadyButton_2.png" : "Resources/Images/BlankButton_1.png",
+			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i);
+		curPlayer.readyBtn = globReady;
+
+		curPlayer.active = false;
+		curPlayer.readyState = false;
+
+		m_highlights[i] = i * 2;
 
 		m_buttons.push_back(globPortait);
-
-		CButtonUI* globReady = (i==0) ? new CButtonUI("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png",
-			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i) : nullptr;
 		m_buttons.push_back(globReady);
+		m_buttons[i * 2]->UpdateHighlight(true);
 
-		player1.readyBtn = globReady;
-		m_totalPlayers[i].active = false;
-		m_totalPlayers[i].readyState = false;
+		m_totalPlayers.push_back(curPlayer);
 	}
 
 	m_totalPlayers[0].active = true;
 
-	m_highlights[0] = 0;
-	m_buttons[0]->UpdateHighlight(true);
+	
 
 	m_readyButton = nullptr;
 	m_buttons.push_back(m_readyButton);
+
+	CButtonUI* returnBtn = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
+		glm::vec2(50, 0), glm::vec2(200, 100), TO_MENU_BTN, 0);
+	m_buttons.push_back(returnBtn);
 }
 
 void LobbyLevel::CleanUp()
@@ -42,38 +48,40 @@ void LobbyLevel::CleanUp()
 
 void LobbyLevel::AddPlayer(int _playerIdx)
 {
-	//delete m_activePlayers[_playerIdx].playerPortrait;
-	m_totalPlayers[_playerIdx].playerPortrait = new CButtonUI("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_1.png",
-		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), PLAYER_PORTRAIT_BTN, _playerIdx);
-	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
-
-	m_totalPlayers[_playerIdx].readyBtn = new CButtonUI("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png",
-		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, _playerIdx);
-	m_buttons[(_playerIdx * 2)+1] = m_totalPlayers[_playerIdx].readyBtn;
+	m_totalPlayers[_playerIdx].playerPortrait->SetImage("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_1.png");
+	m_totalPlayers[_playerIdx].playerPortrait->ChangeAction(PLAYER_PORTRAIT_BTN);
+	m_totalPlayers[_playerIdx].readyBtn->SetImage("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png");
 
 	m_totalPlayers[_playerIdx].active = true;
+
+	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
+	m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
 }
 
 
 void LobbyLevel::RemovePlayer(int _playerIdx)
 {
-	m_totalPlayers[_playerIdx].playerPortrait = new CButtonUI("Resources/Images/BlobImage_2.png", "Resources/Images/BlobImage_2.png",
-		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), ADD_PLAYER_BTN, _playerIdx);
-	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
-
-	m_totalPlayers[_playerIdx].readyBtn = nullptr;
-	m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
+	m_totalPlayers[_playerIdx].playerPortrait->SetImage("Resources/Images/BlobImage_2.png", "Resources/Images/BlobImage_2.png");
+	m_totalPlayers[_playerIdx].playerPortrait->ChangeAction(ADD_PLAYER_BTN);
+	m_totalPlayers[_playerIdx].readyBtn->SetImage("Resources/Images/BlankButton_1.png", "Resources/Images/BlankButton_1.png");;
 
 	m_totalPlayers[_playerIdx].active = false;
+
+	m_buttons[_playerIdx * 2] = m_totalPlayers[_playerIdx].playerPortrait;
+	m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
 }
 
 void LobbyLevel::ReadyPlayer(int _playerIdx)
 {
-	m_totalPlayers[_playerIdx].readyState = !m_totalPlayers[_playerIdx].readyState;
+	if (m_totalPlayers[_playerIdx].active)
+	{
+		m_totalPlayers[_playerIdx].readyState = !m_totalPlayers[_playerIdx].readyState;
 
-	m_totalPlayers[_playerIdx].readyBtn = new CButtonUI((m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_3.png" : "Resources/Images/ReadyButton_1.png", (m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_4.png" : "Resources/Images/ReadyButton_2.png",
-		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, _playerIdx);
-	m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
+		m_totalPlayers[_playerIdx].readyBtn->SetImage((m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_3.png" : "Resources/Images/ReadyButton_1.png", 
+			(m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_4.png" : "Resources/Images/ReadyButton_2.png");
+
+		m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
+	}
 }
 
 void LobbyLevel::ChangePlayerColor(int _playerIdx, glm::vec3 _color)
@@ -84,7 +92,7 @@ void LobbyLevel::ChangePlayerColor(int _playerIdx, glm::vec3 _color)
 void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
-	bool playersConnected = false;
+	int playersConnected = 0;
 	for (int i = 0; i < m_totalPlayers.size(); i++)
 	{
 		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
@@ -96,13 +104,13 @@ void LobbyLevel::Update()
 		}
 
 		if (m_totalPlayers[i].active) {
-			playersConnected = true;
+			playersConnected++;
 			if(!m_totalPlayers[i].readyState)
 				allPlayersReady = false;
 		}
 	}
 	
-	if (allPlayersReady && playersConnected)
+	if (allPlayersReady && playersConnected > 1)
 	{
 		if (!m_readyButton)
 		{

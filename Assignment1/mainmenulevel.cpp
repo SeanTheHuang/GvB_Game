@@ -2,6 +2,10 @@
 
 void MainMenuLevel::Initialize()
 {
+	// Add input delay
+	for (int i = 0; i < m_buttons.size(); i++)
+		m_inputDelayStamps[i] = Time::Instance().TotalTime();
+
 	// Set Up UI
 	CButtonUI* playButton = new CButtonUI("Resources/Images/PlayButton_1.png", "Resources/Images/PlayButton_2.png",
 										glm::vec2(300, 500), glm::vec2(200, 100), TO_LOBBY_BTN, 0);
@@ -17,9 +21,6 @@ void MainMenuLevel::Initialize()
 
 	CSprite* background = new CSprite("Resources/Images/MainMenuBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
 	m_sprites.push_back(background);
-
-	CTextui* testText = new CTextui(glm::vec3(100, 200, 0), glm::vec3(1), "Everyone should read Grand Blue the manga.", "Resources/Fonts/Arial.ttf");
-	m_texts.push_back(testText);
 
 	m_highlights[0] = 0;
 	m_buttons[0]->UpdateHighlight(true);
