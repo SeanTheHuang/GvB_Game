@@ -20,23 +20,23 @@ void HowToPlayLevel::Initialize()
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText);
 
-	CTextui* testText2 = new CTextui(glm::vec3(100, 630, 0), glm::vec3(1), "The objective of Glob VS Blob is too project your character onto an opponents within the arena"
+	CTextui* testText2 = new CTextui(glm::vec3(100, 620, 0), glm::vec3(1), "The objective of Glob VS Blob is too project your character onto an opponents within the arena"
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText2);
 
-	CTextui* testText3 = new CTextui(glm::vec3(100, 580, 0), glm::vec3(1), "This is achievable depending on which device is controlling your character."
+	CTextui* testText3 = new CTextui(glm::vec3(100, 560, 0), glm::vec3(1), "This is achievable depending on which device is controlling your character."
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText3);
 
-	CTextui* testText4 = new CTextui(glm::vec3(100, 520, 0), glm::vec3(1), "Firstly, and probably the most important factor is how to alter the direction of your character..."
+	CTextui* testText4 = new CTextui(glm::vec3(100, 500, 0), glm::vec3(1), "Firstly, and probably the most important factor is how to alter the direction of your character..."
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText4);
 
-	CTextui* testText5 = new CTextui(glm::vec3(100, 470, 0), glm::vec3(1), "If you are using a controller, the 'x' and 'b' key's will help to alter your direction.."
+	CTextui* testText5 = new CTextui(glm::vec3(100, 440, 0), glm::vec3(1), "If you are using a controller, the (x) and (b) key's will help to alter your direction.."
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText5);
 
-	CTextui* testText6 = new CTextui(glm::vec3(100, 420, 0), glm::vec3(1), "If you're using a keyboard, then the [A, S], [O, P], [Arrow Left, Arrow Right], [Numpad 8, Numpad 9]."
+	CTextui* testText6 = new CTextui(glm::vec3(100, 380, 0), glm::vec3(1), "If you're using a keyboard, then the [A, S], [O, P], [Arrow Left, Arrow Right], [Numpad 8, Numpad 9]."
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText6);
 
