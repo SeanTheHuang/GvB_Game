@@ -79,6 +79,14 @@ bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)
 	return (axes[(int)_button] != '\0');
 }
 
+bool Input::GetControllerInputA(int _joyStickID)
+{
+	if (m_bAHeld[_joyStickID])
+		return false;
+
+	return (m_AButtonState[_joyStickID] == GLFW_PRESS);
+}
+
 float Input::GetControllerAxes(int _joyStickID, int _button)
 {
 	int count;
@@ -116,6 +124,7 @@ glm::vec2 Input::MousePosition()
 
 void Input::Update()
 {
+	// Left mouse button down
 	m_oldLeftMouse = m_iLeftMouseState;
 	m_oldRightMouse = m_iRightMouseState;
 
@@ -130,6 +139,24 @@ void Input::Update()
 		m_rightHeld = true;
 	else
 		m_rightHeld = false;
+
+	// Joystick A button down
+	for (size_t i = 0; i < 4; i++)
+	{
+		m_oldAButton[i] = m_AButtonState[i];
+
+		int count;
+		const unsigned char* axes = glfwGetJoystickButtons(GLFW_JOYSTICK_1+i, &count);
+
+		if (!axes)
+			continue;
+
+		m_AButtonState[i] = axes[JOYSTICK_A];
+		if (m_oldAButton[i] == m_AButtonState[i])
+			m_bAHeld[i] = true;
+		else
+			m_bAHeld[i] = false;
+	}
 }
 
 void Input::Initialize()
@@ -161,4 +188,9 @@ Input::Input()
 	m_iLeftMouseState = m_oldLeftMouse = GLFW_RELEASE;
 	m_iRightMouseState = m_oldRightMouse = GLFW_RELEASE;
 	glfwSetKeyCallback(GameMaster::Instance().Window(), KeyCallback);
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		m_AButtonState[i] = m_oldAButton[i] = GLFW_RELEASE;
+	}
 }

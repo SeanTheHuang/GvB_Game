@@ -19,7 +19,7 @@ void Level::CheckControllerSelect()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (Time::Instance().TotalTime() > m_inputDelayStamps[i] + m_delayLength && Input::Instance().GetControllerInputDown(i, JOYSTICK_A))
+		if (Time::Instance().TotalTime() > m_inputDelayStamps[i] + m_delayLength && Input::Instance().GetControllerInputA(i))
 		{
 			// Check all buttons
 			for (size_t j = 0;j < m_buttons.size(); j++)

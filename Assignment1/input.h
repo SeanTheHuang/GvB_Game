@@ -42,6 +42,7 @@ public:
 
 	// Returns if button was pressed that frame
 	bool GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button);
+	bool GetControllerInputA(int _joyStickID);
 	float GetControllerAxes(int _joyStickID, int _button);
 	// Returns if button was released that frame
 	bool GetControllerInputUp(int _joyStickID, JOYSTICK_INPUT _button);
@@ -78,4 +79,8 @@ private:
 	bool m_leftHeld, m_rightHeld;
 	int m_oldLeftMouse, m_oldRightMouse;
 	int m_iLeftMouseState, m_iRightMouseState;
+
+	bool m_bAHeld[4];
+	int m_oldAButton[4];
+	int m_AButtonState[4];
 };

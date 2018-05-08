@@ -85,7 +85,7 @@ protected:
 	CContactManager m_contactInstance;
 
 	int m_highlights[4];
-	float m_delayLength = 0.25f;
+	float m_delayLength = 0.20f;
 	float m_inputDelayStamps[4];
 	bool m_isPaused = false;
 };
