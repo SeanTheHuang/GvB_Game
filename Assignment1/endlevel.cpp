@@ -13,12 +13,15 @@ void EndLevel::Initialize()
 	glm::vec3 textPosition = glm::vec3(100, 500, 0);
 	glm::vec3 offset = glm::vec3(300, 0, 0);
 
+	CSprite* background = new CSprite("Resources/Images/MainMenuBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
+	m_sprites.push_back(background);
+
 	// For each player. print out their info
-	for (size_t i = 0; i < 4; i++)
+	for (size_t i = 0; i < playerInfo.size(); i++)
 	{
 		// Title
 		CTextui* playerNames = new CTextui(textPosition, glm::vec3(1, 1, 0), "Player " + std::to_string(i + 1), "Resources/Fonts/Arial.ttf");
-		CTextui* score = new CTextui(textPosition + glm::vec3(35, -100, 0), glm::vec3(1, 1, 1), "1", "Resources/Fonts/Arial.ttf");
+		CTextui* score = new CTextui(textPosition + glm::vec3(35, -100, 0), glm::vec3(1, 1, 1), std::to_string(playerInfo[i].score), "Resources/Fonts/Arial.ttf");
 		score->setScale(2);
 		m_texts.push_back(playerNames);
 		m_texts.push_back(score);
