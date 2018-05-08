@@ -34,14 +34,19 @@ bool Input::GetKeyUp(int _key)
 	return std::find(m_vecKeyUp.begin(), m_vecKeyUp.end(), _key) != m_vecKeyUp.end();
 }
 
+bool Input::GetKey(int _key)
+{
+	return glfwGetKey(GameMaster::Instance().Window(), _key) == GLFW_PRESS;
+}
+
 bool Input::GetPlayerLeft(int _playerIndex)
 {
-	return GetKeyDown(m_inputMappings[_playerIndex].m_left) || GetControllerInputDown(_playerIndex-1, JOYSTICK_X);
+	return GetKey(m_inputMappings[_playerIndex].m_left) || GetControllerInputDown(_playerIndex-1, JOYSTICK_X);
 }
 
 bool Input::GetPlayerRight(int _playerIndex)
 {
-	return GetKeyDown(m_inputMappings[_playerIndex].m_right) || GetControllerInputDown(_playerIndex-1, JOYSTICK_B);
+	return GetKey(m_inputMappings[_playerIndex].m_right) || GetControllerInputDown(_playerIndex-1, JOYSTICK_B);
 }
 
 bool Input::GetMouseButton(int _whichButton, int _state)
@@ -155,4 +160,5 @@ Input::Input()
 {
 	m_iLeftMouseState = m_oldLeftMouse = GLFW_RELEASE;
 	m_iRightMouseState = m_oldRightMouse = GLFW_RELEASE;
+	glfwSetKeyCallback(GameMaster::Instance().Window(), KeyCallback);
 }

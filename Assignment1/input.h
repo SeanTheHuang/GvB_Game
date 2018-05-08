@@ -33,6 +33,9 @@ public:
 	//Returns if key was released this frame
 	bool GetKeyUp(int _key);
 
+	//Returns if key was released this frame
+	bool GetKey(int _key);
+
 	bool GetPlayerLeft(int _playerIndex);
 	bool GetPlayerRight(int _playerIndex);
 	bool GetMouseButton(int _whichButton, int _state);
@@ -56,7 +59,7 @@ public:
 	void Initialize();
 
 	// GLFW callbacks
-	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	// ?????
 
 private:
