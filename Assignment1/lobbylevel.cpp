@@ -70,6 +70,10 @@ void LobbyLevel::RemovePlayer(int _playerIdx)
 void LobbyLevel::ReadyPlayer(int _playerIdx)
 {
 	m_totalPlayers[_playerIdx].readyState = !m_totalPlayers[_playerIdx].readyState;
+
+	m_totalPlayers[_playerIdx].readyBtn = new CButtonUI((m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_3.png" : "Resources/Images/ReadyButton_1.png", (m_totalPlayers[_playerIdx].readyState) ? "Resources/Images/ReadyButton_4.png" : "Resources/Images/ReadyButton_2.png",
+		glm::vec2((_playerIdx * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, _playerIdx);
+	m_buttons[(_playerIdx * 2) + 1] = m_totalPlayers[_playerIdx].readyBtn;
 }
 
 void LobbyLevel::ChangePlayerColor(int _playerIdx, glm::vec3 _color)
