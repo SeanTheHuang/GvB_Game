@@ -138,6 +138,11 @@ void CButtonUI::ProcessInteract()
 			GameMaster::Instance().EndGame();
 			break;
 		}
+		case ABOUT_BTN:
+		{
+			GameMaster::Instance().ChangeLevel("AboutLevel");
+			break;
+		}
 		default:
 			break;
 		}

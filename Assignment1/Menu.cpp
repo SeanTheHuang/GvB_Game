@@ -42,6 +42,9 @@ void CMenu::Initialize()
 	// How To Play GUI
 	m_HowToPlayLayout = new CGui;
 
+	// How To Play GUI
+	//m_AboutLayout = new CGui;
+
 	// InGame GUI
 	m_InGameLayout = new CGui;
 

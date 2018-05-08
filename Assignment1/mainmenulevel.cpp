@@ -15,6 +15,10 @@ void MainMenuLevel::Initialize()
 		glm::vec2(285, 400), glm::vec2(500, 80), TO_HOWTOPLAY_BTN, 0);
 	m_buttons.push_back(HTPButton);
 
+	CButtonUI* AboutBtn = new CButtonUI("Resources/Images/AboutButton_1.png", "Resources/Images/AboutButton_2.png",
+		glm::vec2(285, 300), glm::vec2(500, 80), ABOUT_BTN, 0);
+	m_buttons.push_back(AboutBtn);
+
 	CButtonUI* QuitButton = new CButtonUI("Resources/Images/QuitButton_1.png", "Resources/Images/QuitButton_2.png",
 		glm::vec2(50, 50), glm::vec2(125, 60), QUIT_BTN, 0);
 	m_buttons.push_back(QuitButton);

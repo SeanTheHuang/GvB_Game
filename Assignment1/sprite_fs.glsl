@@ -12,7 +12,7 @@ void main(void)
 {
 	vec4 colour = texture(gSampler, textureCord.st) * vec4(gColor, 1);
 
-	if (colour.a == 0)
+	if (colour.a <= 0.5)
 		discard;
 
 	gl_FragColor = colour;

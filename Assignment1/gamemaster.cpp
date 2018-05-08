@@ -4,6 +4,7 @@
 #include "mainmenulevel.h"
 #include "lobbylevel.h"
 #include "howtoplaylevel.h"
+#include "AboutLevel.h"
 #include "GameLevel1.h"
 #include "GameLevel2.h"
 #include "GameLevel3.h"
@@ -229,6 +230,11 @@ void GameMaster::InitializeLevels()
 	// ===== How To Play Scene ======
 	Level* HTPLevel = new HowToPlayLevel();
 	m_mapLevels.insert(std::pair<std::string, Level*>("HowToPlay", HTPLevel));
+
+	// ===== About Scene ======
+	Level* aboutLevel = new AboutLevel();
+	m_mapLevels.insert(std::pair<std::string, Level*>("AboutLevel", aboutLevel));
+
 
 	// ===== Test Level Scene ======
 	Level* inGameLevel = new MainLevel();
