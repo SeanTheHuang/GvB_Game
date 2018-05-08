@@ -77,7 +77,7 @@ bool CButtonUI::Initialise()
 
 void CButtonUI::ProcessInteract()
 {
-	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(0, JOYSTICK_A) && m_highlighted))
+	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(m_playerUsedBy, JOYSTICK_A) && m_highlighted))
 	{
 		switch (m_eAction)
 		{
