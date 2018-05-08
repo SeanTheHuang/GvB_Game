@@ -32,7 +32,7 @@ void HowToPlayLevel::Initialize()
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText4);
 
-	CTextui* testText5 = new CTextui(glm::vec3(100, 440, 0), glm::vec3(1), "If you are using a controller, the (x) and (b) key's will help to alter your direction.."
+	CTextui* testText5 = new CTextui(glm::vec3(100, 440, 0), glm::vec3(1), "If you are using a controller, the (x) and (b) buttons will help to alter your direction.."
 		, "Resources/Fonts/Arial.ttf");
 	m_texts.push_back(testText5);
 
