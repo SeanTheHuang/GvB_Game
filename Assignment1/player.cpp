@@ -29,8 +29,9 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index,
 	m_fRadius(1.0f),
 	m_isAlive(true),
 	m_power(0.35f),
-	color(_color)
+	m_baseColor(_color)
 {
+	m_creviceColor = glm::vec3(GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f));
 	m_iPlayerIndex = _index;
 	m_eModelType = PLAYER;
 	m_position = _position;
@@ -89,7 +90,8 @@ void CPlayer::DrawObject()
 	glUniformMatrix4fv(gRotateLocation, 1, GL_FALSE, glm::value_ptr(Rotate));
 	glUniformMatrix4fv(gTranslateLocation, 1, GL_FALSE, glm::value_ptr(Translate));
 	glUniform1f(currentTimeLocation, currentTime);
-	glUniform3f(colorLocation, color.x, color.y, color.z);
+	glUniform3f(baseColorLocation, m_baseColor.x, m_baseColor.y, m_baseColor.z);
+	glUniform3f(creviceColorLocation, m_creviceColor.x, m_creviceColor.y, m_creviceColor.z);
 
 
 	m_model.Draw();
@@ -221,8 +223,11 @@ void CPlayer::getUniformLocation()
 	currentTimeLocation = glGetUniformLocation(m_shaders, "currentTime");
 	assert(currentTimeLocation != 0xFFFFFFFF);
 
-	colorLocation = glGetUniformLocation(m_shaders, "color");
-	assert(colorLocation != 0xFFFFFFFF);
+	baseColorLocation = glGetUniformLocation(m_shaders, "baseColor");
+	assert(baseColorLocation != 0xFFFFFFFF);
+
+	creviceColorLocation = glGetUniformLocation(m_shaders, "creviceColor");
+	assert(creviceColorLocation != 0xFFFFFFFF);
 }
 
 void CPlayer::ReduceHealth()

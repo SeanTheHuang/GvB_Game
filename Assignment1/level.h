@@ -22,7 +22,7 @@ struct Player
 	bool readyState;
 	CButtonUI* readyBtn;
 	CButtonUI* playerPortrait;
-	glm::vec3 color;
+	glm::vec3 color = glm::vec3(1,1,1);
 	int score = 0;
 };
 

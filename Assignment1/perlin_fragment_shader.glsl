@@ -10,7 +10,10 @@ float lerp;
 
 //uniform sampler2D gSampler;
 uniform float currentTime;
-uniform vec3 color;
+
+uniform vec3 baseColor;
+uniform vec3 creviceColor;
+
 out vec4 finalColor;
 
 
@@ -129,5 +132,5 @@ void main(void)
 	perlinValue = (perlinValue + 1) / 2;
 	//perlinValue = pow(perlinValue, 100);
 
-	finalColor = vec4(color * perlinValue, 1.0f);
+	finalColor = vec4(mix(creviceColor, baseColor, perlinValue), 1.0f);
 }
