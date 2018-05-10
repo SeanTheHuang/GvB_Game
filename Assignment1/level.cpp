@@ -93,12 +93,15 @@ void Level::CheckPause()
 		SetIsPaused(!GetIsPaused());
 		if (GetIsPaused())
 		{
+			CSprite* pbackground = new CSprite("Resources/Images/PauseScreenBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
+			m_sprites.push_back(pbackground);
 			CButtonUI* QuitButton = new CButtonUI("Resources/Images/QuitButton_1.png", "Resources/Images/QuitButton_2.png",
 				glm::vec2((WINDOW_WIDTH / 2) - 62.5f, (WINDOW_HEIGHT / 2) - 30.0f), glm::vec2(125, 60), QUIT_TO_MENU_BTN, 0);
 			m_buttons.push_back(QuitButton);
 		}
 		else
 		{
+			m_sprites.clear();
 			m_buttons.clear();
 		}
 	}
