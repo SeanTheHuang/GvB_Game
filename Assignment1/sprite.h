@@ -8,6 +8,8 @@ class CSprite : public CUi
 {
 public:
 	CSprite(std::string _file, glm::vec2 _position, glm::vec2 _dimensions);
+	CSprite(std::string _file, glm::vec2 _position, glm::vec2 _dimensions, glm::vec3 _color);
+
 	~CSprite();
 
 	virtual void Render();

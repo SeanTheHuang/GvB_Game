@@ -20,6 +20,8 @@ void EndLevel::Initialize()
 	for (size_t i = 0; i < playerInfo.size(); i++)
 	{
 		// Title
+		CSprite* playerPortrait = new CSprite("Resources/Images/BlobImage_1.png", glm::vec2(textPosition) + glm::vec2(35, -200), glm::vec2(75.0f, 75.0f), playerInfo[i].color);
+		m_sprites.push_back(playerPortrait);
 		CTextui* playerNames = new CTextui(textPosition, glm::vec3(1, 1, 0), "Player " + std::to_string(i + 1), "Resources/Fonts/Arial.ttf");
 		CTextui* score = new CTextui(textPosition + glm::vec3(35, -100, 0), glm::vec3(1, 1, 1), std::to_string(playerInfo[i].score), "Resources/Fonts/Arial.ttf");
 		score->setScale(2);
