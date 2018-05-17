@@ -61,12 +61,12 @@ void GameLevel2::Initialize()
 	{
 	case 4:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 3, connectedPlayers[3].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 4, connectedPlayers[3].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	case 3:
 	{
-		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 4, connectedPlayers[2].color));
+		m_vecPlayers.push_back(CPlayer::CreatePlayer(m_vecShaders.at(2), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this, 3, connectedPlayers[2].color));
 		m_vecPlayers.at(m_vecPlayers.size() - 1)->SetArrow(CArrow::CreateArrow(m_vecShaders.at(1), glm::vec3(-0.9f * platformWidth, 2.0f * pillarHeight + platformHeight, -5.0f), *this));
 	}
 	case 2:

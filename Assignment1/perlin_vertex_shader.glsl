@@ -11,6 +11,7 @@ in vec3 a_Color;
  uniform mat4 gPerspective;
 
  uniform float currentTime;
+ uniform vec2 velocity;
 
 out vec3 outColor;
 out vec4 gObjectPos;
@@ -124,10 +125,39 @@ vec3 fragDirection = normalize(a_position);
 	int(currentTime * 400));
 	perlinValue = (perlinValue + 1) / 6;
 
+	float alignment = 1.0f;
+	vec3 newPosition;
 
-	vec3 newPosition = vec3(a_position.x + a_position.x * perlinValue, a_position.y + a_position.y * perlinValue, a_position.z + a_position.z * perlinValue);
+	if (velocity != 0.0f.xx)
+	{
+		alignment = dot(normalize(a_position.xy), normalize(velocity));
+
+		newPosition = vec3(
+		a_position.x + a_position.x * perlinValue + (velocity.x/2.0f * alignment), 
+		a_position.y + a_position.y * perlinValue + (velocity.y/2.0f * alignment),
+		a_position.z + a_position.z * perlinValue);
+	}
+	else
+	{
+		newPosition = vec3(
+		a_position.x + a_position.x * perlinValue, 
+		a_position.y + a_position.y * perlinValue,
+		a_position.z + a_position.z * perlinValue);
+	}
+
+	float zAdd;
+	if(abs(velocity.x) < abs(velocity.y))
+	{
+		zAdd = a_position.z * (velocity.x * alignment - 0.5f);
+	}
+	else
+	{
+		zAdd = a_position.z * (velocity.y * alignment - 0.5f);
+	}
+	newPosition.z += zAdd;
 
 	gWorldPos = gTranslate * gRotate * gScale * vec4(newPosition, 1.0f);
+
 
 	gl_Position = gPerspective * gView * gTranslate * gRotate * gScale * vec4(newPosition, 1.0f);
 	gObjectPos = vec4(a_position, 1.0f);

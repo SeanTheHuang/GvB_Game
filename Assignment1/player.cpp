@@ -93,6 +93,7 @@ void CPlayer::DrawObject()
 	glUniform1f(currentTimeLocation, currentTime);
 	glUniform3f(baseColorLocation, m_baseColor.x, m_baseColor.y, m_baseColor.z);
 	glUniform3f(creviceColorLocation, m_creviceColor.x, m_creviceColor.y, m_creviceColor.z);
+	glUniform2f(velocityLocation, m_body->GetLinearVelocity().x, m_body->GetLinearVelocity().y);
 
 
 	m_model.Draw();
@@ -230,6 +231,9 @@ void CPlayer::getUniformLocation()
 
 	creviceColorLocation = glGetUniformLocation(m_shaders, "creviceColor");
 	assert(creviceColorLocation != 0xFFFFFFFF);
+
+	velocityLocation = glGetUniformLocation(m_shaders, "velocity");
+	assert(velocityLocation != 0xFFFFFFFF);
 }
 
 void CPlayer::ReduceHealth()

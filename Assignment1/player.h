@@ -48,7 +48,7 @@ private:
 	void getUniformLocation();
 	void ReduceHealth();
 
-	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation, baseColorLocation, creviceColorLocation;
+	GLuint gScaleLocation, gRotateLocation, gTranslateLocation, currentTimeLocation, baseColorLocation, creviceColorLocation, velocityLocation;
 	GLuint m_shaders;
 	Texture* pTexture;
 	Model m_model;
