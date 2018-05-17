@@ -32,7 +32,7 @@ CPlayer::CPlayer(GLuint _shaders, glm::vec3 _position, Level& level, int _index,
 	m_baseColor(_color),
 	m_hitCooldown(0.0f)
 {
-	m_creviceColor = glm::vec3(GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f), GenerateRandomFloat(0.0f, 1.0f));
+	m_creviceColor = glm::vec3(0, 0, 0);
 	m_iPlayerIndex = _index;
 	m_eModelType = PLAYER;
 	m_position = _position;
