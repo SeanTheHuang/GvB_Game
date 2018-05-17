@@ -27,7 +27,6 @@ void Level::CheckControllerSelect()
 				if (m_buttons[j] && i == m_buttons[j]->GetPlayerUsedBy())
 				{
 					m_buttons[j]->ProcessInteract();
-
 				}
 			}
 

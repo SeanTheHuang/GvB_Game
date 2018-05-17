@@ -18,6 +18,23 @@ CSprite::CSprite(std::string _file, glm::vec2 _position, glm::vec2 _dimensions)
 	this->Initialise();
 }
 
+CSprite::CSprite(std::string _file, glm::vec2 _position, glm::vec2 _dimensions, glm::vec3 _color)
+{
+	m_filename = _file;
+
+	m_position.x = _position.x;
+	m_position.y = _position.y;
+
+	m_dimensions = _dimensions;
+
+	m_isInteractive = false;
+
+	m_color = glm::vec3(_color.x, _color.y, _color.z);
+
+
+	this->Initialise();
+}
+
 CSprite::~CSprite()
 {
 	if (m_texture != nullptr)
