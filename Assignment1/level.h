@@ -14,6 +14,7 @@
 #include "buttonUI.h"
 #include "sprite.h"
 #include "textui.h"
+#include "audio.h"
 
 struct Player
 {

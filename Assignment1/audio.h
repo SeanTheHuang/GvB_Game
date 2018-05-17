@@ -23,6 +23,7 @@ private:
 	static FMOD::Sound* m_sJump;
 	static FMOD::Sound* m_sHit;
 	static FMOD::Sound* m_sCharge;
+	static FMOD::Sound* m_sUIResponse;
 
 	static FMOD::Channel* m_pMenuChannel;
 	static FMOD::Channel* m_pGameChannel;

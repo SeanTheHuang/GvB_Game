@@ -13,6 +13,7 @@ System* CAudio::m_system = nullptr;
 Sound* CAudio::m_sJump = nullptr;
 Sound* CAudio::m_sHit = nullptr;
 Sound* CAudio::m_sCharge = nullptr;
+Sound* CAudio::m_sUIResponse = nullptr;
 
 Channel* CAudio::m_pMenuChannel = nullptr;
 Channel* CAudio::m_pGameChannel = nullptr;
@@ -35,6 +36,8 @@ void CAudio::InitializeFMOD()
 	m_fmodSounds["charge0.wav"] = m_sCharge;
 	m_fmodSounds["charge1.wav"] = m_sCharge;
 	m_fmodSounds["charge2.wav"] = m_sCharge;
+
+	m_fmodSounds["buttonpress0.wav"] = m_sUIResponse;
 
 	result = m_system->init(50, FMOD_INIT_NORMAL, 0);
 }
@@ -79,6 +82,14 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 				PlaySound(_sSound, false);
 			}
 			else if (_sSound == "charge")
+			{
+				std::stringstream ss;
+				ss << rand() % m_iChargeSounds;
+
+				_sSound += ss.str();
+				PlaySound(_sSound, false);
+			}
+			else if (_sSound == "buttonpress")
 			{
 				std::stringstream ss;
 				ss << rand() % m_iChargeSounds;

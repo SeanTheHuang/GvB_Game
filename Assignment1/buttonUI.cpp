@@ -84,6 +84,9 @@ bool CButtonUI::Initialise()
 
 void CButtonUI::ProcessInteract()
 {
+	// Button was touched, play a sound to tell the user they've hit that button
+	CAudio::PlaySound("buttonpress");
+
 	if ((Input::Instance().GetMouseButton(GLFW_MOUSE_BUTTON_LEFT, GLFW_PRESS) && MouseIsOverButton()) || (Input::Instance().GetControllerInputDown(m_playerUsedBy, JOYSTICK_A) && m_highlighted))
 	{
 		switch (m_eAction)
