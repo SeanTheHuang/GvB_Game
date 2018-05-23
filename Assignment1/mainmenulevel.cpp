@@ -8,15 +8,15 @@ void MainMenuLevel::Initialize()
 
 	// Set Up UI
 	CButtonUI* playButton = new CButtonUI("Resources/Images/PlayButton_1.png", "Resources/Images/PlayButton_2.png",
-										glm::vec2(300, 500), glm::vec2(200, 100), TO_LOBBY_BTN, 0);
+										glm::vec2(100, 430), glm::vec2(200, 100), TO_LOBBY_BTN, 0);
 	m_buttons.push_back(playButton);
 
 	CButtonUI* HTPButton = new CButtonUI("Resources/Images/HTPButton_1.png", "Resources/Images/HTPButton_2.png",
-		glm::vec2(285, 400), glm::vec2(500, 80), TO_HOWTOPLAY_BTN, 0);
+		glm::vec2(85, 330), glm::vec2(500, 80), TO_HOWTOPLAY_BTN, 0);
 	m_buttons.push_back(HTPButton);
 
 	CButtonUI* AboutBtn = new CButtonUI("Resources/Images/AboutButton_1.png", "Resources/Images/AboutButton_2.png",
-		glm::vec2(285, 300), glm::vec2(500, 80), ABOUT_BTN, 0);
+		glm::vec2(105, 220), glm::vec2(200, 80), ABOUT_BTN, 0);
 	m_buttons.push_back(AboutBtn);
 
 	CButtonUI* QuitButton = new CButtonUI("Resources/Images/QuitButton_1.png", "Resources/Images/QuitButton_2.png",

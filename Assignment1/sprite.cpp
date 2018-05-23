@@ -120,7 +120,7 @@ void CSprite::CreateAndLoadTexture(Texture*& texture)
 
 	if (!m_texture->load())
 	{
-		std::cout << "error loading texture" << std::endl;
+		std::cout << "error loading texture " << m_filename << std::endl;
 	}
 }
 
