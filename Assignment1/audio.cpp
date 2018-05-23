@@ -38,6 +38,8 @@ void CAudio::InitializeFMOD()
 	m_fmodSounds["charge2.wav"] = m_sCharge;
 
 	m_fmodSounds["buttonpress0.wav"] = m_sUIResponse;
+	m_fmodSounds["buttonpress1.wav"] = m_sUIResponse;
+	m_fmodSounds["buttonpress2.wav"] = m_sUIResponse;
 
 	result = m_system->init(50, FMOD_INIT_NORMAL, 0);
 }

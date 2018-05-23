@@ -6,7 +6,7 @@ void EndLevel::Initialize()
 	// Set Up UI
 	auto playerInfo = GameMaster::Instance().GetPlayerInfo();
 	
-	CTextui* Title = new CTextui(glm::vec3(400, 600, 0), glm::vec3(0.9f, 0.6f, 0.1f), "Final Scores! ", "Resources/Fonts/Arial.ttf");
+	CTextui* Title = new CTextui(glm::vec3(400, 600, 0), glm::vec3(0.9f, 0.6f, 0.1f), "Final Scores! ", "Resources/Fonts/VT323-Regular.ttf");
 	Title->setScale(2);
 	m_texts.push_back(Title);
 
@@ -22,8 +22,8 @@ void EndLevel::Initialize()
 		// Title
 		CSprite* playerPortrait = new CSprite("Resources/Images/BlobImage_1.png", glm::vec2(textPosition) + glm::vec2(35, -200), glm::vec2(75.0f, 75.0f), playerInfo[i].color);
 		m_sprites.push_back(playerPortrait);
-		CTextui* playerNames = new CTextui(textPosition, glm::vec3(1, 1, 0), "Player " + std::to_string(i + 1), "Resources/Fonts/Arial.ttf");
-		CTextui* score = new CTextui(textPosition + glm::vec3(35, -100, 0), glm::vec3(1, 1, 1), std::to_string(playerInfo[i].score), "Resources/Fonts/Arial.ttf");
+		CTextui* playerNames = new CTextui(textPosition, glm::vec3(1, 1, 0), "Player " + std::to_string(i + 1), "Resources/Fonts/VT323-Regular.ttf");
+		CTextui* score = new CTextui(textPosition + glm::vec3(35, -100, 0), glm::vec3(1, 1, 1), std::to_string(playerInfo[i].score), "Resources/Fonts/VT323-Regular.ttf");
 		score->setScale(2);
 		m_texts.push_back(playerNames);
 		m_texts.push_back(score);
@@ -35,7 +35,7 @@ void EndLevel::Initialize()
 		glm::vec2(50, 0), glm::vec2(200, 100), TO_LOBBY_BTN, 0);
 	m_buttons.push_back(returnButton);
 
-	CTextui* returnText = new CTextui(glm::vec3(110, 70, 0), glm::vec3(0.9f), "Back To Lobby", "Resources/Fonts/Arial.ttf");
+	CTextui* returnText = new CTextui(glm::vec3(110, 70, 0), glm::vec3(0.9f), "Back To Lobby", "Resources/Fonts/VT323-Regular.ttf");
 	m_texts.push_back(returnText);
 
 	m_highlights[0] = 0;

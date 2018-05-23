@@ -10,13 +10,14 @@ void HowToPlayLevel::Initialize()
 		glm::vec2(50, 0), glm::vec2(200, 100), TO_MENU_BTN, 0);
 	m_buttons.push_back(returnButton);
 
-	CTextui* returnText = new CTextui(glm::vec3(110, 70, 0), glm::vec3(0.9f), "Return", "Resources/Fonts/Arial.ttf");
+	CTextui* returnText = new CTextui(glm::vec3(110, 70, 0), glm::vec3(0.9f), "Return", "Resources/Fonts/VT323-Regular.ttf");
 	m_texts.push_back(returnText);
 
 	CSprite* background = new CSprite("Resources/Images/HTPBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
 	m_sprites.push_back(background);
 
-
+	CSprite* controller = new CSprite("Resources/Images/ControllerPic.png", glm::vec2(500, 70), glm::vec2(350, 225));
+	m_sprites.push_back(controller);
 	m_highlights[0] = 0;
 	m_buttons[0]->UpdateHighlight(true);
 }

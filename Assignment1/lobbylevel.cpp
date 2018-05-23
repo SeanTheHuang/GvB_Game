@@ -10,15 +10,12 @@ void LobbyLevel::Initialize()
 		curPlayer.playerIndex = i;
 
 		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png",
-			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 100), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
+			glm::vec2((i * 200) + 400, WINDOW_HEIGHT - 500), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
 		curPlayer.playerPortrait = globPortait;
 
 		CButtonUI* globReady =  new CButtonUI((i == 0) ? "Resources/Images/ReadyButton_1.png" : "Resources/Images/BlankButton_1.png", (i == 0) ? "Resources/Images/ReadyButton_2.png" : "Resources/Images/BlankButton_1.png",
-			glm::vec2((i * 300) + 300, WINDOW_HEIGHT - 300), glm::vec2(200, 100), READY_PLAYER_BTN, i);
+			glm::vec2((i * 220) + 380, WINDOW_HEIGHT - 600), glm::vec2(200, 100), READY_PLAYER_BTN, i);
 		curPlayer.readyBtn = globReady;
-
-		CTextui* returnText = new CTextui(glm::vec3(50, 70, 0), glm::vec3(0.9f), "Back to Main Menu", "Resources/Fonts/Arial.ttf");
-		m_texts.push_back(returnText);
 
 		curPlayer.active = false;
 		curPlayer.readyState = false;
@@ -39,9 +36,15 @@ void LobbyLevel::Initialize()
 	m_readyButton = nullptr;
 	m_buttons.push_back(m_readyButton);
 
+	CTextui* returnText = new CTextui(glm::vec3(330, 160, 0), glm::vec3(0.9f), "Back to Main Menu", "Resources/Fonts/VT323-Regular.ttf");
+	m_texts.push_back(returnText);
+
 	CButtonUI* returnBtn = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
-		glm::vec2(50, 0), glm::vec2(200, 100), TO_MENU_BTN, 0);
+		glm::vec2(350, 100), glm::vec2(200, 100), TO_MENU_BTN, 0);
 	m_buttons.push_back(returnBtn);
+
+	CSprite* background = new CSprite("Resources/Images/LobbyBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
+	m_sprites.push_back(background);
 }
 
 void LobbyLevel::CleanUp()
@@ -118,7 +121,7 @@ void LobbyLevel::Update()
 		if (!m_readyButton)
 		{
 			m_readyButton = new CButtonUI("Resources/Images/PlayButton_1.png", "Resources/Images/PlayButton_2.png",
-				glm::vec2(WINDOW_WIDTH - 200, 0), glm::vec2(200, 100), STARTGAME_BTN, 0);
+				glm::vec2(WINDOW_WIDTH - 600, 50), glm::vec2(200, 100), STARTGAME_BTN, 0);
 			m_buttons[8] = m_readyButton;
 		}
 	}

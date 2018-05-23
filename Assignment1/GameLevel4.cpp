@@ -125,7 +125,7 @@ void GameLevel4::Update()
 	if (alivePlayers == 1)
 	{
 		std::string text = "Player " + to_string(winningPlayerIndex + 1) + " wins!";
-		CTextui* testText = new CTextui(glm::vec3((WINDOW_WIDTH / 2) - 100, 200, 0), glm::vec3(1), text, "Resources/Fonts/Arial.ttf");
+		CTextui* testText = new CTextui(glm::vec3((WINDOW_WIDTH / 2) - 100, 200, 0), glm::vec3(1), text, "Resources/Fonts/VT323-Regular.ttf");
 		m_texts.push_back(testText);
 		GameMaster::Instance().Render();
 		CleanUp();
