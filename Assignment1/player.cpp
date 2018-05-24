@@ -126,7 +126,7 @@ void CPlayer::PlayerInput()
 	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
 	{
 		if (m_angle == 0.0f)
-			CAudio::PlaySound("charge");
+			CAudio::PlaySound("charge",true);
 
 		m_chargeLeft = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 3;
@@ -136,7 +136,7 @@ void CPlayer::PlayerInput()
 	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
 	{
 		if (m_angle == 0.0f)
-			CAudio::PlaySound("charge");
+			CAudio::PlaySound("charge",true);
 
 		m_chargeRight = true;
 		m_chargeAmount += Time::Instance().DeltaTime() * 3;
@@ -147,7 +147,7 @@ void CPlayer::PlayerInput()
 	{
 		if (m_chargeLeft && !Input::Instance().GetPlayerLeft(m_iPlayerIndex))
 		{
-			CAudio::PlaySound("jump");
+			CAudio::PlaySound("jump",true);
 
 			m_body->ApplyLinearImpulse(b2Vec2(
 				(-cos(m_angle * glm::pi<float>() / 180.0f) * m_power) / Level::s_kPixelsPerMeter,
@@ -159,7 +159,7 @@ void CPlayer::PlayerInput()
 		}
 		else if (m_chargeRight && !Input::Instance().GetPlayerRight(m_iPlayerIndex))
 		{
-			CAudio::PlaySound("jump");
+			CAudio::PlaySound("jump",true);
 
 			m_body->ApplyLinearImpulse(b2Vec2(
 				(cos(m_angle * glm::pi<float>() / 180.0f) * m_power) / Level::s_kPixelsPerMeter,
@@ -188,7 +188,7 @@ void CPlayer::Collide(b2Body & otherPlayerBody)
 	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f && m_hitCooldown <= 0.0f)
 	{
 		ReduceHealth();
-		CAudio::PlaySound("hit");
+		CAudio::PlaySound("hit",true);
 	}
 	else
 	{

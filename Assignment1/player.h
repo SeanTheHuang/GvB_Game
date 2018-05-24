@@ -59,7 +59,6 @@ private:
 	bool m_chargeLeft;
 	bool m_chargeRight;
 	bool m_isAlive;
-
 	float m_power;
 
 	int m_iIndices;

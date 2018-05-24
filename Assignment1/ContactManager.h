@@ -4,6 +4,7 @@
 
 #include "object.h"
 #include "player.h"
+#include "audio.h"
 
 class CContactManager : public b2ContactListener
 {
@@ -22,6 +23,10 @@ public:
 			{
 				static_cast<CPlayer*>(bodyOneUserData)->Collide(*contact->GetFixtureB()->GetBody());
 				static_cast<CPlayer*>(bodyTwoUserData)->Collide(*contact->GetFixtureA()->GetBody());
+			}
+			else
+			{
+				CAudio::PlaySound("landing", true);
 			}
 		}
 	}
