@@ -9,7 +9,7 @@ void LobbyLevel::Initialize()
 		Player curPlayer;
 		curPlayer.playerIndex = i;
 
-		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png",
+		CButtonUI* globPortait = new CButtonUI((i == 0) ? "Resources/Images/BlobImage_1.png" : "Resources/Images/BlobImage_2.png", (i == 0) ? "Resources/Images/BlobImage_3.png" : "Resources/Images/BlobImage_2.png",
 			glm::vec2((i * 200) + 400, WINDOW_HEIGHT - 500), glm::vec2(100, 100), (i == 0) ? PLAYER_PORTRAIT_BTN : ADD_PLAYER_BTN, i);
 		curPlayer.playerPortrait = globPortait;
 
@@ -54,7 +54,7 @@ void LobbyLevel::CleanUp()
 
 void LobbyLevel::AddPlayer(int _playerIdx)
 {
-	m_totalPlayers[_playerIdx].playerPortrait->SetImage("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_1.png");
+	m_totalPlayers[_playerIdx].playerPortrait->SetImage("Resources/Images/BlobImage_1.png", "Resources/Images/BlobImage_3.png");
 	m_totalPlayers[_playerIdx].playerPortrait->ChangeAction(PLAYER_PORTRAIT_BTN);
 	m_totalPlayers[_playerIdx].readyBtn->SetImage("Resources/Images/ReadyButton_1.png", "Resources/Images/ReadyButton_2.png");
 
