@@ -7,11 +7,14 @@ std::unordered_map<std::string, FMOD::Sound*> CAudio::m_fmodSounds;
 int CAudio::m_iJumpSounds = 3;
 int CAudio::m_iHitSounds = 3;
 int CAudio::m_iChargeSounds = 3;
+int CAudio::m_iUiSounds = 3;
+int CAudio::m_iImpactSounds = 3;
 
 System* CAudio::m_system = nullptr;
 
 Sound* CAudio::m_sJump = nullptr;
 Sound* CAudio::m_sHit = nullptr;
+Sound* CAudio::m_sImpact = nullptr;
 Sound* CAudio::m_sCharge = nullptr;
 Sound* CAudio::m_sUIResponse = nullptr;
 
@@ -32,6 +35,10 @@ void CAudio::InitializeFMOD()
 	m_fmodSounds["jump0.wav"] = m_sJump;
 	m_fmodSounds["jump1.wav"] = m_sJump;
 	m_fmodSounds["jump2.wav"] = m_sJump;
+
+	m_fmodSounds["landing0.wav"] = m_sImpact;
+	m_fmodSounds["landing1.wav"] = m_sImpact;
+	m_fmodSounds["landing2.wav"] = m_sImpact;
 
 	m_fmodSounds["charge0.wav"] = m_sCharge;
 	m_fmodSounds["charge1.wav"] = m_sCharge;
@@ -67,7 +74,7 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 		case true:
 		{
 
-			if (_sSound == "jump") 
+			if (_sSound == "jump")
 			{
 				std::stringstream ss;
 				ss << rand() % m_iJumpSounds;
@@ -94,7 +101,15 @@ void CAudio::PlaySound(std::string _sSound, bool _bCallRecursive)
 			else if (_sSound == "buttonpress")
 			{
 				std::stringstream ss;
-				ss << rand() % m_iChargeSounds;
+				ss << rand() % m_iUiSounds; 
+
+				_sSound += ss.str();
+				PlaySound(_sSound, false);
+			}
+			else if (_sSound == "landing")
+			{
+				std::stringstream ss;
+				ss << rand() % m_iImpactSounds;
 
 				_sSound += ss.str();
 				PlaySound(_sSound, false);

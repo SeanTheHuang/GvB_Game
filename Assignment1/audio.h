@@ -21,6 +21,7 @@ private:
 
 	static std::unordered_map<std::string, FMOD::Sound*> m_fmodSounds;
 	static FMOD::Sound* m_sJump;
+	static FMOD::Sound* m_sImpact; // Landing impact
 	static FMOD::Sound* m_sHit;
 	static FMOD::Sound* m_sCharge;
 	static FMOD::Sound* m_sUIResponse;
@@ -32,4 +33,6 @@ private:
 	static int m_iJumpSounds;
 	static int m_iHitSounds;
 	static int m_iChargeSounds;
+	static int m_iUiSounds;
+	static int m_iImpactSounds;
 };
