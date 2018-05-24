@@ -123,7 +123,7 @@ void CPlayer::Update()
 
 void CPlayer::PlayerInput()
 {
-	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
+	if (Input::Instance().GetPlayerLeft(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f && !m_chargeRight)
 	{
 		if (m_angle == 0.0f)
 			CAudio::PlaySound("charge",true);
@@ -133,7 +133,7 @@ void CPlayer::PlayerInput()
 		m_angle = 10 + 40 * (1 + sin(m_chargeAmount));
 		std::cout << m_angle << std::endl;
 	}
-	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f)
+	else if (Input::Instance().GetPlayerRight(m_iPlayerIndex) && m_body->GetLinearVelocity().Length() == 0.0f && !m_chargeLeft)
 	{
 		if (m_angle == 0.0f)
 			CAudio::PlaySound("charge",true);
@@ -185,12 +185,15 @@ CPlayer * CPlayer::CreatePlayer(GLuint _shaders, glm::vec3 _position, Level& lev
 
 void CPlayer::Collide(b2Body & otherPlayerBody)
 {
-	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f && m_hitCooldown <= 0.0f)
+	if (otherPlayerBody.GetPosition().y > m_body->GetPosition().y + m_body->GetFixtureList()[0].GetShape()->m_radius/3.0f)
 	{
-		ReduceHealth();
-		CAudio::PlaySound("hit",true);
+		if (m_hitCooldown <= 0.0f)
+		{
+			ReduceHealth();
+			CAudio::PlaySound("hit", true);
+		}
 	}
-	else
+	else if (otherPlayerBody.GetPosition().y < m_body->GetPosition().y)
 	{
 		m_body->ApplyLinearImpulse(b2Vec2(0.0f, -m_body->GetLinearVelocity().y / 120.0f), m_body->GetWorldCenter(), true);
 	}
@@ -238,7 +241,7 @@ void CPlayer::getUniformLocation()
 
 void CPlayer::ReduceHealth()
 {
-	m_hitCooldown = 0.5f;
+	m_hitCooldown = 0.2f;
 	m_iHealth--;
 
 	m_body->GetFixtureList()[0].GetShape()->m_radius = (static_cast<float>(m_iHealth) / 3.0f) * (m_fRadius / Level::s_kPixelsPerMeter);
