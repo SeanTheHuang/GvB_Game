@@ -3,7 +3,7 @@
 void AboutLevel::Initialize()
 {
 	// Add input delay
-	for (size_t i = 0; i < m_buttons.size(); i++)
+	for (int i = 0; i < m_buttons.size(); i++)
 		m_inputDelayStamps[i] = Time::Instance().TotalTime();
 
 	CSprite* background = new CSprite("Resources/Images/AboutBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));

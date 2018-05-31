@@ -3,7 +3,7 @@
 void HowToPlayLevel::Initialize()
 {
 	// Add input delay
-	for (size_t i = 0; i < m_buttons.size(); i++)
+	for (int i = 0; i < m_buttons.size(); i++)
 		m_inputDelayStamps[i] = Time::Instance().TotalTime();
 
 	CButtonUI* returnButton = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",

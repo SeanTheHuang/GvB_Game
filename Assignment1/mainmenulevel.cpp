@@ -3,7 +3,7 @@
 void MainMenuLevel::Initialize()
 {
 	// Add input delay
-	for (size_t i = 0; i < m_buttons.size(); i++)
+	for (int i = 0; i < m_buttons.size(); i++)
 		m_inputDelayStamps[i] = Time::Instance().TotalTime();
 
 	// Set Up UI

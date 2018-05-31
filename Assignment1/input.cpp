@@ -66,7 +66,8 @@ bool Input::GetMouseButton(int _whichButton, int _state)
 		return m_iRightMouseState == _state;
 	}
 
-	return false;
+	//int state = glfwGetMouseButton(GameMaster::Instance().Window(), _whichButton);
+	//return state == _state;
 }
 
 bool Input::GetControllerInputDown(int _joyStickID, JOYSTICK_INPUT _button)

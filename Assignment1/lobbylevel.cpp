@@ -99,7 +99,7 @@ void LobbyLevel::Update()
 {
 	bool allPlayersReady = true;
 	int playersConnected = 0;
-	for (size_t i = 0; i < m_totalPlayers.size(); i++)
+	for (int i = 0; i < m_totalPlayers.size(); i++)
 	{
 		if (Input::Instance().GetControllerInputDown(i, JOYSTICK_A) && !m_totalPlayers[i].active) {
 			AddPlayer(i);
@@ -141,7 +141,7 @@ void LobbyLevel::Update()
 
 std::vector<Player> LobbyLevel::GetPlayerData()
 {
-	for (size_t i = 0; i <m_totalPlayers.size(); i++)
+	for (int i = 0; i <m_totalPlayers.size(); i++)
 	{
 		if (!m_totalPlayers[i].active)
 		{
