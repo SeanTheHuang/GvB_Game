@@ -55,7 +55,7 @@ void Level::CheckMouseSelect()
 
 void Level::FindNextButton(int _playerIdx, int _direction)
 {
-	for (size_t i = m_highlights[_playerIdx] + _direction; (_direction > 0) ? i < m_buttons.size() : i >= 0; i+= _direction)
+	for (int i = m_highlights[_playerIdx] + _direction; (_direction > 0) ? i < (int)m_buttons.size() : i >= 0; i+= _direction)
 	{
 		if (m_buttons[i] && m_buttons[i]->GetPlayerUsedBy() == _playerIdx)
 		{
