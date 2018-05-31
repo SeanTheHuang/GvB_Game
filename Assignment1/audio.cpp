@@ -17,6 +17,7 @@ Sound* CAudio::m_sHit = nullptr;
 Sound* CAudio::m_sImpact = nullptr;
 Sound* CAudio::m_sCharge = nullptr;
 Sound* CAudio::m_sUIResponse = nullptr;
+Sound* CAudio::m_sBGM = nullptr;
 
 Channel* CAudio::m_pMenuChannel = nullptr;
 Channel* CAudio::m_pGameChannel = nullptr;
@@ -62,6 +63,10 @@ void CAudio::LoadAudio()
 		result = m_system->createSound(filn.c_str(), FMOD_LOOP_NORMAL, 0, &x.second);
 		x.second->setMode(FMOD_LOOP_OFF);
 	}
+
+	// Create and play BGM
+	result = m_system->createSound("Resources/Audio/Dynamic-good-electronic-music.mp3", FMOD_LOOP_NORMAL, 0, &m_sBGM);
+	m_system->playSound(m_sBGM, 0, false, &m_pMenuChannel);
 
 	//result = m_system->createSound("Resources/Sounds/attack0.mp3", FMOD_LOOP_OFF, 0, &m_sAttack);
 	//result = m_system->createSound("Resources/Sounds/bounce.mp3", FMOD_LOOP_OFF, 0, &m_sBounce);

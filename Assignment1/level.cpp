@@ -6,7 +6,7 @@ const float Level::s_kGravity = -10.0f; // adjust this to taste
 
 Level::Level()
 {
-	for (int i = 0; i < m_buttons.size(); i++)
+	for (size_t i = 0; i < m_buttons.size(); i++)
 		m_inputDelayStamps[i] = Time::Instance().TotalTime();
 }
 
@@ -55,7 +55,7 @@ void Level::CheckMouseSelect()
 
 void Level::FindNextButton(int _playerIdx, int _direction)
 {
-	for (int i = m_highlights[_playerIdx] + _direction; (_direction > 0) ? i < m_buttons.size() : i >= 0; i+= _direction)
+	for (size_t i = m_highlights[_playerIdx] + _direction; (_direction > 0) ? i < m_buttons.size() : i >= 0; i+= _direction)
 	{
 		if (m_buttons[i] && m_buttons[i]->GetPlayerUsedBy() == _playerIdx)
 		{
@@ -69,7 +69,7 @@ void Level::CheckControllerScroll()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		int axes = Input::Instance().GetControllerAxes(i, 1) * -1;
+		int axes = (int)Input::Instance().GetControllerAxes(i, 1) * -1;
 		if (m_buttons.size() > 0 && Time::Instance().TotalTime() > m_inputDelayStamps[i] + m_delayLength && (axes > 0.25f || axes < -0.25f))
 		{
 			if (m_buttons[m_highlights[i]])
