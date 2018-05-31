@@ -23,15 +23,9 @@ public:
 			{
 				static_cast<CPlayer*>(bodyOneUserData)->Collide(*contact->GetFixtureB()->GetBody());
 				static_cast<CPlayer*>(bodyTwoUserData)->Collide(*contact->GetFixtureA()->GetBody());
-			}
-			else
-			{
-				CAudio::PlaySound("landing", true);
+				//CAudio::PlaySound("landing");
 			}
 		}
-	}
-	void EndContact(b2Contact* contact)
-	{
 	}
 };
 
