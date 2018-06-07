@@ -36,11 +36,11 @@ void LobbyLevel::Initialize()
 	m_readyButton = nullptr;
 	m_buttons.push_back(m_readyButton);
 
-	CTextui* returnText = new CTextui(glm::vec3(330, 160, 0), glm::vec3(0.9f), "Back to Main Menu", "Resources/Fonts/VT323-Regular.ttf");
+	CTextui* returnText = new CTextui(glm::vec3(330, 120, 0), glm::vec3(0.9f), "Back to Main Menu", "Resources/Fonts/VT323-Regular.ttf");
 	m_texts.push_back(returnText);
 
 	CButtonUI* returnBtn = new CButtonUI("Resources/Images/ReturnButton_1.png", "Resources/Images/ReturnButton_2.png",
-		glm::vec2(350, 100), glm::vec2(200, 100), TO_MENU_BTN, 0);
+		glm::vec2(350, 60), glm::vec2(200, 100), TO_MENU_BTN, 0);
 	m_buttons.push_back(returnBtn);
 
 	CSprite* background = new CSprite("Resources/Images/LobbyBackground.jpg", glm::vec2(0, 0), glm::vec2((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
