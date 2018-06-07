@@ -126,10 +126,22 @@ void Level::Update()
 		static float32 timeStep = 1.0f / 90.0f;
 		static const int32 velocityIterations = 6;
 		static const int32 positionIterations = 2;
+		const int maxUpdatesPerFrame = 5;
+
+
+		m_accumulator += Time::Instance().DeltaTime();
+		if (m_accumulator > (maxUpdatesPerFrame * timeStep)) {
+			m_accumulator = timeStep;
+		}
 
 		if (m_world)
-			m_world->Step(timeStep, velocityIterations, positionIterations);
-
+		{
+			while (m_accumulator >= timeStep)
+			{
+				m_world->Step(timeStep, velocityIterations, positionIterations);
+				m_accumulator -= timeStep;
+			}
+		}
 		removeObjects();
 	}
 }
